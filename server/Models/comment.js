@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
     user: {type: Schema.Types.ObjectId, ref: "Users"},
-    content: {type: String, required: true},
+    reply: {type: Schema.Types.ObjectId, ref: "Posts"},
+    text: {type: String, required: true},
     likes: [
         {user: {type: Schema.Types.ObjectId, ref: "Users"}}
     ],
