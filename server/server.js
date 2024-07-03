@@ -3,7 +3,9 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const auth = require('./Routers/authRoutes')
+const auth = require('./Routers/authRoutes');
+const comment = require('./Routers/commentRoutes');
+const posts = require('./Routers/postRoutes');
 
 const app = express();
 mongoose.set('strictQuery', false);
@@ -15,7 +17,9 @@ async function main(){
 
 main().catch((err) => console.log(err));
 
-app.use('/api/register', auth);
+app.use('/api/auth', auth);
+app.use('/api/posts', posts);
+app.use('/api/comment', comment);
 
 app.use(cors());
 app.use(express.json({limit: '50mb', extended: true}));
