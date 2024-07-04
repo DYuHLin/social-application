@@ -43,9 +43,13 @@ exports.post_login = asyncHandler(async (req, res, next) => {
             online: true
         }});
 
-        return res.json({
+        let tokens = {
             accessToken: accessToken,
             refreshToken: refreshToken
+        };
+
+        return res.cookie('tokens', tokens, {
+            httpOnly: true,
         });
     }catch(err){
         console.log(err);
