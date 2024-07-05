@@ -1,0 +1,19 @@
+import React from 'react'
+
+function Navbar() {
+  return (
+    <nav>
+        <h1 className="app-title">
+            App Title
+        </h1>
+
+        <div className="app-links">
+            <ul>
+                <li>Profile</li>
+            </ul>
+        </div>
+    </nav>
+  )
+}
+
+export default Navbar
