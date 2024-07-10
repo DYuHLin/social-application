@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-function UploadImage() {
+function UploadImage({setImage}) {
 
     const UploadImage = (files) => {
       //jag6ma0t
@@ -12,6 +12,7 @@ function UploadImage() {
         
         axios.post('https://api.cloudinary.com/v1_1/dqdoxrm2x/image/upload', formData).then((res) => {
           console.log(res)
+          setImage(res.data.secure_url)
         })
     }
 

@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcryptjs');
 const users = require('../Models/user');
 const posts = require('../Models/posts');
-const comments = require('../Models/comments');
+const comments = require('../Models/comment');
 
 exports.post_register = asyncHandler(async (req, res, next) => {
     try{
