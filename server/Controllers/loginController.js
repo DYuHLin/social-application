@@ -16,12 +16,7 @@ const getRefreshToken = (user) => {
 
 exports.post_login = asyncHandler(async (req, res, next) => {
     try{
-        const user = await users.findOne({username: req.body.username}).populate('profileImg').populate('friends.user').populate([
-            {
-                path: 'friends.user',
-                populate: [{path: 'profileImg'}]
-            }
-        ]).exec();
+        const user = await users.findOne({username: req.body.username}).populate('followers.user').exec();
 
         if(!user){
             console.log("Incorrect user");
@@ -50,7 +45,8 @@ exports.post_login = asyncHandler(async (req, res, next) => {
 
         return res.cookie('tokens', tokens, {
             httpOnly: true,
-        });
+        }).send();
+
     }catch(err){
         console.log(err);
     };
@@ -86,6 +82,7 @@ exports.post_logout = asyncHandler(async (req, res, next) => {
     await users.updateOne({username: req.body.username}, {$set: {
         online: false
     }});
+    res.cookie('tokens', '', {httpOnly:true, expires: new Date(0)});
     res.status(200).json("You have logged out.");
 });
 
