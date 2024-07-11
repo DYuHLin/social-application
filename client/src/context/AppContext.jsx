@@ -4,7 +4,11 @@ import { Outlet, Navigate } from 'react-router-dom'
 const AppContext = createContext()
 
 export const AppProvider = ({children}) => {
-    const [user, setUser] = useState(false);
+    const getInitialState = () => {
+        const localUser = decodeURIComponent(document.cookie)
+        return localUser ? JSON.parse(localUser) : false
+    };
+    const [user, setUser] = useState(false)
 
     const ProtectedRoutes = () => {
         return(
@@ -13,7 +17,7 @@ export const AppProvider = ({children}) => {
     }
     
     return(
-        <AppContext.Provider value={{ProtectedRoutes}}>
+        <AppContext.Provider value={{ProtectedRoutes, user, setUser}}>
             {children}
         </AppContext.Provider>
     )

@@ -43,9 +43,9 @@ exports.post_login = asyncHandler(async (req, res, next) => {
             refreshToken: refreshToken
         };
 
-        return res.cookie('tokens', tokens, {
-            httpOnly: true,
+        res.cookie('tokens', tokens, {
         }).send();
+        return res.json('ok');
 
     }catch(err){
         console.log(err);
