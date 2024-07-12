@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Nunito Sans", sans-serif;
+    color: white;
   }
   
   html{
@@ -21,6 +22,7 @@ section{
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .register-form, .login-form{
