@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-function UploadImage({setImage}) {
+function UploadProfileImage({setImage}) {
 
     const UploadImage = (files) => {
       //jag6ma0t
@@ -23,4 +23,4 @@ function UploadImage({setImage}) {
   )
 }
 
-export default UploadImage
+export default UploadProfileImage

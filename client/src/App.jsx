@@ -16,6 +16,7 @@ function App() {
       <Navbar />
       <main>
         <Outlet />
+      </main>
         <ToastContainer position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -27,7 +28,6 @@ function App() {
         pauseOnHover
         theme="dark"
         transition: Bounce/>
-      </main>
     </div>
   )
 }

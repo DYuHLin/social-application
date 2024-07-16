@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import AppContext from '../../context/AppContext'
 
 function Navbar() {
+  const {user, setUser} = useContext(AppContext)
   return (
     <nav>
         <h1 className="app-title">

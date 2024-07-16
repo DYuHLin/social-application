@@ -13,7 +13,7 @@ export const AppProvider = ({children}) => {
 
     const ProtectedRoutes = () => {
         return(
-            user === false ? (<Navigate to='/login' />) : user.accessToken ? (<Outlet />) : ''
+            user === false ? (<Navigate to='/login' />) : user ? (<Outlet />) : ''
         )
     }
     

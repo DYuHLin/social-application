@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import UploadImage from './components/UploadImage'
+import UploadProfileImage from './components/UploadProfileImage'
 import {toast} from 'react-toastify'
 import {useNavigate} from 'react-router-dom'
 
@@ -49,7 +49,7 @@ function Register() {
             <input type="text" required name='surname' id='surname' className='surname' placeholder='Surname' value={surname} onChange={(e) => setSurname(e.target.value)}/>
             <input type="text" required name='username' id='username' className='username' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}/>
             <input type="email" required name='email' id='email' className='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}/>
-            <UploadImage setImage={setImage}/>
+            <UploadProfileImage setImage={setImage}/>
             <input type="password" required name='password' id='password' className='password' placeholder='Password' minLength={6} value={password} onChange={(e) => setPassword(e.target.value)}/>
             <input type="password" required name='confirmedPassword' id='confirmedPassword' className='confirmedPassword' placeholder='Confirm password' value={confirm} onChange={(e) => setConfirm(e.target.value)} minLength={6}/>
             <button>Register</button>         

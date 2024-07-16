@@ -5,6 +5,7 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import AppContext from './context/AppContext'
 import Home from './pages/Home'
+import CreatePost from './pages/CreatePost'
 
 function Routes() {
 
@@ -17,6 +18,7 @@ function Routes() {
 
             <Route element={<ProtectedRoutes />}>
                 <Route index element={<Home />} />
+                <Route path='/post' element={<CreatePost />} />
             </Route>
         </Route>
     ))
