@@ -63,3 +63,7 @@ exports.delete_posts = asyncHandler(async(req, res, next) => {
     await posts.findByIdAndDelete(req.params.id);
     return res.json('ok');
 });
+
+exports.post_image = asyncHandler(async(req, res, next) => {
+    
+});

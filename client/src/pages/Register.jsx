@@ -56,6 +56,7 @@ function Register() {
         </form>
         <p className="error">{error}</p> 
         <Link to={"/login"} className="link">Login</Link>
+        <button onClick={() => console.log(image)}>show</button>
       </section>
   )
 }

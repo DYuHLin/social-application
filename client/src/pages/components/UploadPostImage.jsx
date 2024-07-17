@@ -1,22 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {toast} from 'react-toastify'
 import axios from 'axios'
+import { imgUpload } from './Post'
 
 function UploadPostImage() {
+    const [images, setImages] = useState([])
 
-    const uploadImage = (files) => {
+    const uploadImage = async (files) => {
         // console.log(files)
-        let linkArr = []
-        const formData = new FormData()
+        let linkArr = []    
         try{
             for(let i = 0; i < files.length; i++){
-                formData.append('files', files[i])
-                formData.append('upload_preset', 'jag6ma0t')
-            }
-
-            axios.post('https://api.cloudinary.com/v1_1/dqdoxrm2x/image/upload', formData, {headers:{'content-type': 'application/json'}}).then((res) => {
-                console.log(res)
-            })
+                const data = await imgUpload(files[i])
+                linkArr.push(data)   
+            }           
             console.log(linkArr)
         }catch(err){
             console.log(err)

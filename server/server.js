@@ -10,8 +10,9 @@ const posts = require('./Routers/postRoutes');
 
 const app = express();
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://api.cloudinary.com/v1_1/dqdoxrm2x/image/upload'], 
-    credentials: 'include'
+    origin: ['http://localhost:5173'], 
+    credentials: true,
+    optionSuccessStatus:200
     }));
 app.use(express.json({limit: '50mb', extended: true}));
 app.use(cookieParser());
