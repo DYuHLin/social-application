@@ -50,9 +50,9 @@ exports.update_posts = asyncHandler(async(req, res, next) => {
                 text: req.body.text,
                 link: req.body.link,
                 video: req.body.video,
-                date: req.body.date,
+                date: Date.now(),
                 pics: req.body.pics,
-                likes: req.body.likes,}});
+                likes: [],}});
         };
     }catch(err){
         console.log(err);

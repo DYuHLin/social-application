@@ -1,11 +1,8 @@
 import React, { useState } from 'react'
 import {toast} from 'react-toastify'
-import axios from 'axios'
 import { imgUpload } from './Post'
 
-function UploadPostImage() {
-    const [images, setImages] = useState([])
-
+function UploadPostImage({setImage}) {
     const uploadImage = async (files) => {
         // console.log(files)
         let linkArr = []    
@@ -15,6 +12,7 @@ function UploadPostImage() {
                 linkArr.push(data)   
             }           
             console.log(linkArr)
+            setImage(linkArr)
         }catch(err){
             console.log(err)
             toast.error('There was an error uploading the image(s)')
