@@ -30,27 +30,43 @@ function Home() {
         posts.length === 0 ? <p>There are no posts right now</p>:
         posts.map((post, key) => {
           return(
-            <Link to={`/${post._id}`} key={key}>
-            <div className="post-container">
-              <h4 className="poster">{post.user.username}</h4>
-              <div className="post-content">
-                {
-                  post.text.trim() != '' ? <p>{post.content}</p> : ''
-                }
-                {
-                  post.link.trim() != '' ? <p>{post.link}</p> : ''
-                }
-                {
-                  post.video.trim() != '' ? <p>{post.video}</p> : ''
-                }
-                {
-                  post.pics.length != 0 ? <p>{post.link}</p> : ''
-                }
-              </div>
-              <span className="post-date">{new Date(post.date).toLocaleString()}</span>
-              <span className="comment-count"></span>
+          <div className="post-container" key={key}>
+            <h4 className="poster">{post.user.username}</h4>
+            <div className="post-content">
+              {
+                post.text.trim() != '' ? <p>{post.text}</p> : ''
+              }
+              {
+                post.link.trim() != '' ? <p>{post.link}</p> : ''
+              }
+              {
+                post.video.trim() != '' ? <p>{post.video}</p> : ''
+              }
+              {
+                post.pics.length != 0 ? 
+                <section className="img-container">
+                  <div className="slider-wrapper">
+                    <div className="slider">
+                      {post.pics.map((pic, id) => {
+                        return(
+                          <img id={`slide-${id}`} src={pic} alt="posts image" key={id}/>
+                        )
+                      })}
+                    </div>
+                    <div className="slider-nav">
+                    {post.pics.map((pic, id) => {
+                        return(
+                          <a href={`#slide-${id}`} key={id}></a>
+                        )
+                      })}
+                    </div>
+                  </div>
+              </section> : ''
+              }
             </div>
-          </Link>
+            <span className="post-date">{new Date(post.date).toLocaleString()}</span>
+            <span className="comment-count"></span>
+          </div>
           )
         })
       } 
