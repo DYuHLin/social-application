@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const {body, validationResult} = require('express-validator');
 
 exports.get_posts = asyncHandler(async(req, res, next) => {
-    const allPosts = await posts.find().exec();
+    const allPosts = await posts.find().populate('user').exec();
 
     res.json(allPosts);
 });
@@ -23,9 +23,9 @@ exports.create_post = asyncHandler(async (req, res, next) => {
             text: req.body.text,
             link: req.body.link,
             video: req.body.video,
-            date: req.body.date,
+            date: Date.now(),
             pics: req.body.pics,
-            likes: req.body.likes,
+            likes: [],
         });
 
         if(!errors.isEmpty()){
@@ -50,9 +50,9 @@ exports.update_posts = asyncHandler(async(req, res, next) => {
                 text: req.body.text,
                 link: req.body.link,
                 video: req.body.video,
-                date: Date.now(),
+                date: req.body.date,
                 pics: req.body.pics,
-                likes: [],}});
+                likes: req.body.likes,}});
         };
     }catch(err){
         console.log(err);
@@ -62,8 +62,4 @@ exports.update_posts = asyncHandler(async(req, res, next) => {
 exports.delete_posts = asyncHandler(async(req, res, next) => {
     await posts.findByIdAndDelete(req.params.id);
     return res.json('ok');
-});
-
-exports.post_image = asyncHandler(async(req, res, next) => {
-    
 });

@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
     user: {type: Schema.Types.ObjectId, ref: "Users"},
-    text: {type: String, required: true},
-    link: {type: String, required: true},
-    video: {type: String, required: true},
+    text: {type: String},
+    link: {type: String},
+    video: {type: String},
     date: {type: Date, required: true, default: Date.now},
     pics: [],
     likes: [
