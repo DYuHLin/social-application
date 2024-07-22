@@ -63,3 +63,18 @@ exports.delete_posts = asyncHandler(async(req, res, next) => {
     await posts.findByIdAndDelete(req.params.id);
     return res.json('ok');
 });
+
+exports.like_post = asyncHandler(async(req, res, next) => {
+    const liked = await posts.findOne({_id: req.params.id, 'likes.user': req.body.userId});
+    if(liked){
+        await posts.findOneAndUpdate({_id: req.params.id}, {
+            $pull: {
+                likes: {user: req.body.userId}
+            }
+        });
+        return res.json('deleted');
+    } else{
+        await posts.updateOne({_id: req.params.id}, {$push: {likes: {user: req.body.userId}}});
+        return res.json('liked');
+    }
+});

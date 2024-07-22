@@ -3,6 +3,7 @@ import AppContext from '../context/AppContext'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import {toast} from 'react-toastify'
+import LikeButton from './components/LikeButton'
 
 function Home() {
   const {user, setUser} = useContext(AppContext)
@@ -31,7 +32,10 @@ function Home() {
         posts.map((post, key) => {
           return(
           <div className="post-container" key={key}>
-            <h4 className="poster">{post.user.username}</h4>
+            <div className="poster-info">
+              <h4 className="poster">{post.user.username}</h4>
+              <span className="post-date">{new Date(post.date).toLocaleString()}</span>
+            </div>
             <div className="post-content">
               {
                 post.text.trim() != '' ? <p>{post.text}</p> : ''
@@ -64,13 +68,14 @@ function Home() {
               </section> : ''
               }
             </div>
-            <span className="post-date">{new Date(post.date).toLocaleString()}</span>
-            <span className="comment-count"></span>
+            <div className="post-stuff">
+              <LikeButton postId = {post._id}/>
+              <Link>Comments</Link>
+            </div>
           </div>
           )
         })
       } 
-    <button onClick={() => console.log(posts)}>show</button>
     </section>
   )
 }
