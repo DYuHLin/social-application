@@ -6,6 +6,7 @@ import Login from './pages/Login'
 import AppContext from './context/AppContext'
 import Home from './pages/Home'
 import CreatePost from './pages/CreatePost'
+import Post from './pages/Post'
 
 function Routes() {
 
@@ -19,6 +20,7 @@ function Routes() {
             <Route element={<ProtectedRoutes />}>
                 <Route index element={<Home />} />
                 <Route path='/post' element={<CreatePost />} />
+                <Route path='/:id' element={<Post />} />
             </Route>
         </Route>
     ))

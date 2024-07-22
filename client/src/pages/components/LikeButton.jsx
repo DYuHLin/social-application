@@ -12,6 +12,7 @@ function LikeButton({postId}) {
         const decoded = jwtDecode(user)
         try{
             axios.put(`http://localhost:3000/api/posts/${postId}/like`, {userId: decoded.user._id}, {headers: {'Content-Type': 'Application/json'}})
+            console.log('liked')
         }catch(err){
             console.log(err)
             toast.error('There was an error liking this post.')

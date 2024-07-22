@@ -70,7 +70,7 @@ function Home() {
             </div>
             <div className="post-stuff">
               <LikeButton postId = {post._id}/>
-              <Link>Comments</Link>
+              <Link to={`/${post._id}`}>Comments</Link>
             </div>
           </div>
           )
