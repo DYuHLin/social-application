@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {toast} from 'react-toastify'
 import { imgUpload } from './Post'
 
-function UploadPostImage({setImage}) {
+function UploadPostImage({setImage, imgBox}) {
     const uploadImage = async (files) => {
         // console.log(files)
         let linkArr = []    
@@ -20,7 +20,7 @@ function UploadPostImage({setImage}) {
     }
   return (
     <>
-        <input type="file" multiple={true} lable="Image" name="myFile" id="file-upload" accept='.jpeg, .png, .jpg' onChange={(e) => {uploadImage(e.target.files)}}/>      
+        <input className={imgBox ? '' : 'hidden'} type="file" multiple={true} lable="Image" name="myFile" id="file-upload" accept='.jpeg, .png, .jpg' onChange={(e) => {uploadImage(e.target.files)}}/>      
     </>
   )
 }

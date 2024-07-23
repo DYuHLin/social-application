@@ -55,6 +55,55 @@ li{
   width: 70%;
 }
 
+fieldset{
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: none;
+  background-color: white;
+  gap: 10px;
+}
+
+.emoji-container{
+  position: absolute;
+  top: 55;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.emoji-icon{
+  width: 20px;
+  height: 40%;
+  cursor: pointer;
+  color: rgb(165, 163, 163);
+}
+
+textarea{
+  width: 100%;
+  padding: 2px;
+  font-size: 16px;
+  resize: none;
+  overflow-y: scroll;
+  border: none;
+}
+
+textarea:focus{
+  outline: none;
+}
+
+ul{
+  margin-top: 20px;
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+li{
+  cursor: pointer;
+  color: white;
+}
+
 .post-container{
   display: flex;
   flex-direction: column;
