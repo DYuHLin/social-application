@@ -47,6 +47,14 @@ li{
     display: flex;
 }
 
+.create-post-form{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 30px;
+  width: 70%;
+}
+
 .post-container{
   display: flex;
   flex-direction: column;
