@@ -13,7 +13,6 @@ function CreatePost() {
   const [text, setText] = useState('')
   const [video, setVideo] = useState('')
   const [link, setLink] = useState('')
-  const [hidden, setHidden] = useState('hidden')
   const [emojiToggle, setEmojiToggle] = useState(true)
   const [textBox, setTextBox] = useState(true)
   const [linkBox, setLinkBox] = useState(false)

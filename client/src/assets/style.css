@@ -22,6 +22,7 @@ section{
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 60px;
 }
 
 .register-form, .login-form{
@@ -140,6 +141,22 @@ li{
   display: flex;
   width: 20%;
   justify-content: space-between;
+}
+
+.write-comment{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.comment-link{
+  color: black;
+}
+
+.comment-field{
+  border-radius: 6px;
+  border: 1px solid black;
 }
 
 .slider{

@@ -14,13 +14,13 @@ exports.post_comment = asyncHandler(async (req, res, next) => {
 
         const comment = new comments({
             user: req.body.userId,
-            reply: req.body.postId,
+            reply: req.params.id,
             text: req.body.text,
             link: req.body.link,
             video: req.body.video,
-            date: req.body.date,
+            date: Date.now(),
             pics: req.body.pics,
-            likes: req.body.likes,
+            likes: [],
         });
 
         if(!errors.isEmpty()){

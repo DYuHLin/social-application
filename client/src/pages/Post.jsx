@@ -5,6 +5,7 @@ import AppContext from '../context/AppContext'
 import axios from 'axios'
 import {toast} from 'react-toastify'
 import LikeButton from './components/LikeButton'
+import Comments from './components/Comments'
 
 function Post() {
   let { id } = useParams()
@@ -66,6 +67,7 @@ function Post() {
         <Link to={`/${post._id}`}>Comments</Link>
       </div>
     </div>}
+    <Comments postId={id} userId={decoded.user._id}/>
     </section>
   )
 }
