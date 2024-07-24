@@ -3,8 +3,11 @@ import {toast} from 'react-toastify'
 import { imgUpload } from './Post'
 
 function UploadPostImage({setImage, imgBox}) {
+    const [loading, setLoading] = useState(true)
+    const [upload, setUpload] = useState(false)
     const uploadImage = async (files) => {
         // console.log(files)
+        setUpload(true)
         let linkArr = []    
         try{
             for(let i = 0; i < files.length; i++){
@@ -13,6 +16,7 @@ function UploadPostImage({setImage, imgBox}) {
             }           
             console.log(linkArr)
             setImage(linkArr)
+            setLoading(false)
         }catch(err){
             console.log(err)
             toast.error('There was an error uploading the image(s)')
@@ -20,7 +24,8 @@ function UploadPostImage({setImage, imgBox}) {
     }
   return (
     <>
-        <input className={imgBox ? '' : 'hidden'} type="file" multiple={true} lable="Image" name="myFile" id="file-upload" accept='.jpeg, .png, .jpg' onChange={(e) => {uploadImage(e.target.files)}}/>      
+        <input className={imgBox ? '' : 'hidden'} type="file" multiple={true} lable="Image" name="myFile" id="file-upload" accept='.jpeg, .png, .jpg' onChange={(e) => {uploadImage(e.target.files)}}/>
+        {upload ? <p>{loading ? 'Uploading...' : 'Completed'}</p> : ''}        
     </>
   )
 }

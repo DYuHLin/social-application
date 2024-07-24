@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import WriteComment from './WriteComment'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import LikeButton from './LikeButton'
+import LikeButtonComment from './LikeButtonComment'
 
 function Comments({postId, userId}) {
   const [comments, setComments] = useState([])
@@ -27,7 +27,7 @@ function Comments({postId, userId}) {
       comments.length === 0 ? <p>There are no posts right now</p>:
       comments.map((comment, key) => {
         return(
-        <div className="post-container" key={key}>
+        <div className="comment-container" key={key}>
           <div className="poster-info">
             <h4 className="poster">{comment.user.username}</h4>
             <span className="post-date">{new Date(comment.date).toLocaleString()}</span>
@@ -65,7 +65,7 @@ function Comments({postId, userId}) {
             }
           </div>
           <div className="post-stuff">
-            <LikeButton postId = {comment._id}/>
+            <LikeButtonComment commentId={comment._id}/>
             <Link to={`/${comment._id}`}>Comments</Link>
           </div>
         </div>

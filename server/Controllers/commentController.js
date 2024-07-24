@@ -58,3 +58,18 @@ exports.delete_comment = asyncHandler(async (req, res, next) => {
     await comments.findByIdAndDelete(req.params.id);
     return res.json('ok');
 });
+
+exports.like_comment = asyncHandler(async(req, res, next) => {
+    const liked = await comments.findOne({_id: req.params.id, 'likes.user': req.body.userId});
+    if(liked){
+        await comments.findOneAndUpdate({_id: req.params.id}, {
+            $pull: {
+                likes: {user: req.body.userId}
+            }
+        });
+        return res.json('deleted');
+    } else{
+        await comments.updateOne({_id: req.params.id}, {$push: {likes: {user: req.body.userId}}});
+        return res.json('liked');
+    }
+});
