@@ -3,7 +3,7 @@ const {body, validationResult} = require('express-validator');
 const comments = require('../Models/comment');
 
 exports.get_comments = asyncHandler(async (req, res, next) => {
-    const allComments = await comments.find({reply: req.params.id}).exec();
+    const allComments = await comments.find({reply: req.params.id}).populate('user').exec();
 
     return res.json(allComments);
 });
