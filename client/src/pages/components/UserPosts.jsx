@@ -1,34 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react'
-import AppContext from '../context/AppContext'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
-import {toast} from 'react-toastify'
-import LikeButton from './components/LikeButton'
+import React from 'react'
+import { useParams, Link } from 'react-router-dom'
+import LikeButton from './LikeButton'
 
-function Home() {
-  const {user, setUser} = useContext(AppContext)
-  const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    axios.get('http://localhost:3000/api/posts/', {headers: {'Content-Type': 'application/json'}})
-      .then((res) => {
-        setPosts(res.data)
-        setLoading(false)
-      })
-      .catch((err) => {
-        console.log(err)
-        toast.error('There was an error fetching the posts')
-      })
-  },[posts])
-
+function UserPosts({loading, posts}) {
   return (
-    <section>
-    <h1>Home</h1>
-    <Link to='/post'>Create Post</Link>
-      {
+    <>
+    {
         loading && posts.length === 0 ? <p>Loading the posts...</p> :
-        posts.length === 0 ? <p>There are no posts right now</p>:
+        posts.length === 0 ? <p>This user has no posts</p>:
         posts.map((post, key) => {
           return(
           <div className="post-container" key={key}>
@@ -76,8 +55,8 @@ function Home() {
           )
         })
       } 
-    </section>
+    </>
   )
 }
 
-export default Home
+export default UserPosts

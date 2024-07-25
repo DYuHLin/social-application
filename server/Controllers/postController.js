@@ -14,6 +14,12 @@ exports.get_single_post = asyncHandler(async(req, res, next) => {
     return res.json(posted);
 });
 
+exports.get_user_posts = asyncHandler(async(req, res, next) => {
+    const allPosts = await posts.find({user: req.params.id}).populate('user').exec();
+
+    res.json(allPosts);
+});
+
 exports.create_post = asyncHandler(async (req, res, next) => {
     try{
         const errors = validationResult(req);

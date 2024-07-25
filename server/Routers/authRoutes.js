@@ -10,7 +10,7 @@ router.put('/updateaccount', register.update_acc);
 router.put('/addfollower', register.add_follower);
 router.put('/removefollower', register.delete_follower);
 router.get('/getusers', register.get_users);
-router.get('/singleuser', register.get_user);
+router.get('/:id/singleuser', register.get_user);
 router.post('/login', login.post_login);
 router.post('/logout', login.post_logout);
 

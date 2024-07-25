@@ -8,6 +8,12 @@ exports.get_comments = asyncHandler(async (req, res, next) => {
     return res.json(allComments);
 });
 
+exports.get_user_comments = asyncHandler(async (req, res, next) => {
+    const allComments = await comments.find({user: req.params.id}).populate('user').exec();
+
+    return res.json(allComments);
+});
+
 exports.post_comment = asyncHandler(async (req, res, next) => {
     try{
         const errors = validationResult(req);

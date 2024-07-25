@@ -7,6 +7,7 @@ import AppContext from './context/AppContext'
 import Home from './pages/Home'
 import CreatePost from './pages/CreatePost'
 import Post from './pages/Post'
+import User from './pages/User'
 
 function Routes() {
 
@@ -21,6 +22,7 @@ function Routes() {
                 <Route index element={<Home />} />
                 <Route path='/post' element={<CreatePost />} />
                 <Route path='/:id' element={<Post />} />
+                <Route path='/user/:id' element={<User />} />
             </Route>
         </Route>
     ))
