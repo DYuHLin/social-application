@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import {toast} from 'react-toastify'
 import LikeButton from './components/LikeButton'
+import Users from './components/Users'
 
 function Home() {
   const {user, setUser} = useContext(AppContext)
@@ -26,6 +27,8 @@ function Home() {
     <section>
     <h1>Home</h1>
     <Link to='/post'>Create Post</Link>
+    <div className="home-container">
+      <div className="home-posts">
       {
         loading && posts.length === 0 ? <p>Loading the posts...</p> :
         posts.length === 0 ? <p>There are no posts right now</p>:
@@ -76,6 +79,9 @@ function Home() {
           )
         })
       } 
+      </div>
+      <Users />
+    </div>
     </section>
   )
 }
