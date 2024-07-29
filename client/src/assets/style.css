@@ -194,6 +194,12 @@ li{
   height: 50%;
 }
 
+.user-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .profile-img{
   max-width: 100%;
   max-height: 100vh;
@@ -206,6 +212,56 @@ li{
 
 .active{
   text-decoration: underline;
+}
+
+.popup .overlay{
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 1;
+  display: none;
+}
+
+.popup .popup-content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: #fff;
+  width: 450px;
+  height: 220px;
+  z-index: 2;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.popup .close-btn{
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  width: 30px;
+  height: 30px;
+  background: #222;
+  color: #fff;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.popup.active .overlay{
+  display: block;
+}
+
+.popup.active .popup-content{
+  transition: all 800ms ease-in-out;
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .img-container{

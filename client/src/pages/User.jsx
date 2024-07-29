@@ -6,6 +6,7 @@ import { useParams, Link } from 'react-router-dom'
 import {toast} from 'react-toastify'
 import UserPosts from './components/UserPosts'
 import UserComments from './components/UserComments'
+import Followers from './components/Followers'
 
 function User() {
   const [users, setUsers] = useState(false)
@@ -15,6 +16,7 @@ function User() {
   const [loading2, setLoading2] = useState(true)
   const [postLink, setPostLink] = useState(true)
   const [commentLink, setCommentLink] = useState(false)
+  const [toggle, setToggle] = useState(false)
 
   const {user} = useContext(AppContext)
   const decoded = jwtDecode(user)
@@ -59,11 +61,17 @@ function User() {
         <div className="user-image">
           <img src={users.image} alt="user's image" className='profile-img'/>
         </div>
-        <div className="user info">
-          <p>{users.name}</p>
-          <p>{users.surname}</p>
-          <p>{users.email}</p>
+        <div className="user-info">
+          <div className="user text">
+            <p>{users.name}</p>
+            <p>{users.surname}</p>
+            <p>{users.email}</p>
+          </div> 
+          <div className="user-following">
+            <button className="followers" onClick={() => setToggle(!toggle)}>Followers</button>
+          </div>
         </div>
+        <Followers toggle={toggle} setToggle={setToggle}/>
       </div>
       <div className="posts-and-comments">
         <p onClick={() => {setPostLink(!postLink); setCommentLink(!commentLink);}} className={`user-links ${postLink ? 'active' : ''}`}>Posts</p>
