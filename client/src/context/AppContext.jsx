@@ -10,6 +10,7 @@ export const AppProvider = ({children}) => {
         return localUser ? localUser : false
     };
     const [user, setUser] = useState(getInitialState)
+    const defaultPic = 'https://res.cloudinary.com/dqdoxrm2x/image/upload/v1720614729/jml8pug0wuzmtv95yvwf.jpg'
 
     const ProtectedRoutes = () => {
         return(
@@ -18,7 +19,7 @@ export const AppProvider = ({children}) => {
     }
     
     return(
-        <AppContext.Provider value={{ProtectedRoutes, user, setUser}}>
+        <AppContext.Provider value={{ProtectedRoutes, user, setUser, defaultPic}}>
             {children}
         </AppContext.Provider>
     )

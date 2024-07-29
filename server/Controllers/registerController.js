@@ -66,22 +66,18 @@ exports.update_acc = asyncHandler(async (req, res, next) => {
 });
 
 exports.add_follower = asyncHandler(async (req, res, next) => {
-    const findFollower = await users.findOne({_id: req.params.id, 'followers.user': req.body.friendId});
+    const findFollower = await users.findOne({_id: req.params.id, 'followers.user': req.body.followerId});
     if(findFollower){
-        return res.json('added');
+        await users.findOneAndUpdate({_id: req.params.id}, {
+            $pull: {
+                followers: {user: req.body.followerId}
+            }
+        });
+        return res.json('deleted');
     } else{
         await users.updateOne({_id: req.params.id}, {$push: {followers: {user: req.body.followerId}}});
         return res.json('ok');
     }
-});
-
-exports.delete_follower = asyncHandler(async (req, res, next) => {
-    await users.findOneAndUpdate({_id: req.params.id}, {
-        $pull: {
-            followers: {user: req.body.followersId}
-        }
-    });
-    return res.json('ok');
 });
 
 exports.get_users = asyncHandler(async (req, res, next) => {

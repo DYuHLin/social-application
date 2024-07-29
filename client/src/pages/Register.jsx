@@ -1,17 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import UploadProfileImage from './components/UploadProfileImage'
 import {toast} from 'react-toastify'
 import {useNavigate} from 'react-router-dom'
+import AppContext from '../context/AppContext'
 
 function Register() {
+  const {defaultPic} = useContext(AppContext)
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState(defaultPic)
   const [confirm, setConfirm] = useState('')
   const [error, setError] = useState('')
   const navigate = useNavigate()
