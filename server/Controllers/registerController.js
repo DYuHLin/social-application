@@ -99,3 +99,9 @@ exports.post_delete = asyncHandler(async (req, res, next) => {
    const updated = await users.updateMany({'followers.user': req.params.id}, {$pull: {followers: {user: req.params.id}}});
    return res.json(updated);
 });
+
+exports.fetch_followers = asyncHandler(async (req, res, next) => {
+    const followers = await users.find({'followers.user': req.params.id}).exec();
+
+    return res.json(followers);
+});

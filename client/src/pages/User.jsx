@@ -77,10 +77,10 @@ function User() {
         <p onClick={() => {setPostLink(!postLink); setCommentLink(!commentLink);}} className={`user-links ${postLink ? 'active' : ''}`}>Posts</p>
         <p onClick={() => {setPostLink(!postLink); setCommentLink(!commentLink);}} className={`user-links ${commentLink ? 'active' : ''}`}>Comments</p>
       </div>
-      {
-        postLink && !commentLink ? <UserPosts loading={loading} posts={posts} /> :
-        commentLink && !postLink ? <UserComments loading={loading2} comments={comments} /> : ''
-      }
+        <div className='home-posts'>
+          { postLink && !commentLink ? <UserPosts loading={loading} posts={posts} /> :
+            commentLink && !postLink ? <UserComments loading={loading2} comments={comments} /> : ''}
+        </div>
     </section>
   )
 }

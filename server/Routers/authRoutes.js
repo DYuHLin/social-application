@@ -8,6 +8,7 @@ router.post('/register', register.post_register);
 router.delete('/deleteaccount', register.post_delete);
 router.put('/updateaccount', register.update_acc);
 router.put('/:id/follow', register.add_follower);
+router.get('/:id/followers', register.fetch_followers);
 router.get('/getusers', register.get_users);
 router.get('/:id/singleuser', register.get_user);
 router.post('/login', login.post_login);
