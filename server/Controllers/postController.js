@@ -84,3 +84,9 @@ exports.like_post = asyncHandler(async(req, res, next) => {
         return res.json('liked');
     }
 });
+
+exports.fetch_likes = asyncHandler(async (req, res, next) => {
+    const likes = await posts.find({'likes.user': req.params.id}).exec();
+
+    return res.json(likes);
+});

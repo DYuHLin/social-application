@@ -1,40 +1,28 @@
-import React, { useContext, useEffect, useState } from 'react'
-import AppContext from '../context/AppContext'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { useParams, Link } from 'react-router-dom'
+import LikeButton from './LikeButton'
 import axios from 'axios'
-import {toast} from 'react-toastify'
-import LikeButton from './components/LikeButton'
-import Users from './components/Users'
 
-function Home() {
-  const {user, setUser} = useContext(AppContext)
-  const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(true)
+function UserLikes({id}) {
+    const [loading, setLoading] = useState(true)
+    const [posts, setPosts] = useState([])
 
-  useEffect(() => {
-    axios.get('http://localhost:3000/api/posts/', {headers: {'Content-Type': 'application/json'}})
+    useEffect(() => {
+    axios.get(`http://localhost:3000/api/posts/user/likes/${id}`, {headers:{'content-type': 'application/json'}})
       .then((res) => {
         setPosts(res.data)
         setLoading(false)
-      })
-      .catch((err) => {
+      }).catch((err) => {
         console.log(err)
-        toast.error('There was an error fetching the posts')
+        toast.error('There was an error fetching this users posts')
       })
-  },[posts])
+  },[])
 
   return (
-    <section>
-    <h1>Home</h1>
-    <Link to='/post'>Create Post</Link>
-    <div className="see-posts">
-      <p>All</p> <p>Following</p>
-    </div>
-    <div className="home-container">
-      <div className="home-posts">
-      {
-        loading && posts.length === 0 ? <p>Loading the posts...</p> :
-        posts.length === 0 ? <p>There are no posts right now</p>:
+    <>
+    {
+        loading && posts.length === 0 ? <p>Loading the likes...</p> :
+        posts.length === 0 ? <p>This user has no likes</p>:
         posts.map((post, key) => {
           return(
           <div className="post-container" key={key}>
@@ -82,11 +70,8 @@ function Home() {
           )
         })
       } 
-      </div>
-      <Users />
-    </div>
-    </section>
+    </>
   )
 }
 
-export default Home
+export default UserLikes

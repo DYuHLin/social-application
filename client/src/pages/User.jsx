@@ -7,6 +7,7 @@ import {toast} from 'react-toastify'
 import UserPosts from './components/UserPosts'
 import UserComments from './components/UserComments'
 import Followers from './components/Followers'
+import UserLikes from './components/UserLikes'
 
 function User() {
   const [users, setUsers] = useState(false)
@@ -16,6 +17,7 @@ function User() {
   const [loading2, setLoading2] = useState(true)
   const [postLink, setPostLink] = useState(true)
   const [commentLink, setCommentLink] = useState(false)
+  const [likeLink, setLikeLink] = useState(false)
   const [toggle, setToggle] = useState(false)
 
   const {user} = useContext(AppContext)
@@ -74,12 +76,14 @@ function User() {
         <Followers toggle={toggle} setToggle={setToggle}/>
       </div>
       <div className="posts-and-comments">
-        <p onClick={() => {setPostLink(!postLink); setCommentLink(!commentLink);}} className={`user-links ${postLink ? 'active' : ''}`}>Posts</p>
-        <p onClick={() => {setPostLink(!postLink); setCommentLink(!commentLink);}} className={`user-links ${commentLink ? 'active' : ''}`}>Comments</p>
+        <p onClick={() => {setPostLink(true); setCommentLink(false); setLikeLink(false);}} className={`user-links ${postLink ? 'active' : ''}`}>Posts</p>
+        <p onClick={() => {setPostLink(false); setCommentLink(true); setLikeLink(false);}} className={`user-links ${commentLink ? 'active' : ''}`}>Comments</p>
+        <p onClick={() => {setPostLink(false); setCommentLink(false); setLikeLink(true);}} className={`user-links ${likeLink ? 'active' : ''}`}>Likes</p>
       </div>
         <div className='home-posts'>
-          { postLink && !commentLink ? <UserPosts loading={loading} posts={posts} /> :
-            commentLink && !postLink ? <UserComments loading={loading2} comments={comments} /> : ''}
+          { postLink && !commentLink && !likeLink ? <UserPosts loading={loading} posts={posts} /> :
+            commentLink && !postLink && !likeLink ? <UserComments loading={loading2} comments={comments} /> :
+            likeLink && !postLink && !commentLink ? <UserLikes id={id} /> : ''}
         </div>
     </section>
   )

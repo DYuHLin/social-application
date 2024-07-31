@@ -210,6 +210,15 @@ li{
   display: none;
 }
 
+.see-posts{
+  display: flex;
+  gap: 40px;
+}
+
+.see-posts p{
+  color: white;
+}
+
 .active{
   text-decoration: underline;
 }
