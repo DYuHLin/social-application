@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import LikeButtonComment from './LikeButtonComment'
 
-function UserComments({comments, loading}) {
+function UserComments({comments, loading, id}) {
   return (
     <div className="post-container">
       {
@@ -50,6 +50,7 @@ function UserComments({comments, loading}) {
           <div className="post-stuff">
             <LikeButtonComment commentId={comment._id}/>
             <Link to={`/${comment._id}`}>Comments</Link>
+            <button>Delete</button>
           </div>
         </div>
         )

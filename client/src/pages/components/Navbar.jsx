@@ -1,5 +1,7 @@
 import React, { useContext } from 'react'
 import AppContext from '../../context/AppContext'
+import { Link } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
 
 function Navbar() {
   const {user, setUser} = useContext(AppContext)
@@ -11,7 +13,7 @@ function Navbar() {
 
         <div className="app-links">
             <ul>
-                <li>Profile</li>
+                {!user ? '' :<Link to={`/user/${jwtDecode(user).user._id}`}>{jwtDecode(user).user.username}</Link>}
             </ul>
         </div>
     </nav>

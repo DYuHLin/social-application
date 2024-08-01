@@ -81,8 +81,8 @@ function User() {
         <p onClick={() => {setPostLink(false); setCommentLink(false); setLikeLink(true);}} className={`user-links ${likeLink ? 'active' : ''}`}>Likes</p>
       </div>
         <div className='home-posts'>
-          { postLink && !commentLink && !likeLink ? <UserPosts loading={loading} posts={posts} /> :
-            commentLink && !postLink && !likeLink ? <UserComments loading={loading2} comments={comments} /> :
+          { postLink && !commentLink && !likeLink ? <UserPosts loading={loading} posts={posts} id={id}/> :
+            commentLink && !postLink && !likeLink ? <UserComments loading={loading2} comments={comments} id={id}/> :
             likeLink && !postLink && !commentLink ? <UserLikes id={id} /> : ''}
         </div>
     </section>

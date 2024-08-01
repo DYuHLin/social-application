@@ -1,8 +1,27 @@
-import React from 'react'
-import { useParams, Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import LikeButton from './LikeButton'
+import DeletePost from './EditDelete/DeletePost'
+import axios from 'axios'
+import {toast} from 'react-toastify'
 
-function UserPosts({loading, posts}) {
+function UserPosts({loading, posts, id}) {
+  const [toggle, setToggle] = useState(false)
+  const [ids, setId] = useState(false)
+  const [post, setPost] = useState(false)
+
+  const togglePopup = (id) => {
+    setToggle(!toggle)
+    setId(id)
+    axios.get(`http://localhost:3000/api/posts/${id}`, {headers: {'Content-Type': 'application/json'}})
+      .then((res) => {
+        setPost(res.data)
+      }).catch((err) => {
+        console.log(err)
+        toast.error('There was an error fetching this post')
+      })
+  }
+  
   return (
     <>
     {
@@ -50,11 +69,14 @@ function UserPosts({loading, posts}) {
             <div className="post-stuff">
               <LikeButton postId = {post._id}/>
               <Link to={`/${post._id}`}>Comments</Link>
+              <button onClick={() => togglePopup(post._id)}>Delete</button>
+              <Link>Update</Link>
             </div>
           </div>
           )
         })
       } 
+      <DeletePost toggle={toggle} setToggle={setToggle} post={post}/>
     </>
   )
 }
