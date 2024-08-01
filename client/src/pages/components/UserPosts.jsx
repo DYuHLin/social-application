@@ -70,7 +70,7 @@ function UserPosts({loading, posts, id}) {
               <LikeButton postId = {post._id}/>
               <Link to={`/${post._id}`}>Comments</Link>
               <button onClick={() => togglePopup(post._id)}>Delete</button>
-              <Link>Update</Link>
+              <Link to={`/${post._id}/update`}>Update</Link>
             </div>
           </div>
           )

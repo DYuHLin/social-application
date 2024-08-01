@@ -8,6 +8,7 @@ import Home from './pages/Home'
 import CreatePost from './pages/CreatePost'
 import Post from './pages/Post'
 import User from './pages/User'
+import UpdatePost from './pages/UpdatePost'
 
 function Routes() {
 
@@ -22,6 +23,7 @@ function Routes() {
                 <Route index element={<Home />} />
                 <Route path='/post' element={<CreatePost />} />
                 <Route path='/:id' element={<Post />} />
+                <Route path='/:id/update' element={<UpdatePost />} />
                 <Route path='/user/:id' element={<User />} />
             </Route>
         </Route>
