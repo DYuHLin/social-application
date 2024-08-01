@@ -5,7 +5,14 @@ import {toast} from 'react-toastify'
 function DeletePost({toggle, setToggle, post}) {
 
   const deletePost = (id) => {
-
+    try{
+      axios.delete(`http://localhost:3000/api/posts/${id}/delete`, {headers: {'Content-Type': 'Application/json'}})
+      toast.success('This post was deleted successfully')
+      setToggle(!toggle)
+  }catch(err){
+      console.log(err)
+      toast.error('There was an error deleting this post.')
+  }
   }
 
   return (
@@ -29,6 +36,7 @@ function DeletePost({toggle, setToggle, post}) {
                     post.video.trim() != '' ? <video>{post.video}</video> : ''
                   } 
                 </div>
+                <button onClick={() => deletePost(post._id)}>Delete Post</button>
             </div>}
         </div>
     </div>
