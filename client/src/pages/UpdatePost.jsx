@@ -28,8 +28,8 @@ function UpdatePost() {
     const decoded = jwtDecode(user)
     const post = {userId: decoded.user._id, text: text, link: link, video: video, pics: images}
     try{
-      axios.post('http://localhost:3000/api/posts/create', post, {headers: {'Content-Type': 'application/json'}})
-      toast.success("You have posted this blog successfully");
+      axios.put(`http://localhost:3000/api/posts/${id}/update`, post, {headers: {'Content-Type': 'application/json'}})
+      toast.success("You have updated this blog successfully");
       navigate('/');
     }catch(err){
       console.log(err)

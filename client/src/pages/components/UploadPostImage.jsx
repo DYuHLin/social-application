@@ -6,7 +6,6 @@ function UploadPostImage({setImage, imgBox}) {
     const [loading, setLoading] = useState(true)
     const [upload, setUpload] = useState(false)
     const uploadImage = async (files) => {
-        // console.log(files)
         setUpload(true)
         let linkArr = []    
         try{

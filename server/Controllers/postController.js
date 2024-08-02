@@ -56,9 +56,8 @@ exports.update_posts = asyncHandler(async(req, res, next) => {
                 text: req.body.text,
                 link: req.body.link,
                 video: req.body.video,
-                date: req.body.date,
-                pics: req.body.pics,
-                likes: req.body.likes,}});
+                date: Date.now(),
+                pics: req.body.pics,}});
         };
     }catch(err){
         console.log(err);
