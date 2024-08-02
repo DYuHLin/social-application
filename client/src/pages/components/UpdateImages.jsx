@@ -10,7 +10,10 @@ function UpdateImages({images, setImages, id}) {
     const removeImg = (image) => {
         try{
             axios.put(`http://localhost:3000/api/posts/${id}/deleteimg`, {imgUrl: image}, {headers: {'Content-Type': 'Application/json'}})
-            console.log('removed')
+            .then((res) => {
+                console.log(res.data)
+            })
+            
         }catch(err){
             console.log(err)
             toast.error('There was an error removing this image.')
@@ -22,10 +25,9 @@ function UpdateImages({images, setImages, id}) {
         try{
             for(let i = 0; i < files.length; i++){
                 const data = await imgUpload(files[i])
-                linkArr.push(data)   
+                setImages(image => [...image, data])
             }           
-            console.log(linkArr)
-            setImages(...images, linkArr)
+            console.log(images)
             setLoading(false)
         }catch(err){
             console.log(err)

@@ -92,9 +92,7 @@ exports.fetch_likes = asyncHandler(async (req, res, next) => {
 
 exports.remove_img = asyncHandler(async (req, res, next) => {
     await posts.findOneAndUpdate({_id: req.params.id}, {
-        $pull: {
-            pics: req.body.imgUrl
-        }
+        $pull: {pics: req.body.imgUrl}
     });
     return res.json('deleted');
 });
