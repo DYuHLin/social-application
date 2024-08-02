@@ -1,8 +1,16 @@
 import React from 'react'
+import axios from 'axios'
+import {toast} from 'react-toastify'
 
-function UpdateImages({images}) {
+function UpdateImages({images, setImages, id}) {
     const removeImg = (image) => {
-        
+        try{
+            axios.put(`http://localhost:3000/api/posts/${id}/deleteimg`, {imgUrl: image}, {headers: {'Content-Type': 'Application/json'}})
+            console.log('removed')
+        }catch(err){
+            console.log(err)
+            toast.error('There was an error removing this image.')
+        }
     }
     const addImg = (image) => {
 
@@ -15,7 +23,7 @@ function UpdateImages({images}) {
                 return(
                     <li className='image-in-list' key={key}>
                         <img src={img} alt="uploaded image" className='update-img'/>
-                        <button>Remove</button>
+                        <button onClick={() => removeImg(img)}>Remove</button>
                     </li>
                 )
             })}

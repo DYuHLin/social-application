@@ -65,7 +65,7 @@ function UpdatePost() {
 
           <input type="text" name="video" id="video" value={video} onChange={(e) => setVideo(e.target.value)}placeholder='Video link'/>
           <input type="text" name="link" id="link" value={link} onChange={(e) => setLink(e.target.value)} placeholder='Link'/>
-          <UpdateImages images={images} />
+          <UpdateImages images={images} setImages={setImages} id={id}/>
           <button>Update</button>
         </form>
         <div className="post-links">
