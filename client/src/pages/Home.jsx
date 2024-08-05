@@ -5,16 +5,23 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 import LikeButton from './components/LikeButton'
 import Users from './components/Users'
+import FilteredResults from './components/FilteredResults'
+import { jwtDecode } from 'jwt-decode'
 
 function Home() {
-  const {user, setUser} = useContext(AppContext)
   const [posts, setPosts] = useState([])
   const [loading, setLoading] = useState(true)
+  const [regular, setRegular] = useState(true)
+  const [filtered, setFiltered] = useState(false)
+  const [filteredResults, setFilteredResults] = useState([])
+  const {user, setUser} = useContext(AppContext)
+  const decoded = jwtDecode(user)
 
   useEffect(() => {
     axios.get('http://localhost:3000/api/posts/', {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setPosts(res.data)
+        setFilteredResults(res.data.filter((post) => decoded.user.followers.some((userId) => userId.user._id === post.user._id)))
         setLoading(false)
       })
       .catch((err) => {
@@ -25,10 +32,10 @@ function Home() {
 
   return (
     <section>
-    <h1>Home</h1>
+    <h1>Your Feed</h1>
     <Link to='/post'>Create Post</Link>
     <div className="see-posts">
-      <p>All</p> <p>Following</p>
+      <p onClick={() => {setRegular(true); setFiltered(false)}}>All</p> <p onClick={() => {setRegular(false); setFiltered(true)}}>Following</p>
     </div>
     <div className="home-container">
       <div className="home-posts">
@@ -37,7 +44,7 @@ function Home() {
         posts.length === 0 ? <p>There are no posts right now</p>:
         posts.map((post, key) => {
           return(
-          <div className="post-container" key={key}>
+          <div className={`post-container ${!regular ? 'hidden' : ''}`} key={key}>
             <div className="poster-info">
               <Link to={`/user/${post.user._id}`} className="poster">{post.user.username}</Link>
               <span className="post-date">{new Date(post.date).toLocaleString()}</span>
@@ -82,9 +89,11 @@ function Home() {
           )
         })
       } 
+      <FilteredResults posts={posts} loading={loading} filtered={filtered} filteredResults={filteredResults}/>
       </div>
       <Users />
     </div>
+    <button onClick={() => console.log(posts)}>show</button>
     </section>
   )
 }
