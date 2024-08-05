@@ -1,8 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import LikeButtonComment from './LikeButtonComment'
+import DeleteComment from './EditDelete/DeleteComment'
+import axios from 'axios'
 
 function UserComments({comments, loading, id}) {
+  const [toggle, setToggle] = useState(false)
+  const [comment, setComment] = useState(false)
+  const [ids, setId] = useState(false)
+
+  const togglePopup = (id) => {
+    setToggle(!toggle)
+    setId(id)
+    axios.get(`http://localhost:3000/api/comment/${id}/comment`, {headers: {'Content-Type': 'application/json'}})
+      .then((res) => {
+        setComment(res.data)
+      }).catch((err) => {
+        console.log(err)
+        toast.error('There was an error fetching this post')
+      })
+  }
+
   return (
     <div className="post-container">
       {
@@ -50,12 +68,13 @@ function UserComments({comments, loading, id}) {
           <div className="post-stuff">
             <LikeButtonComment commentId={comment._id}/>
             <Link to={`/${comment._id}`}>Comments</Link>
-            <button>Delete</button>
+            <button onClick={() => togglePopup(comment._id)}>Delete</button>
           </div>
         </div>
         )
       })
       }  
+      <DeleteComment toggle={toggle} setToggle={setToggle} comment={comment} /> 
     </div>
   )
 }
