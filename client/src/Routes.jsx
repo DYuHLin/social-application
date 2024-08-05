@@ -9,6 +9,7 @@ import CreatePost from './pages/CreatePost'
 import Post from './pages/Post'
 import User from './pages/User'
 import UpdatePost from './pages/UpdatePost'
+import UpdateComment from './pages/UpdateComment'
 
 function Routes() {
 
@@ -24,6 +25,7 @@ function Routes() {
                 <Route path='/post' element={<CreatePost />} />
                 <Route path='/:id' element={<Post />} />
                 <Route path='/:id/update' element={<UpdatePost />} />
+                <Route path='/:id/updatecomment' element={<UpdateComment />} />
                 <Route path='/user/:id' element={<User />} />
             </Route>
         </Route>

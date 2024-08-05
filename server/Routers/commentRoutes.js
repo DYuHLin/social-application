@@ -10,5 +10,6 @@ router.get('/:id/comment', comments.get_single_comment);
 router.get('/:id', comments.get_comments);
 router.get('/user/:id', comments.get_user_comments);
 router.put('/:id/like', comments.like_comment);
+router.put('/:id/removeimg', comments.remove_img);
 
 module.exports = router;

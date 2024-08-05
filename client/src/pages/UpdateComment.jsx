@@ -7,9 +7,9 @@ import {useNavigate} from 'react-router-dom'
 import * as faIcons from 'react-icons/fa'
 import Emoji from './components/Emoji'
 import { useParams, Link } from 'react-router-dom'
-import UpdateImages from './components/UpdateImages'
+import UpdateCommentImages from './components/UpdateCommentImages'
 
-function UpdatePost() {
+function UpdateComment() {
   const [post, setPost] = useState(false)
   const [images, setImages] = useState([])
   const [text, setText] = useState('')
@@ -27,7 +27,7 @@ function UpdatePost() {
     const decoded = jwtDecode(user)
     const post = {userId: decoded.user._id, text: text, link: link, video: video, pics: images}
     try{
-      axios.put(`http://localhost:3000/api/posts/${id}/update`, post, {headers: {'Content-Type': 'application/json'}})
+      axios.put(`http://localhost:3000/api/comment/${id}/update`, post, {headers: {'Content-Type': 'application/json'}})
       toast.success("You have updated this blog successfully");
       navigate('/');
     }catch(err){
@@ -37,7 +37,7 @@ function UpdatePost() {
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/posts/${id}`, {headers: {'Content-Type': 'application/json'}})
+    axios.get(`http://localhost:3000/api/comment/${id}/comment`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setPost(res.data)
         setText(res.data.text)
@@ -46,12 +46,13 @@ function UpdatePost() {
         setImages(res.data.pics)
       }).catch((err) => {
         console.log(err)
-        toast.error('There was an error fetching this post')
+        toast.error('There was an error fetching this comment')
       })
   },[])
+
   return (
     <section>
-        <h1>Post</h1>
+        <h1>Comment</h1>
         <form method="POST" onSubmit={handleSumbmit} className='create-post-form'>
 
           <fieldset>
@@ -64,7 +65,7 @@ function UpdatePost() {
 
           <input type="text" name="video" id="video" value={video} onChange={(e) => setVideo(e.target.value)}placeholder='Video link'/>
           <input type="text" name="link" id="link" value={link} onChange={(e) => setLink(e.target.value)} placeholder='Link'/>
-          <UpdateImages images={images} setImages={setImages} id={id}/>
+          <UpdateCommentImages images={images} setImages={setImages} id={id}/>
           <button>Update</button>
         </form>
         <div className="post-links">
@@ -76,4 +77,4 @@ function UpdatePost() {
   )
 }
 
-export default UpdatePost
+export default UpdateComment

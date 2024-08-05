@@ -69,6 +69,7 @@ function UserComments({comments, loading, id}) {
             <LikeButtonComment commentId={comment._id}/>
             <Link to={`/${comment._id}`}>Comments</Link>
             <button onClick={() => togglePopup(comment._id)}>Delete</button>
+            <Link to={`/${comment._id}/updatecomment`}>Update</Link>
           </div>
         </div>
         )

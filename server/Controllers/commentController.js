@@ -85,3 +85,10 @@ exports.like_comment = asyncHandler(async(req, res, next) => {
         return res.json('liked');
     }
 });
+
+exports.remove_img = asyncHandler(async (req, res, next) => {
+    await comments.findOneAndUpdate({_id: req.params.id}, {
+        $pull: {pics: req.body.imgUrl}
+    });
+    return res.json('deleted');
+});
