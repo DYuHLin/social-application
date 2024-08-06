@@ -212,6 +212,11 @@ li{
   align-items: center;
 }
 
+form{
+  display: flex;
+  flex-direction: column;
+}
+
 .images-list{
   width: 100%;
   display: flex;

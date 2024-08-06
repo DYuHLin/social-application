@@ -1,6 +1,8 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { toast } from 'react-toastify'
+import AppContext from '../../context/AppContext'
+import { jwtDecode } from 'jwt-decode'
 
 function UpdatePassword({toggle, setToggle}) {
     const {user} = useContext(AppContext)
@@ -9,10 +11,10 @@ function UpdatePassword({toggle, setToggle}) {
     const [password, setPassword] = useState('')
     const [confirm, setConfirm] = useState('')
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
+        const credentials = {username: decoded.user.username, password: current, newPassword: password, confirmedPassword: confirm}
         try{
-            const credentials = {username: decoded.user.username, password: current, newPassword: password, confirmedPassword: confirm }
             axios.put(`http://localhost:3000/api/auth/${decoded.user._id}/updatepassword`, credentials, {headers: {'Content-Type': 'Application/json'}})
                 .then((res) => {
                     if(res.data === 'password'){
@@ -32,18 +34,18 @@ function UpdatePassword({toggle, setToggle}) {
   return (
     <div className={`popup ${toggle ? 'active' : ''}`}>
         <div className="overlay">
-            {comment === false ? '' :<div className={`popup-content`}>
+            <div className={`popup-content`}>
                 <div className="close-btn" onClick={() => setToggle(!toggle)}>&times;</div>
                 <h1>Update Password</h1>
                 <div className={`popup-fow-container`}>
-                  <form method="PUT">
-                  <input type="password" required name='current' id='currentPassword' className='currentPassword' placeholder='CurrentPassword' minLength={6} value={password} onChange={(e) => setPassword(e.target.value)}/>
+                  <form method="POST" onSubmit={handleSubmit}>
+                  <input type="password" required name='current' id='currentPassword' className='currentPassword' placeholder='CurrentPassword' minLength={6} value={current} onChange={(e) => setCurrent(e.target.value)}/>
                   <input type="password" required name='password' id='password' className='password' placeholder='Password' minLength={6} value={password} onChange={(e) => setPassword(e.target.value)}/>
                   <input type="password" required name='confirmedPassword' id='confirmedPassword' className='confirmedPassword' placeholder='Confirm password' value={confirm} onChange={(e) => setConfirm(e.target.value)} minLength={6}/>
+                  <button>Update</button>
                   </form>
-                </div>
-                <button>Update</button>
-            </div>}
+                </div>    
+            </div>
         </div>
     </div>
   )

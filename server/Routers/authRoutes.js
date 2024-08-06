@@ -6,8 +6,7 @@ const router = express.Router();
 
 router.post('/register', register.post_register);
 router.delete('/deleteaccount', register.post_delete);
-router.put('/updateaccount', register.update_acc);
-router.put('/updateimage', register.update_img);
+router.put('/:id/updateaccount', register.update_acc);
 router.put('/:id/updatepassword', register.update_password);
 router.put('/:id/follow', register.add_follower);
 router.get('/:id/followers', register.fetch_followers);
