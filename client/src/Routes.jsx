@@ -10,6 +10,7 @@ import Post from './pages/Post'
 import User from './pages/User'
 import UpdatePost from './pages/UpdatePost'
 import UpdateComment from './pages/UpdateComment'
+import EditProfile from './pages/EditProfile'
 
 function Routes() {
 
@@ -23,6 +24,7 @@ function Routes() {
             <Route element={<ProtectedRoutes />}>
                 <Route index element={<Home />} />
                 <Route path='/post' element={<CreatePost />} />
+                <Route path='/editprofile' element={<EditProfile />} />
                 <Route path='/:id' element={<Post />} />
                 <Route path='/:id/update' element={<UpdatePost />} />
                 <Route path='/:id/updatecomment' element={<UpdateComment />} />

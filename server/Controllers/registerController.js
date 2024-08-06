@@ -65,6 +65,36 @@ exports.update_acc = asyncHandler(async (req, res, next) => {
     };
 });
 
+exports.update_img = asyncHandler(async(req, res, next) => {
+    const user = await users.findOne({username: req.body.username}).populate('followers.user').exec();
+    const match = await bcrypt.compare(req.body.password, user.password);
+        if(!match){
+            console.log("Incorrect Password");
+            return res.json("password");
+        }else{
+            await users.findOneAndUpdate({_id: req.params.id}, {
+                $set: {
+                    image: req.body.image
+                }
+            });
+        };
+});
+
+exports.update_password = asyncHandler(async(req, res, next) => {
+    bcrypt.hash(req.body.password, 10, async(err, hashedPassword) => {
+        if(err){
+            return next(err);
+        } else if(req.body.password !== req.body.confirmedPassword){
+            return res.json("match"); 
+        } else {
+            await users.updateOne({_id: req.params.id}, {$set: {
+                password: hashedPassword,
+            }});
+        };
+    });
+         
+})
+
 exports.add_follower = asyncHandler(async (req, res, next) => {
     const findFollower = await users.findOne({_id: req.params.id, 'followers.user': req.body.followerId});
     if(findFollower){
