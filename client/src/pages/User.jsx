@@ -74,6 +74,7 @@ function User() {
           </div>
         </div>
         <Followers toggle={toggle} setToggle={setToggle}/>
+        <Link to='/editprofile'>Update account</Link>
       </div>
       <div className="posts-and-comments">
         <p onClick={() => {setPostLink(true); setCommentLink(false); setLikeLink(false);}} className={`user-links ${postLink ? 'active' : ''}`}>Posts</p>
