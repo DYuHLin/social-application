@@ -128,8 +128,9 @@ exports.post_delete = asyncHandler(async (req, res, next) => {
     await users.findByIdAndDelete(req.params.id);
     await posts.deleteMany({user: req.params.id});
     await comments.deleteMany({user: req.params.id});
-   users.updateMany({'followers.user': req.params.id}, {$pull: {followers: {user: req.params.id}}});
-   return res.json('deleted');
+    await users.updateMany({'followers.user': req.params.id}, {$pull: {followers: {user: req.params.id}}});
+   res.cookie('tokens', '', {httpOnly:true, expires: new Date(0)});
+   return res.json('removed');
 });
 
 exports.fetch_followers = asyncHandler(async (req, res, next) => {

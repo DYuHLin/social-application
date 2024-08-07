@@ -8,6 +8,7 @@ import UserPosts from './components/UserPosts'
 import UserComments from './components/UserComments'
 import Followers from './components/Followers'
 import UserLikes from './components/UserLikes'
+import LogoutAndDelete from './components/LogoutAndDelete'
 
 function User() {
   const [users, setUsers] = useState(false)
@@ -71,6 +72,7 @@ function User() {
           </div> 
           <div className="user-following">
             <button className="followers" onClick={() => setToggle(!toggle)}>Followers</button>
+            <LogoutAndDelete users={users}/>
           </div>
         </div>
         <Followers toggle={toggle} setToggle={setToggle}/>
