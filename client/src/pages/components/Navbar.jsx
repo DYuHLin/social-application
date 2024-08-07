@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import AppContext from '../../context/AppContext'
 import { Link } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
+import SearchBar from './SearchBar'
 
 function Navbar() {
   const {user, setUser} = useContext(AppContext)
@@ -10,6 +11,8 @@ function Navbar() {
         <h1 className="app-title">
             App Title
         </h1>
+
+        <SearchBar />
 
         <div className="app-links">
             <ul>
