@@ -53,7 +53,7 @@ function FilteredResults({loading, filtered, filteredResults}) {
               }
             </div>
             <div className="post-stuff">
-              <LikeButton postId = {post._id}/>
+              <LikeButton postId = {post._id} post={post}/>
               <Link to={`/${post._id}`}>Comments</Link>
             </div>
           </div>

@@ -47,7 +47,7 @@ function Users() {
                       </div>   
                         <p>{user.username}</p>
                     </div>
-                    <button className="user-follow" onClick={() => follow(user._id)}>Follow</button>
+                    <button className="user-follow" onClick={() => follow(user._id)}>{decoded.user.followers.some((ind) => ind.user._id === user._id) ? 'Following' : 'Follow'}</button>
                 </div>
             )
         })

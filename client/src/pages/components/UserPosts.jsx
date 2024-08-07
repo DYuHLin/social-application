@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import LikeButton from './LikeButton'
 import DeletePost from './EditDelete/DeletePost'
 import axios from 'axios'
 import {toast} from 'react-toastify'
+import AppContext from '../../context/AppContext'
+import { jwtDecode } from 'jwt-decode'
 
 function UserPosts({loading, posts, id}) {
   const [toggle, setToggle] = useState(false)
   const [ids, setId] = useState(false)
   const [post, setPost] = useState(false)
+  const {user} = useContext(AppContext)
+  const decoded = jwtDecode(user)
 
   const togglePopup = (id) => {
     setToggle(!toggle)
@@ -67,10 +71,10 @@ function UserPosts({loading, posts, id}) {
               }
             </div>
             <div className="post-stuff">
-              <LikeButton postId = {post._id}/>
+              <LikeButton postId = {post._id} post={post}/>
               <Link to={`/${post._id}`}>Comments</Link>
-              <button onClick={() => togglePopup(post._id)}>Delete</button>
-              <Link to={`/${post._id}/update`}>Update</Link>
+              {decoded.user._id == post.user._id ? <button onClick={() => togglePopup(post._id)}>Delete</button> : ''}
+              {decoded.user._id == post.user._id ? <Link to={`/${post._id}/update`}>Update</Link> : ''}
             </div>
           </div>
           )

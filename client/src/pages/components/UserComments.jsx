@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import LikeButtonComment from './LikeButtonComment'
 import DeleteComment from './EditDelete/DeleteComment'
 import axios from 'axios'
+import { jwtDecode } from 'jwt-decode'
+import AppContext from '../../context/AppContext'
 
 function UserComments({comments, loading, id}) {
   const [toggle, setToggle] = useState(false)
   const [comment, setComment] = useState(false)
   const [ids, setId] = useState(false)
+  const {user} = useContext(AppContext)
+  const decoded = jwtDecode(user)
 
   const togglePopup = (id) => {
     setToggle(!toggle)
-    setId(id)
     axios.get(`http://localhost:3000/api/comment/${id}/comment`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setComment(res.data)
@@ -68,8 +71,8 @@ function UserComments({comments, loading, id}) {
           <div className="post-stuff">
             <LikeButtonComment commentId={comment._id}/>
             <Link to={`/${comment._id}`}>Comments</Link>
-            <button onClick={() => togglePopup(comment._id)}>Delete</button>
-            <Link to={`/${comment._id}/updatecomment`}>Update</Link>
+            {decoded.user._id == comment.user._id ? <button onClick={() => togglePopup(comment._id)}>Delete</button> : ''}
+            {decoded.user._id == comment.user._id ? <Link to={`/${comment._id}/updatecomment`}>Update</Link> : ''}
           </div>
         </div>
         )

@@ -4,9 +4,10 @@ import AppContext from '../../context/AppContext'
 import {toast} from 'react-toastify'
 import { jwtDecode } from 'jwt-decode'
 
-function LikeButton({postId}) {
+function LikeButton({postId, post}) {
 
     const {user} = useContext(AppContext)
+    const decoded = jwtDecode(user)
 
     const likeButton = () => {
         const decoded = jwtDecode(user)
@@ -21,7 +22,7 @@ function LikeButton({postId}) {
 
   return (
     <>
-    <button onClick={likeButton}>Like</button>
+    <button onClick={likeButton}>{post.likes.some((like) => like.user === decoded.user._id) ? 'Liked' : 'Like'}</button>
     </>
   )
 }

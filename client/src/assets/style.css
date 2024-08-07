@@ -366,6 +366,13 @@ form{
   border-radius: 0.5rem;
 }
 
+.searcher{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .searchBox{
   display: flex;
   flex-direction: column;
@@ -384,6 +391,10 @@ form{
   align-items: center;
   flex-direction: column;
   box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.6);
+}
+
+.search-name{
+  color: blue;
 }
 
 .follow-btn{

@@ -9,7 +9,7 @@ function SearchContainer({posts, comments, users, search}) {
             }).map((post, id) => {
             return(
             <div className="searchBox" key={id}>
-                <p>{post.user.username}</p>
+                <p className='search-name'>{post.user.username}</p>
                 {
                     post.text.trim() != '' ? <p>{post.text}</p> : ''
                 }
@@ -32,7 +32,7 @@ function SearchContainer({posts, comments, users, search}) {
             }).map((com, id) => {
             return(
             <div className="searchBox" key={id}>
-                <p>{com.user.username}</p>
+                <p className='search-name'>{com.user.username}</p>
                 {
                     com.text.trim() != '' ? <p>{com.text}</p> : ''
                 }
@@ -54,7 +54,7 @@ function SearchContainer({posts, comments, users, search}) {
             }).map((user, id) => {
             return(
             <div className="searchBox" key={id}>
-                <p>{user.username}</p>
+                <p className='search-name'>{user.username}</p>
             </div> 
             )
         }) 
