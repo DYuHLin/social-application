@@ -3,6 +3,7 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 import AppContext from '../../context/AppContext'
 import { jwtDecode } from 'jwt-decode'
+import { Link } from 'react-router-dom'
 
 function Users() {
     const [users, setUsers] = useState([])
@@ -40,7 +41,8 @@ function Users() {
         {
         users.map((user, key) => {
             return(
-                <div className="user-pane-info" key={key}>
+              <Link to={`/user/${user._id}`} key={key}>
+                <div className="user-pane-info">
                     <div className="user-detail">
                       <div className="img-round">
                         <img src={user.image} alt="user's image" className='profile-img'/>
@@ -52,6 +54,7 @@ function Users() {
                       <button className="user-follow">Follow</button>
                       }
                 </div>
+              </Link>
             )
         })
         }

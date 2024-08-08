@@ -7,6 +7,7 @@ import * as faIcons from 'react-icons/fa'
 import UploadPostImage from './UploadPostImage'
 import AppContext from '../../context/AppContext'
 import Emoji from './Emoji'
+import * as ciIcons from 'react-icons/ci'
 
 function WriteComment({postId, userId}) {
   const [images, setImages] = useState([])
@@ -72,9 +73,9 @@ function WriteComment({postId, userId}) {
           </form>
           <div className="post-links">
           <ul className='links'>
-            <li className='comment-link' onClick={() => toggle('img')}>Image</li>
-            <li className='comment-link' onClick={() => toggle('vid')}>Video</li>
-            <li className='comment-link' onClick={() => toggle('lnk')}>Link</li>
+            <li className='comment-link' onClick={() => toggle('img')}><ciIcons.CiImageOn className='icons'/></li>
+            <li className='comment-link' onClick={() => toggle('vid')}><ciIcons.CiVideoOn className='icons'/></li>
+            <li className='comment-link' onClick={() => toggle('lnk')}><ciIcons.CiLink className='icons'/></li>
           </ul>
           </div>
     </div>

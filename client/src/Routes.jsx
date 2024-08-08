@@ -23,7 +23,7 @@ function Routes() {
 
             <Route element={<ProtectedRoutes />}>
                 <Route index element={<Home />} />
-                <Route path='/post' element={<CreatePost />} />
+                {/* <Route path='/post' element={<CreatePost />} /> */}
                 <Route path='/editprofile' element={<EditProfile />} />
                 <Route path='/:id' element={<Post />} />
                 <Route path='/:id/update' element={<UpdatePost />} />

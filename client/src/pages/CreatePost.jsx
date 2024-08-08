@@ -7,6 +7,7 @@ import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 import * as faIcons from 'react-icons/fa'
 import Emoji from './components/Emoji'
+import * as ciIcons from 'react-icons/ci'
 
 function CreatePost() {
   const [images, setImages] = useState([])
@@ -57,8 +58,7 @@ function CreatePost() {
   }
 
   return (
-    <section>
-        <h1>Post</h1>
+    <div className='create-post'>
         <form method="POST" onSubmit={handleSumbmit} className='create-post-form'>
 
           <fieldset className={`${textBox ? '' : 'hidden'}`}>
@@ -76,12 +76,12 @@ function CreatePost() {
         </form>
         <div className="post-links">
           <ul className='links'>
-            <li onClick={() => toggle('img')}>Image</li>
-            <li onClick={() => toggle('vid')}>Video</li>
-            <li onClick={() => toggle('lnk')}>Link</li>
+            <li onClick={() => toggle('img')}><ciIcons.CiImageOn className='icons'/></li>
+            <li onClick={() => toggle('vid')}><ciIcons.CiVideoOn className='icons'/></li>
+            <li onClick={() => toggle('lnk')}><ciIcons.CiLink className='icons'/></li>
           </ul>
           </div>
-    </section>
+    </div>
   )
 }
 

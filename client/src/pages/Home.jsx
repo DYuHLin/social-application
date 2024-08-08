@@ -8,6 +8,7 @@ import Users from './components/Users'
 import FilteredResults from './components/FilteredResults'
 import { jwtDecode } from 'jwt-decode'
 import Posts from './components/Posts'
+import CreatePost from './CreatePost'
 
 function Home() {
   const [posts, setPosts] = useState([])
@@ -44,10 +45,10 @@ function Home() {
 
   return (
     <section>
-    <h1>Your Feed</h1>
-    <Link to='/post'>Create Post</Link>
+    <h1>Feed</h1>
+    <CreatePost />
     <div className="see-posts">
-      <p onClick={() => {setRegular(true); setFiltered(false)}}>All</p> <p onClick={() => {setRegular(false); setFiltered(true)}}>Following</p>
+      <p onClick={() => {setRegular(true); setFiltered(false)}} className='filter-link'>All</p> <p onClick={() => {setRegular(false); setFiltered(true)}} className='filter-link'>Following</p>
     </div>
     <div className="home-container">
       <div className="home-posts">

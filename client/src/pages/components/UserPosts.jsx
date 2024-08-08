@@ -84,7 +84,7 @@ function UserPosts({loading, posts, id}) {
             <div className="post-stuff">
               <LikeButton postId = {post._id} post={post}/>
               <div className="comment-count"><p>{comments.filter((com) => {return com.reply == post._id}).length}</p><Link to={`/${post._id}`}>Comments</Link></div>    
-              {decoded.user._id == post.user._id ? <button onClick={() => togglePopup(post._id)}>Delete</button> : ''}
+              {decoded.user._id == post.user._id ? <button className='user-follow' onClick={() => togglePopup(post._id)}>Delete</button> : ''}
               {decoded.user._id == post.user._id ? <Link to={`/${post._id}/update`}>Update</Link> : ''}
             </div>
           </div>

@@ -1,9 +1,8 @@
 import LikeButton from './LikeButton'
-import React, { useContext, useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useContext } from 'react'
+import { FaRegComment } from "react-icons/fa"
 import AppContext from '../../context/AppContext'
 import { jwtDecode } from 'jwt-decode'
-import {toast} from 'react-toastify'
 import { Link } from 'react-router-dom'
 
 function Posts({posts, loading, regular, comments}) {
@@ -56,7 +55,7 @@ function Posts({posts, loading, regular, comments}) {
             </div>
             <div className="post-stuff">
               <LikeButton postId = {post._id} post={post}/>
-              <div className='comment-count'><p>{comments.filter((com) => {return com.reply == post._id}).length}</p><Link to={`/${post._id}`}>Comments</Link></div>
+              <div className='comment-count'><p>{comments.filter((com) => {return com.reply == post._id}).length}</p><Link className='link-comment' to={`/${post._id}`}><FaRegComment className='comment-icons'/></Link></div>
             </div>
           </div>
           )
