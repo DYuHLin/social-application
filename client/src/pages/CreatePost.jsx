@@ -36,6 +36,26 @@ function CreatePost() {
     }
   }
 
+  const toggle = (name) => {
+    if(name === 'txt'){
+      setImgBox(false)
+      setVideoBox(false)
+      setLinkBox(false)
+    } else if(name === 'img'){
+      setImgBox(true)
+      setVideoBox(false)
+      setLinkBox(false)
+    } else if(name === 'vid'){
+      setImgBox(false)
+      setVideoBox(true)
+      setLinkBox(false)
+    } else{
+      setImgBox(false)
+      setVideoBox(false)
+      setLinkBox(true)
+    }
+  }
+
   return (
     <section>
         <h1>Post</h1>
@@ -46,20 +66,19 @@ function CreatePost() {
             <faIcons.FaSmile className='emoji-icon' onClick={() => {setEmojiToggle(!emojiToggle)}}/>
             </div>
             <Emoji hidden = {emojiToggle} text={text} setText={setText} setEmoji={setEmojiToggle}/>
-            <textarea name="text" id="text" cols="30" rows="5" placeholder='Write your post' value={text} onChange={(e) => setText(e.target.value)}></textarea>
+            <textarea className='post-text' name="text" id="text" cols="30" rows="3" placeholder='Write your post' value={text} onChange={(e) => setText(e.target.value)}></textarea>
           </fieldset> 
 
           <input className={`${videoBox ? '' : 'hidden'}`} type="text" name="video" id="video" value={video} onChange={(e) => setVideo(e.target.value)}placeholder='Video link'/>
           <input className={`${linkBox ? '' : 'hidden'}`} type="text" name="link" id="link" value={link} onChange={(e) => setLink(e.target.value)} placeholder='Link'/>
           <UploadPostImage setImage = {setImages} imgBox={imgBox}/>
-          <button>Post</button>
+          <button className="user-follow">Post</button>
         </form>
         <div className="post-links">
           <ul className='links'>
-            <li onClick={() => setTextBox(!textBox)}>Text</li>
-            <li onClick={() => setImgBox(!imgBox)}>Image</li>
-            <li onClick={() => setVideoBox(!videoBox)}>Video</li>
-            <li onClick={() => {setLinkBox(!linkBox)}}>Link</li>
+            <li onClick={() => toggle('img')}>Image</li>
+            <li onClick={() => toggle('vid')}>Video</li>
+            <li onClick={() => toggle('lnk')}>Link</li>
           </ul>
           </div>
     </section>

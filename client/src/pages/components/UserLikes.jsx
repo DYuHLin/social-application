@@ -6,6 +6,7 @@ import axios from 'axios'
 function UserLikes({id}) {
     const [loading, setLoading] = useState(true)
     const [posts, setPosts] = useState([])
+    const [comments, setComments] = useState([])
 
     useEffect(() => {
     axios.get(`http://localhost:3000/api/posts/user/likes/${id}`, {headers:{'content-type': 'application/json'}})
@@ -17,6 +18,16 @@ function UserLikes({id}) {
         toast.error('There was an error fetching this users posts')
       })
   },[])
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/comment/comments`, {headers: {'Content-Type': 'application/json'}})
+      .then((res) => {
+        setComments(res.data)
+      }).catch((err) => {
+        console.log(err)
+        toast.error('There was an error fetching the comments')
+      })
+  },[comments])
 
   return (
     <>
@@ -64,7 +75,7 @@ function UserLikes({id}) {
             </div>
             <div className="post-stuff">
               <LikeButton postId = {post._id} post={post}/>
-              <Link to={`/${post._id}`}>Comments</Link>
+              <div className="comment-count"><p>{comments.filter((com) => {return com.reply == post._id}).length}</p><Link to={`/${post._id}`}>Comments</Link></div>      
             </div>
           </div>
           )

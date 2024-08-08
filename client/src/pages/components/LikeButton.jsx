@@ -23,7 +23,7 @@ function LikeButton({postId, post}) {
 
   return (
     <>
-    <button className='like-btn' onClick={likeButton}>{post.likes.length}{post.likes.some((like) => like.user === decoded.user._id) ? <i className='bx bx-heart heart'/> : <i className='bx bx-heart'/>}</button>
+    <div className='like-btn' onClick={likeButton}><p>{post.likes.length}</p>{post.likes.some((like) => like.user === decoded.user._id) ? <i className='bx bx-heart heart'/> : <i className='bx bx-heart'/>}</div>
     </>
   )
 }

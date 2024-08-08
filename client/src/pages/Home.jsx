@@ -11,6 +11,7 @@ import Posts from './components/Posts'
 
 function Home() {
   const [posts, setPosts] = useState([])
+  const [comments, setComments] = useState([])
   const [loading, setLoading] = useState(true)
   const [regular, setRegular] = useState(true)
   const [filtered, setFiltered] = useState(false)
@@ -31,6 +32,16 @@ function Home() {
       })
   },[posts])
 
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/comment/comments`, {headers: {'Content-Type': 'application/json'}})
+      .then((res) => {
+        setComments(res.data)
+      }).catch((err) => {
+        console.log(err)
+        toast.error('There was an error fetching the comments')
+      })
+  },[comments])
+
   return (
     <section>
     <h1>Your Feed</h1>
@@ -40,7 +51,7 @@ function Home() {
     </div>
     <div className="home-container">
       <div className="home-posts">
-      <Posts posts={posts} loading={loading} regular={regular}/>
+      <Posts posts={posts} loading={loading} regular={regular} comments={comments}/>
       <FilteredResults posts={posts} loading={loading} filtered={filtered} filteredResults={filteredResults}/>
       </div>
       <Users />

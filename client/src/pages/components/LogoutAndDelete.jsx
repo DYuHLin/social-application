@@ -39,9 +39,9 @@ function LogoutAndDelete({users}) {
 
   return (
     <div className='btn-group'>
-        {users._id !== decoded.user._id ? '' : <button onClick={() => logout()}>Logout</button>}
-        {users._id !== decoded.user._id ? '' : <button onClick={() => setToggle(!toggle)}>Delete Account</button>}
-        {users._id === decoded.user._id ? '' : <button onClick={() => follow(users._id)}>{decoded.user.followers.some((ind) => ind.user._id === users._id) ? 'Following' : 'Follow'}</button>}
+        {users._id !== decoded.user._id ? '' : <button className='user-follow' onClick={() => logout()}>Logout</button>}
+        {users._id !== decoded.user._id ? '' : <button className='user-follow' onClick={() => setToggle(!toggle)}>Delete Account</button>}
+        {users._id === decoded.user._id ? '' : <button className='user-follow' onClick={() => follow(users._id)}>{decoded.user.followers.some((ind) => ind.user._id === users._id) ? 'Following' : 'Follow'}</button>}
         <DeleteAccount toggle={toggle} setToggle={setToggle} />
     </div>
   )

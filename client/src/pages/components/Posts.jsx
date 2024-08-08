@@ -6,7 +6,7 @@ import { jwtDecode } from 'jwt-decode'
 import {toast} from 'react-toastify'
 import { Link } from 'react-router-dom'
 
-function Posts({posts, loading, regular}) {
+function Posts({posts, loading, regular, comments}) {
     const {user} = useContext(AppContext)
     const decoded = jwtDecode(user)
 
@@ -56,7 +56,7 @@ function Posts({posts, loading, regular}) {
             </div>
             <div className="post-stuff">
               <LikeButton postId = {post._id} post={post}/>
-              <Link to={`/${post._id}`}>Comments</Link>
+              <div className='comment-count'><p>{comments.filter((com) => {return com.reply == post._id}).length}</p><Link to={`/${post._id}`}>Comments</Link></div>
             </div>
           </div>
           )

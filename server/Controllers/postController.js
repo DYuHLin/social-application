@@ -85,7 +85,7 @@ exports.like_post = asyncHandler(async(req, res, next) => {
 });
 
 exports.fetch_likes = asyncHandler(async (req, res, next) => {
-    const likes = await posts.find({'likes.user': req.params.id}).exec();
+    const likes = await posts.find({'likes.user': req.params.id}).populate('user').exec();
 
     return res.json(likes);
 });

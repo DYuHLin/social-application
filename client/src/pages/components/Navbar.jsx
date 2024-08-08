@@ -16,9 +16,13 @@ function Navbar() {
 
         <div className="app-links">
             <ul>
-                {!user ? '' :<Link to={`/user/${jwtDecode(user).user._id}`}>{jwtDecode(user).user.username}</Link>}
+                {!user ? '' :<Link to={`/user/${jwtDecode(user).user._id}`} className='profile-link'>
+                <img src={jwtDecode(user).user.image} alt="user's image" className='profile-img'/></Link>}
             </ul>
         </div>
+        {/* <div className="user-image">
+          <img src={users.image} alt="user's image" className='profile-img'/>
+        </div> */}
     </nav>
   )
 }

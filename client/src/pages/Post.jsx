@@ -10,6 +10,7 @@ import Comments from './components/Comments'
 function Post() {
   let { id } = useParams()
   const [post, setPost] = useState(false)
+  const [comments, setComments] = useState([])
   const {user} = useContext(AppContext)
   const decoded = jwtDecode(user)
 
@@ -22,6 +23,15 @@ function Post() {
         toast.error('There was an error fetching this post')
       })
   },[]) 
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/comment/comments`, {headers: {'Content-Type': 'application/json'}})
+      .then((res) => {
+        setComments(res.data)
+      }).catch((err) => {
+        console.log(err)
+        toast.error('There was an error fetching the comments')
+      })
+  },[comments])
 
   return (
     <section>
@@ -64,7 +74,7 @@ function Post() {
       </div>
       <div className="post-stuff">
         <LikeButton postId = {post._id} post={post}/>
-        <Link to={`/${post._id}`}>Comments</Link>
+        <div className="comment-count"><p>{comments.filter((com) => {return com.reply == post._id}).length}</p><Link to={`/${post._id}`}>Comments</Link></div>  
       </div>
     </div>}
     <Comments postId={id} userId={decoded.user._id}/>

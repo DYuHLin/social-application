@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import LikeButton from './LikeButton'
 import DeletePost from './EditDelete/DeletePost'
@@ -11,6 +11,7 @@ function UserPosts({loading, posts, id}) {
   const [toggle, setToggle] = useState(false)
   const [ids, setId] = useState(false)
   const [post, setPost] = useState(false)
+  const [comments, setComments] = useState([])
   const {user} = useContext(AppContext)
   const decoded = jwtDecode(user)
 
@@ -25,6 +26,16 @@ function UserPosts({loading, posts, id}) {
         toast.error('There was an error fetching this post')
       })
   }
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/comment/comments`, {headers: {'Content-Type': 'application/json'}})
+      .then((res) => {
+        setComments(res.data)
+      }).catch((err) => {
+        console.log(err)
+        toast.error('There was an error fetching the comments')
+      })
+  },[comments])
   
   return (
     <>
@@ -72,7 +83,7 @@ function UserPosts({loading, posts, id}) {
             </div>
             <div className="post-stuff">
               <LikeButton postId = {post._id} post={post}/>
-              <Link to={`/${post._id}`}>Comments</Link>
+              <div className="comment-count"><p>{comments.filter((com) => {return com.reply == post._id}).length}</p><Link to={`/${post._id}`}>Comments</Link></div>    
               {decoded.user._id == post.user._id ? <button onClick={() => togglePopup(post._id)}>Delete</button> : ''}
               {decoded.user._id == post.user._id ? <Link to={`/${post._id}/update`}>Update</Link> : ''}
             </div>

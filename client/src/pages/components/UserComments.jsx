@@ -9,6 +9,7 @@ import AppContext from '../../context/AppContext'
 function UserComments({comments, loading, id}) {
   const [toggle, setToggle] = useState(false)
   const [comment, setComment] = useState(false)
+  const [commentsC, setCommentsC] = useState([])
   const [ids, setId] = useState(false)
   const {user} = useContext(AppContext)
   const decoded = jwtDecode(user)
@@ -23,6 +24,16 @@ function UserComments({comments, loading, id}) {
         toast.error('There was an error fetching this post')
       })
   }
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/api/comment/comments`, {headers: {'Content-Type': 'application/json'}})
+      .then((res) => {
+        setCommentsC(res.data)
+      }).catch((err) => {
+        console.log(err)
+        toast.error('There was an error fetching the comments')
+      })
+  },[commentsC])
 
   return (
     <div className="post-container">
@@ -69,8 +80,8 @@ function UserComments({comments, loading, id}) {
             }
           </div>
           <div className="post-stuff">
-            <LikeButtonComment commentId={comment._id}/>
-            <Link to={`/${comment._id}`}>Comments</Link>
+            <LikeButtonComment commentId={comment._id} likes={comment.likes}/>
+            <div className="comment-count"><p>{commentsC.filter((com) => {return com.reply == comment._id}).length}</p><Link to={`/${comment._id}`}>Comments</Link></div>      
             {decoded.user._id == comment.user._id ? <button onClick={() => togglePopup(comment._id)}>Delete</button> : ''}
             {decoded.user._id == comment.user._id ? <Link to={`/${comment._id}/updatecomment`}>Update</Link> : ''}
           </div>

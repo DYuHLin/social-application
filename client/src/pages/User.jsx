@@ -71,7 +71,7 @@ function User() {
             <p>{users.email}</p>
           </div> 
           <div className="user-following">
-            <button className="followers" onClick={() => setToggle(!toggle)}>Followers</button>
+            <button className="user-follow" onClick={() => setToggle(!toggle)}>Followers</button>
             <LogoutAndDelete users={users}/>
           </div>
         </div>

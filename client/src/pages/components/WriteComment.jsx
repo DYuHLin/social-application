@@ -33,6 +33,26 @@ function WriteComment({postId, userId}) {
     }
   }
 
+  const toggle = (name) => {
+    if(name === 'txt'){
+      setImgBox(false)
+      setVideoBox(false)
+      setLinkBox(false)
+    } else if(name === 'img'){
+      setImgBox(true)
+      setVideoBox(false)
+      setLinkBox(false)
+    } else if(name === 'vid'){
+      setImgBox(false)
+      setVideoBox(true)
+      setLinkBox(false)
+    } else{
+      setImgBox(false)
+      setVideoBox(false)
+      setLinkBox(true)
+    }
+  }
+
   return (
     <div className='write-comment'>
         <form method="POST" onSubmit={handleSumbmit} className='create-post-form'>
@@ -52,10 +72,9 @@ function WriteComment({postId, userId}) {
           </form>
           <div className="post-links">
           <ul className='links'>
-            <li className='comment-link' onClick={() => setTextBox(!textBox)}>Text</li>
-            <li className='comment-link' onClick={() => setImgBox(!imgBox)}>Image</li>
-            <li className='comment-link' onClick={() => setVideoBox(!videoBox)}>Video</li>
-            <li className='comment-link' onClick={() => {setLinkBox(!linkBox)}}>Link</li>
+            <li className='comment-link' onClick={() => toggle('img')}>Image</li>
+            <li className='comment-link' onClick={() => toggle('vid')}>Video</li>
+            <li className='comment-link' onClick={() => toggle('lnk')}>Link</li>
           </ul>
           </div>
     </div>
