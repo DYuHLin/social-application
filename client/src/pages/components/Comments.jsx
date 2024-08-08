@@ -17,7 +17,7 @@ function Comments({postId, userId}) {
         console.log(err)
         toast.error('There was an error fetching the comments')
       })
-  },[])
+  },[comments])
 
   return (
     <div className="post-container">
@@ -65,7 +65,7 @@ function Comments({postId, userId}) {
             }
           </div>
           <div className="post-stuff">
-            <LikeButtonComment commentId={comment._id}/>
+            <LikeButtonComment commentId={comment._id} likes={comment.likes}/>
             <Link to={`/${comment._id}`}>Comments</Link>
           </div>
         </div>

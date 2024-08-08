@@ -12,7 +12,7 @@ function Navbar() {
             App Title
         </h1>
 
-        <SearchBar />
+        {!user ? '' : <SearchBar />}
 
         <div className="app-links">
             <ul>

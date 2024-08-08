@@ -41,7 +41,7 @@ function SearchBar() {
     },[])
   return (
     <div className='searcher'>
-        <input type="text" onChange={(e) => setSearch(e.target.value)} placeholder='Search'/>  
+        <input type="text" onChange={(e) => setSearch(e.target.value)} placeholder='Search' className='searchbar'/>  
         <SearchContainer posts={posts} comments={comments} search={search} users={users} />
     </div>
   )

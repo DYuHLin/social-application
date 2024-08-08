@@ -3,6 +3,7 @@ import axios from 'axios'
 import AppContext from '../../context/AppContext'
 import {toast} from 'react-toastify'
 import { jwtDecode } from 'jwt-decode'
+import { CiHeart } from "react-icons/ci"
 
 function LikeButton({postId, post}) {
 
@@ -22,7 +23,7 @@ function LikeButton({postId, post}) {
 
   return (
     <>
-    <button onClick={likeButton}>{post.likes.some((like) => like.user === decoded.user._id) ? 'Liked' : 'Like'}</button>
+    <button className='like-btn' onClick={likeButton}>{post.likes.length}{post.likes.some((like) => like.user === decoded.user._id) ? <i className='bx bx-heart heart'/> : <i className='bx bx-heart'/>}</button>
     </>
   )
 }
