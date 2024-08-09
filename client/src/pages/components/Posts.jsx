@@ -4,6 +4,7 @@ import { FaRegComment } from "react-icons/fa"
 import AppContext from '../../context/AppContext'
 import { jwtDecode } from 'jwt-decode'
 import { Link } from 'react-router-dom'
+import LinkPreview from './LinkPreview'
 
 function Posts({posts, loading, regular, comments}) {
     const {user} = useContext(AppContext)
@@ -26,7 +27,7 @@ function Posts({posts, loading, regular, comments}) {
                 post.text.trim() != '' ? <p>{post.text}</p> : ''
               }
               {
-                post.link.trim() != '' ? <p>{post.link}</p> : ''
+                post.link.trim() != '' ? <LinkPreview url={post.link} /> : ''
               }
               {
                 post.video.trim() != '' ? <video className='video' src={post.video} controls />: ''
