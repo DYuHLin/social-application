@@ -5,12 +5,12 @@ import Register from './pages/Register'
 import Login from './pages/Login'
 import AppContext from './context/AppContext'
 import Home from './pages/Home'
-import CreatePost from './pages/CreatePost'
 import Post from './pages/Post'
 import User from './pages/User'
 import UpdatePost from './pages/UpdatePost'
 import UpdateComment from './pages/UpdateComment'
 import EditProfile from './pages/EditProfile'
+import Comment from './pages/Comment'
 
 function Routes() {
 
@@ -26,6 +26,7 @@ function Routes() {
                 {/* <Route path='/post' element={<CreatePost />} /> */}
                 <Route path='/editprofile' element={<EditProfile />} />
                 <Route path='/:id' element={<Post />} />
+                <Route path='/:id/comment' element={<Comment />} />
                 <Route path='/:id/update' element={<UpdatePost />} />
                 <Route path='/:id/updatecomment' element={<UpdateComment />} />
                 <Route path='/user/:id' element={<User />} />

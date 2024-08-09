@@ -34,8 +34,8 @@ function Comments({postId, userId}) {
     <div className="post-container">
       <WriteComment postId={postId} userId={userId}/>
       {
-      loading && comments.length === 0 ? <p>Loading the posts...</p> :
-      comments.length === 0 ? <p>There are no posts right now</p>:
+      loading && comments.length === 0 ? <p>Loading the comments...</p> :
+      comments.length === 0 ? <p>There are no comments right now</p>:
       comments.map((comment, key) => {
         return(
         <div className="comment-container" key={key}>
@@ -77,7 +77,7 @@ function Comments({postId, userId}) {
           </div>
           <div className="post-stuff">
             <LikeButtonComment commentId={comment._id} likes={comment.likes}/>
-            <div className="comment-count"><p>{commentsC.filter((com) => {return com.reply == comment._id}).length}</p><Link to={`/${comment._id}`}>Comments</Link></div>
+            <div className="comment-count"><p>{commentsC.filter((com) => {return com.reply == comment._id}).length}</p><Link to={`/${comment._id}/comment`}>Comments</Link></div>
           </div>
         </div>
         )

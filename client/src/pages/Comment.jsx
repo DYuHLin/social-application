@@ -36,6 +36,7 @@ function Comment() {
 
   return (
     <section>
+        <h1>Comment</h1>
       {!single ? '' : <div className="post-container">
       <div className="poster-info">
         <h4 className="poster">{single.user.username}</h4>

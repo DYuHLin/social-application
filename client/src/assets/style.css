@@ -257,6 +257,11 @@ li{
   cursor: pointer;
 }
 
+.video{
+  min-width: 100%;
+  min-height: 100%;
+}
+
 .like-btn{
   border: none;
   background: none;

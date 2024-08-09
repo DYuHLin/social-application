@@ -35,6 +35,7 @@ function Post() {
 
   return (
     <section>
+      <h1>Post</h1>
       {!post ? '' : <div className="post-container">
       <div className="poster-info">
         <h4 className="poster">{post.user.username}</h4>

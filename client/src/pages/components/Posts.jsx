@@ -29,7 +29,7 @@ function Posts({posts, loading, regular, comments}) {
                 post.link.trim() != '' ? <p>{post.link}</p> : ''
               }
               {
-                post.video.trim() != '' ? <p>{post.video}</p> : ''
+                post.video.trim() != '' ? <video className='video' src={post.video} controls />: ''
               }
               {
                 post.pics.length != 0 ? 

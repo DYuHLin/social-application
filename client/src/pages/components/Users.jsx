@@ -19,7 +19,7 @@ function Users() {
         console.log(err)
         toast.error('There was an error fetching this user')
       })
-    },[])
+    },[users])
 
     const follow = (userId) => {
       axios.put(`http://localhost:3000/api/auth/${decoded.user._id}/follow`, {followerId: userId}, {headers:{'content-type': 'application/json'}})
@@ -40,21 +40,21 @@ function Users() {
     <div className='user-pane'>
         {
         users.map((user, key) => {
-            return(
-              <Link to={`/user/${user._id}`} key={key}>
-                <div className="user-pane-info">
-                    <div className="user-detail">
-                      <div className="img-round">
-                        <img src={user.image} alt="user's image" className='profile-img'/>
-                      </div>   
-                        <p>{user.username}</p>
-                    </div>
-                    {
-                      decoded.user.followers.some((ind) => ind.user._id === user._id) ? <button className="user-follow following">Following</button>: 
-                      <button className="user-follow">Follow</button>
-                      }
-                </div>
-              </Link>
+            return(  
+              <div className="user-pane-info" key={key}>
+                <Link to={`/user/${user._id}`}>
+                  <div className="user-detail">
+                    <div className="img-round">
+                      <img src={user.image} alt="user's image" className='profile-img'/>
+                    </div>   
+                      <p>{user.username}</p>
+                  </div>
+                  </Link>
+                  {
+                    decoded.user.followers.some((ind) => ind.user._id === user._id) ? <button onClick={() => follow(user._id)} className="user-follow following">Following</button>: 
+                    <button onClick={() => follow(user._id)} className="user-follow">Follow</button>
+                    }
+              </div>
             )
         })
         }
