@@ -42,7 +42,7 @@ function UpdateImages({images, setImages, id}) {
                 return(
                     <li className='image-in-list' key={key}>
                         <img src={img} alt="uploaded image" className='update-img'/>
-                        <button onClick={() => removeImg(img)}>Remove</button>
+                        <button className="user-follow" onClick={() => removeImg(img)}>Remove</button>
                     </li>
                 )
             })}

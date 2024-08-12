@@ -59,13 +59,13 @@ function UpdatePost() {
             <faIcons.FaSmile className='emoji-icon' onClick={() => {setEmojiToggle(!emojiToggle)}}/>
             </div>
             <Emoji hidden = {emojiToggle} text={text} setText={setText} setEmoji={setEmojiToggle}/>
-            <textarea name="text" id="text" cols="30" rows="5" placeholder='Write your post' value={text} onChange={(e) => setText(e.target.value)}></textarea>
+            <textarea className='post-text' name="text" id="text" cols="30" rows="5" placeholder='Write your post' value={text} onChange={(e) => setText(e.target.value)}></textarea>
           </fieldset> 
 
-          <input type="text" name="video" id="video" value={video} onChange={(e) => setVideo(e.target.value)}placeholder='Video link'/>
-          <input type="text" name="link" id="link" value={link} onChange={(e) => setLink(e.target.value)} placeholder='Link'/>
+          <input className='inputs' type="text" name="video" id="video" value={video} onChange={(e) => setVideo(e.target.value)}placeholder='Video link'/>
+          <input className='inputs' type="text" name="link" id="link" value={link} onChange={(e) => setLink(e.target.value)} placeholder='Link'/>
           <UpdateImages images={images} setImages={setImages} id={id}/>
-          <button>Update</button>
+          <button className="user-follow">Update</button>
         </form>
         <div className="post-links">
           <ul className='links'>

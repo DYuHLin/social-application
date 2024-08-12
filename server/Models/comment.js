@@ -8,6 +8,7 @@ const commentSchema = new Schema({
     text: {type: String},
     link: {type: String},
     video: {type: String},
+    youtube: {type: String},
     date: {type: Date, required: true, default: Date.now},
     pics: [],
     likes: [

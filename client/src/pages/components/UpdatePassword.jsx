@@ -39,10 +39,10 @@ function UpdatePassword({toggle, setToggle}) {
                 <h1>Update Password</h1>
                 <div className={`popup-fow-container`}>
                   <form method="POST" onSubmit={handleSubmit}>
-                  <input type="password" required name='current' id='currentPassword' className='currentPassword' placeholder='CurrentPassword' minLength={6} value={current} onChange={(e) => setCurrent(e.target.value)}/>
-                  <input type="password" required name='password' id='password' className='password' placeholder='Password' minLength={6} value={password} onChange={(e) => setPassword(e.target.value)}/>
-                  <input type="password" required name='confirmedPassword' id='confirmedPassword' className='confirmedPassword' placeholder='Confirm password' value={confirm} onChange={(e) => setConfirm(e.target.value)} minLength={6}/>
-                  <button>Update</button>
+                  <input type="password" required name='current' id='currentPassword' className='currentPassword inputs' placeholder='CurrentPassword' minLength={6} value={current} onChange={(e) => setCurrent(e.target.value)}/>
+                  <input type="password" required name='password' id='password' className='password inputs' placeholder='Password' minLength={6} value={password} onChange={(e) => setPassword(e.target.value)}/>
+                  <input type="password" required name='confirmedPassword' id='confirmedPassword' className='confirmedPassword inputs' placeholder='Confirm password' value={confirm} onChange={(e) => setConfirm(e.target.value)} minLength={6}/>
+                  <button className="user-follow">Update</button>
                   </form>
                 </div>    
             </div>

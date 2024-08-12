@@ -36,7 +36,7 @@ function DeletePost({toggle, setToggle, post}) {
                     post.video.trim() != '' ? <video>{post.video}</video> : ''
                   } 
                 </div>
-                <button onClick={() => deletePost(post._id)}>Delete Post</button>
+                <button className="user-follow" onClick={() => deletePost(post._id)}>Delete Post</button>
             </div>}
         </div>
     </div>

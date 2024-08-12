@@ -36,6 +36,7 @@ exports.post_comment = asyncHandler(async (req, res, next) => {
             text: req.body.text,
             link: req.body.link,
             video: req.body.video,
+            youtube: req.body.youtube,
             date: Date.now(),
             pics: req.body.pics,
             likes: [],
@@ -63,6 +64,7 @@ exports.update_comment = asyncHandler(async (req, res, next) => {
                 text: req.body.text,
                 link: req.body.link,
                 video: req.body.video,
+                youtube: req.body.youtube,
                 date: req.body.date,
                 pics: req.body.pics,
                 likes: req.body.likes,}});

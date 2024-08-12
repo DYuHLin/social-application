@@ -40,8 +40,8 @@ function Login() {
     <section>
         <h1>Login</h1>
         <form method="POST" className='login-form' onSubmit={handleSubmit}>
-          <input type="text" required name='username' id='username' className='username' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}/>
-          <input type="password" required name='password' id='password' className='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password'/>
+          <input type="text" required name='username' id='username' className='username inputs' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}/>
+          <input type="password" required name='password' id='password' className='password inputs' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password'/>
           <button>Login</button>
         </form>
         <p className="error">{error}</p> 

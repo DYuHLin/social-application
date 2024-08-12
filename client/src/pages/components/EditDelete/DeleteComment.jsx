@@ -36,7 +36,7 @@ function DeleteComment({toggle, setToggle, comment}) {
                     comment.video.trim() != '' ? <video>{comment.video}</video> : ''
                   } 
                 </div>
-                <button onClick={() => deleteComment(comment._id)}>Delete Comment</button>
+                <button className="user-follow" onClick={() => deleteComment(comment._id)}>Delete Comment</button>
             </div>}
         </div>
     </div>

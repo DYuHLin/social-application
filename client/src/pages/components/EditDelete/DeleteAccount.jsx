@@ -31,7 +31,7 @@ function DeleteAccount({toggle, setToggle}) {
                   <p>Are you sure you want to delete your account?</p>
                   <span>All your posts and comments will be deleted as well</span>
                 </div>
-                <button onClick={() => deleteAccount(decoded.user._id)}>Delete Account</button>
+                <button className="user-follow" onClick={() => deleteAccount(decoded.user._id)}>Delete Account</button>
             </div>
         </div>
     </div>

@@ -29,6 +29,7 @@ exports.create_post = asyncHandler(async (req, res, next) => {
             text: req.body.text,
             link: req.body.link,
             video: req.body.video,
+            youtube: req.body.youtube,
             date: Date.now(),
             pics: req.body.pics,
             likes: [],
@@ -56,6 +57,7 @@ exports.update_posts = asyncHandler(async(req, res, next) => {
                 text: req.body.text,
                 link: req.body.link,
                 video: req.body.video,
+                youtube: req.body.youtube,
                 date: Date.now(),
                 pics: req.body.pics,}});
         };

@@ -18,6 +18,22 @@ main{
   background-color: #481e8b;
 }
 
+.link-preview{
+  cursor: pointer;
+  background-color: #481e8b; 
+  border-radius: 7px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  max-width: 48rem;
+  gap: 10px;
+}
+
+.img-preview{
+  max-width: 100%;
+}
+
 section{
   display: flex;
   align-items: center;
@@ -353,7 +369,7 @@ form{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
-  background: #fff;
+  background: #161e49;
   width: 450px;
   height: 95%;
   z-index: 2;
@@ -502,6 +518,12 @@ a{
   color: hsl(260, 100%, 60%);
 }
 
+.btn-group{
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
 .follow-btn{
   padding: 5px;
   color: white;
@@ -518,6 +540,13 @@ a{
   background-color: transparent;
   color: hsl(260, 100%, 60%);
   box-shadow: .3rem .3rem 0 0 hsl(260, 100%, 40%);
+}
+
+.inputs{
+  background-color: #161e49;
+  padding: 8px;
+  border-radius: 7px;
+  border: none;
 }
 
 .slider::-webkit-scrollbar{

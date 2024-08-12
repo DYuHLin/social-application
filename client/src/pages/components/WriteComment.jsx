@@ -66,8 +66,8 @@ function WriteComment({postId, userId}) {
             <textarea name="text" id="text" cols="30" rows="3" placeholder='Write your post' value={text} onChange={(e) => setText(e.target.value)}></textarea>
           </fieldset> 
 
-          <input className={`${videoBox ? '' : 'hidden'}`} type="text" name="video" id="video" value={video} onChange={(e) => setVideo(e.target.value)}placeholder='Video link'/>
-          <input className={`${linkBox ? '' : 'hidden'}`} type="text" name="link" id="link" value={link} onChange={(e) => setLink(e.target.value)} placeholder='Link'/>
+          <input className={`${videoBox ? '' : 'hidden'} inputs`} type="text" name="video" id="video" value={video} onChange={(e) => setVideo(e.target.value)}placeholder='Video link'/>
+          <input className={`${linkBox ? '' : 'hidden'} inputs`} type="text" name="link" id="link" value={link} onChange={(e) => setLink(e.target.value)} placeholder='Link'/>
           <UploadPostImage setImage = {setImages} imgBox={imgBox}/>
           <button>Post</button>
           </form>

@@ -34,15 +34,19 @@ function LinkPreview({ url }) {
     return <p>Failed to fetch link preview.</p>
   }
 
+  if(url.includes('youtube.com')){
+    <iframe src={url} />
+  }
+
   const handleClick = () => {
     window.open(url, '_blank');
   };
 
   return (
-    <div onClick={handleClick} style={{ cursor: 'pointer' }}>
+    <div onClick={handleClick} className='link-preview'>
       <h3>{previewData.title}</h3>
       <p>{previewData.description}</p>
-      {previewData.image && <img src={previewData.image} alt="Link Preview" />}
+      {previewData.image && <img src={previewData.image} alt="Link Preview" className='img-preview'/>}
     </div>
   );
 }

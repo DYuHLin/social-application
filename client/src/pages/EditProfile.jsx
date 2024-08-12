@@ -47,9 +47,9 @@ function EditProfile() {
     <section>
     <h1>Edit Profile</h1>
         <form className='register-form' method="POST" onSubmit={handleSubmit}>
-            <input type="text" required name='name' id='name' className='name' placeholder='Name' value={name} onChange={(e) => setName(e.target.value)}/>
-            <input type="text" required name='surname' id='surname' className='surname' placeholder='Surname' value={surname} onChange={(e) => setSurname(e.target.value)}/>
-            <input type="text" required name='username' id='username' className='username' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}/>
+            <input type="text" required name='name' id='name' className='name inputs' placeholder='Name' value={name} onChange={(e) => setName(e.target.value)}/>
+            <input type="text" required name='surname' id='surname' className='surname inputs' placeholder='Surname' value={surname} onChange={(e) => setSurname(e.target.value)}/>
+            <input type="text" required name='username' id='username' className='username inputs' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}/>
             <UploadProfileImage setImage={setImage}/>
             <button>Update</button>         
         </form>
