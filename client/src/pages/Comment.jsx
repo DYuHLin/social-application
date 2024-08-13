@@ -6,6 +6,7 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 import Comments from './components/Comments'
 import LikeButtonComment from './components/LikeButtonComment'
+import LinkPreview from './components/LinkPreview'
 
 function Comment() {
     let { id } = useParams()
@@ -47,10 +48,10 @@ function Comment() {
           single.text.trim() != '' ? <p>{single.text}</p> : ''
         }
         {
-          single.link.trim() != '' ? <p>{single.link}</p> : ''
+          single.link.trim() != '' ? <LinkPreview url={single.link} /> : ''
         }
         {
-          single.video.trim() != '' ? <p>{single.video}</p> : ''
+          single.video.trim() != '' ? <video className='video' src={single.video} controls /> : ''
         }
         {
           single.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: single.youtube}}></div> : ''

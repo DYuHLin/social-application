@@ -5,6 +5,7 @@ import DeleteComment from './EditDelete/DeleteComment'
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
 import AppContext from '../../context/AppContext'
+import LinkPreview from './LinkPreview'
 
 function UserComments({comments, loading, id}) {
   const [toggle, setToggle] = useState(false)
@@ -52,10 +53,10 @@ function UserComments({comments, loading, id}) {
               comment.text.trim() != '' ? <p>{comment.text}</p> : ''
             }
             {
-              comment.link.trim() != '' ? <p>{comment.link}</p> : ''
+              comment.link.trim() != '' ? <LinkPreview url={comment.link} />: ''
             }
             {
-              comment.video.trim() != '' ? <p>{comment.video}</p> : ''
+              comment.video.trim() != '' ? <video className='video' src={comment.video} controls /> : ''
             }
             {
               comment.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: comment.youtube}}></div> : ''

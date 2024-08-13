@@ -3,6 +3,7 @@ import WriteComment from './WriteComment'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import LikeButtonComment from './LikeButtonComment'
+import LinkPreview from './LinkPreview'
 
 function Comments({postId, userId}) {
   const [comments, setComments] = useState([])
@@ -49,10 +50,10 @@ function Comments({postId, userId}) {
               comment.text.trim() != '' ? <p>{comment.text}</p> : ''
             }
             {
-              comment.link.trim() != '' ? <p>{comment.link}</p> : ''
+              comment.link.trim() != '' ? <LinkPreview url={comment.link} /> : ''
             }
             {
-              comment.video.trim() != '' ? <p>{comment.video}</p> : ''
+              comment.video.trim() != '' ? <video className='video' src={comment.video} controls /> : ''
             }
             {
               comment.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: comment.youtube}}></div> : ''

@@ -6,6 +6,7 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 import LikeButton from './components/LikeButton'
 import Comments from './components/Comments'
+import LinkPreview from './components/LinkPreview'
 
 function Post() {
   let { id } = useParams()
@@ -46,10 +47,10 @@ function Post() {
           post.text.trim() != '' ? <p>{post.text}</p> : ''
         }
         {
-          post.link.trim() != '' ? <p>{post.link}</p> : ''
+          post.link.trim() != '' ? <LinkPreview url={post.link} /> : ''
         }
         {
-          post.video.trim() != '' ? <p>{post.video}</p> : ''
+          post.video.trim() != '' ? <video className='video' src={post.video} controls /> : ''
         }
         {
           post.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''

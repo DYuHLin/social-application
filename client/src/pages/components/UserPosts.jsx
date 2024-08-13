@@ -6,6 +6,7 @@ import axios from 'axios'
 import {toast} from 'react-toastify'
 import AppContext from '../../context/AppContext'
 import { jwtDecode } from 'jwt-decode'
+import LinkPreview from './LinkPreview'
 
 function UserPosts({loading, posts, id}) {
   const [toggle, setToggle] = useState(false)
@@ -54,10 +55,10 @@ function UserPosts({loading, posts, id}) {
                 post.text.trim() != '' ? <p>{post.text}</p> : ''
               }
               {
-                post.link.trim() != '' ? <p>{post.link}</p> : ''
+                post.link.trim() != '' ? <LinkPreview url={post.link} /> : ''
               }
               {
-                post.video.trim() != '' ? <p>{post.video}</p> : ''
+                post.video.trim() != '' ? <video className='video' src={post.video} controls /> : ''
               }
               {
                 post.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''

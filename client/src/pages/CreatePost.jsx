@@ -23,7 +23,6 @@ function CreatePost() {
   const [tubeBox, setTubeBox] = useState(false)
 
   const {user} = useContext(AppContext)
-  const navigate = useNavigate()
 
   const handleSumbmit = (e) => {
     e.preventDefault()
@@ -32,7 +31,16 @@ function CreatePost() {
     try{
       axios.post('http://localhost:3000/api/posts/create', post, {headers: {'Content-Type': 'application/json'}})
       toast.success("You have posted this blog successfully");
-      navigate('/');
+      setText('')
+      setVideo('')
+      setTube('')
+      setLink('')
+      setImages([])
+
+      setLinkBox(false)
+      setVideoBox(false)
+      setTubeBox(false)
+      setImgBox(false)
     }catch(err){
       console.log(err)
       toast.error('There was an error making this post.')

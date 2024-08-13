@@ -1,11 +1,8 @@
 import React, { useContext, useState } from 'react'
-import {jwtDecode} from 'jwt-decode'
 import {toast} from 'react-toastify'
 import axios from 'axios'
-import {useNavigate} from 'react-router-dom'
 import * as faIcons from 'react-icons/fa'
 import UploadPostImage from './UploadPostImage'
-import AppContext from '../../context/AppContext'
 import Emoji from './Emoji'
 import * as ciIcons from 'react-icons/ci'
 
@@ -22,14 +19,21 @@ function WriteComment({postId, userId}) {
   const [tubeBox, setTubeBox] = useState(false)
   const [imgBox, setImgBox] = useState(false)
 
-  const {user} = useContext(AppContext)
-  const navigate = useNavigate()
-
   const handleSumbmit = (e) => {
     e.preventDefault()
     const post = {userId: userId, text: text, link: link, video: video, youtube: tube, pics: images}
     try{
       axios.post(`http://localhost:3000/api/comment/${postId}/create`, post, {headers: {'Content-Type': 'application/json'}})
+      setText('')
+      setVideo('')
+      setTube('')
+      setLink('')
+      setImages([])
+
+      setLinkBox(false)
+      setVideoBox(false)
+      setTubeBox(false)
+      setImgBox(false)
     }catch(err){
       console.log(err)
       toast.error('There was an error making this comment.')

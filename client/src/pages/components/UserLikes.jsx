@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import LikeButton from './LikeButton'
 import axios from 'axios'
+import LinkPreview from './LinkPreview'
 
 function UserLikes({id}) {
     const [loading, setLoading] = useState(true)
@@ -46,10 +47,10 @@ function UserLikes({id}) {
                 post.text.trim() != '' ? <p>{post.text}</p> : ''
               }
               {
-                post.link.trim() != '' ? <p>{post.link}</p> : ''
+                post.link.trim() != '' ? <LinkPreview url={post.link} /> : ''
               }
               {
-                post.video.trim() != '' ? <p>{post.video}</p> : ''
+                post.video.trim() != '' ? <video className='video' src={post.video} controls /> : ''
               }
               {
                 post.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''

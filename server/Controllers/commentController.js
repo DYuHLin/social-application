@@ -100,3 +100,9 @@ exports.remove_img = asyncHandler(async (req, res, next) => {
     });
     return res.json('deleted');
 });
+
+exports.fetch_likes = asyncHandler(async (req, res, next) => {
+    const likes = await comments.find({'likes.user': req.params.id}).populate('user').exec();
+
+    return res.json(likes);
+});
