@@ -58,6 +58,9 @@ function UserComments({comments, loading, id}) {
               comment.video.trim() != '' ? <p>{comment.video}</p> : ''
             }
             {
+              comment.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: comment.youtube}}></div> : ''
+            }
+            {
               comment.pics.length != 0 ? 
               <section className="img-container">
                 <div className="slider-wrapper">

@@ -298,6 +298,12 @@ li{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 60%;
+}
+
+.follow-lnk{
+  cursor: pointer;
+  color: blue;
 }
 
 .profile-img{
@@ -464,7 +470,7 @@ a{
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border-bottom: 1px solid black;
+  width: 100%;
 }
 
 .comment-link{
@@ -533,6 +539,12 @@ a{
   transition: all 0.3s;
   font-size: 22px;
   cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.follow-count{
+  font-weight: 500;
+  font-size: 18px;
 }
 
 .follow-btn:hover{

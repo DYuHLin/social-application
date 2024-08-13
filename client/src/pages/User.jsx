@@ -59,24 +59,25 @@ function User() {
 
   return (
     <section>
-      <h2>{users.username}</h2>
       <div className="user-container">
         <div className="user-image">
           <img src={users.image} alt="user's image" className='profile-img'/>
         </div>
         <div className="user-info">
-          <div className="user text">
-            <p>{users.name}</p>
-            <p>{users.surname}</p>
-            <p>{users.email}</p>
+          <div className={`user text`}>
+          <h2>{users.username}</h2>
+            {decoded.user._id !== users._id ? '' : <p>{users.name}</p>}
+            {decoded.user._id !== users._id ? '' : <p>{users.surname}</p>}
+            {decoded.user._id !== users._id ? '' : <p>{users.email}</p>}
+            <p>{users.bio}</p>
           </div> 
           <div className="user-following">
-            <button className="user-follow" onClick={() => setToggle(!toggle)}>Followers</button>
+            <p className='follow-lnk' onClick={() => setToggle(!toggle)}>Followers / Following</p>
             <LogoutAndDelete users={users}/>
           </div>
         </div>
-        <Followers toggle={toggle} setToggle={setToggle}/>
-        <Link to='/editprofile'>Update account</Link>
+        <Followers toggle={toggle} setToggle={setToggle} users={users} id={id}/>
+        {decoded.user._id === users._id ? <Link to='/editprofile'>Update</Link> : ''}
       </div>
       <div className="posts-and-comments">
         <p onClick={() => {setPostLink(true); setCommentLink(false); setLikeLink(false);}} className={`user-links ${postLink ? 'active' : ''}`}>Posts</p>

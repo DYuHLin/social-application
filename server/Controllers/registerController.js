@@ -23,6 +23,7 @@ exports.post_register = asyncHandler(async (req, res, next) => {
                         name: req.body.name,
                         surname: req.body.surname,
                         username: req.body.username,
+                        bio: req.body.bio,
                         email: req.body.email,
                         password: hashedPassword,
                         image: req.body.image,
@@ -52,6 +53,7 @@ exports.update_acc = asyncHandler(async (req, res, next) => {
                 name: req.body.name,
                 surname: req.body.surname,
                 username: req.body.username,
+                bio: req.body.bio,
                 email: req.body.email,
                 image: req.body.image
             }});
@@ -62,6 +64,7 @@ exports.update_acc = asyncHandler(async (req, res, next) => {
                 name: req.body.name,
                 surname: req.body.surname,
                 username: req.body.username,
+                bio: req.body.bio,
                 email: req.body.email,
                 image: req.body.image
             }});

@@ -33,6 +33,9 @@ function Posts({posts, loading, regular, comments}) {
                 post.video.trim() != '' ? <video className='video' src={post.video} controls />: ''
               }
               {
+                post.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''
+              }
+              {
                 post.pics.length != 0 ? 
                 <section className="img-container">
                   <div className="slider-wrapper">

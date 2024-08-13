@@ -31,8 +31,9 @@ function Comments({postId, userId}) {
   },[commentsC])
 
   return (
+    <>
+    <WriteComment postId={postId} userId={userId}/>
     <div className="post-container">
-      <WriteComment postId={postId} userId={userId}/>
       {
       loading && comments.length === 0 ? <p>Loading the comments...</p> :
       comments.length === 0 ? <p>There are no comments right now</p>:
@@ -52,6 +53,9 @@ function Comments({postId, userId}) {
             }
             {
               comment.video.trim() != '' ? <p>{comment.video}</p> : ''
+            }
+            {
+              comment.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: comment.youtube}}></div> : ''
             }
             {
               comment.pics.length != 0 ? 
@@ -84,6 +88,7 @@ function Comments({postId, userId}) {
       })
       }  
     </div>
+    </>
   )
 }
 

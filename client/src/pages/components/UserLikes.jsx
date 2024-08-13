@@ -52,6 +52,9 @@ function UserLikes({id}) {
                 post.video.trim() != '' ? <p>{post.video}</p> : ''
               }
               {
+                post.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''
+              }
+              {
                 post.pics.length != 0 ? 
                 <section className="img-container">
                   <div className="slider-wrapper">

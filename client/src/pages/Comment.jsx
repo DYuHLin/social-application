@@ -53,6 +53,9 @@ function Comment() {
           single.video.trim() != '' ? <p>{single.video}</p> : ''
         }
         {
+          single.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: single.youtube}}></div> : ''
+        }
+        {
         single.pics.length != 0 ? 
         <section className="img-container">
           <div className="slider-wrapper">

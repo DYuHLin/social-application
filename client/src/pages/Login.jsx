@@ -42,12 +42,11 @@ function Login() {
         <form method="POST" className='login-form' onSubmit={handleSubmit}>
           <input type="text" required name='username' id='username' className='username inputs' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}/>
           <input type="password" required name='password' id='password' className='password inputs' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password'/>
-          <button>Login</button>
+          <button className="user-follow">Login</button>
         </form>
         <p className="error">{error}</p> 
         <Link to={"/register"} className="link">Register</Link>
         <p className='guest'>Sign in as guest</p>
-        <button onClick={show}>show</button>
       </section>
   )
 }

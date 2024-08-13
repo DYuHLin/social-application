@@ -14,6 +14,7 @@ function UpdateComment() {
   const [images, setImages] = useState([])
   const [text, setText] = useState('')
   const [video, setVideo] = useState('')
+  const [tube, setTube] = useState('')
   const [link, setLink] = useState('')
   const [emojiToggle, setEmojiToggle] = useState(true)
   const [imgBox, setImgBox] = useState(false)
@@ -25,7 +26,7 @@ function UpdateComment() {
   const handleSumbmit = (e) => {
     e.preventDefault()
     const decoded = jwtDecode(user)
-    const post = {userId: decoded.user._id, text: text, link: link, video: video, pics: images}
+    const post = {userId: decoded.user._id, text: text, link: link, video: video, youtube: tube, pics: images}
     try{
       axios.put(`http://localhost:3000/api/comment/${id}/update`, post, {headers: {'Content-Type': 'application/json'}})
       toast.success("You have updated this blog successfully");
@@ -42,6 +43,7 @@ function UpdateComment() {
         setPost(res.data)
         setText(res.data.text)
         setVideo(res.data.video)
+        setTube(res.data.youtube)
         setLink(res.data.link)
         setImages(res.data.pics)
       }).catch((err) => {
@@ -64,6 +66,7 @@ function UpdateComment() {
           </fieldset> 
 
           <input className='inputs' type="text" name="video" id="video" value={video} onChange={(e) => setVideo(e.target.value)}placeholder='Video link'/>
+          <input className='inputs' type="text" name="tube" id="tube" value={tube} onChange={(e) => setTube(e.target.value)}placeholder='Youtube link'/>
           <input className='inputs' type="text" name="link" id="link" value={link} onChange={(e) => setLink(e.target.value)} placeholder='Link'/>
           <UpdateCommentImages images={images} setImages={setImages} id={id}/>
           <button className="user-follow">Update</button>

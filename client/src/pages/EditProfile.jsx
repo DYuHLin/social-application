@@ -15,6 +15,7 @@ function EditProfile() {
   const [name, setName] = useState(decoded.user.name)
   const [surname, setSurname] = useState(decoded.user.surname)
   const [username, setUsername] = useState(decoded.user.username)
+  const [bio, setBio] = useState(decoded.user.bio)
   const [email, setEmail] = useState(decoded.user.email)
   const [image, setImage] = useState(decoded.user.image)
   const [error, setError] = useState('')
@@ -50,6 +51,7 @@ function EditProfile() {
             <input type="text" required name='name' id='name' className='name inputs' placeholder='Name' value={name} onChange={(e) => setName(e.target.value)}/>
             <input type="text" required name='surname' id='surname' className='surname inputs' placeholder='Surname' value={surname} onChange={(e) => setSurname(e.target.value)}/>
             <input type="text" required name='username' id='username' className='username inputs' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}/>
+            <textarea className='post-text' name="text" id="text" cols="30" rows="3" placeholder='Bio (Optional)' value={bio} onChange={(e) => setBio(e.target.value)}></textarea> 
             <UploadProfileImage setImage={setImage}/>
             <button>Update</button>         
         </form>
