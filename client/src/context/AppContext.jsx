@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react"
 import { Outlet, Navigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
+import { io } from "socket.io-client"
 
 const AppContext = createContext()
 
@@ -11,6 +12,7 @@ export const AppProvider = ({children}) => {
     };
     const [user, setUser] = useState(getInitialState)
     const defaultPic = 'https://res.cloudinary.com/dqdoxrm2x/image/upload/v1720614729/jml8pug0wuzmtv95yvwf.jpg'
+    const socket = io.connect(`http://localhost:3000`)
 
     const ProtectedRoutes = () => {
         return(

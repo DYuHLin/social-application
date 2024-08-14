@@ -9,6 +9,9 @@ import FilteredResults from './components/FilteredResults'
 import { jwtDecode } from 'jwt-decode'
 import Posts from './components/Posts'
 import CreatePost from './CreatePost'
+import { io } from 'socket.io-client'
+
+const socket = io.connect(`http://localhost:3000`)
 
 function Home() {
   const [posts, setPosts] = useState([])

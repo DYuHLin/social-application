@@ -10,7 +10,7 @@ function CommentLikes({id}) {
     const [comments, setComments] = useState([])
 
     useEffect(() => {
-    axios.get(`http://localhost:3000/api/posts/comment/likes/${id}`, {headers:{'content-type': 'application/json'}})
+    axios.get(`http://localhost:3000/api/comment/likes/${id}`, {headers:{'content-type': 'application/json'}})
       .then((res) => {
         setPosts(res.data)
         setLoading(false)
@@ -38,6 +38,7 @@ function CommentLikes({id}) {
     posts.map((post, key) => {
         return(
         <div className="post-container" key={key}>
+            <p>Comment</p>
         <div className="poster-info">
             <Link to={`/user/${post.user._id}`} className="poster">{post.user.username}</Link>
             <span className="post-date">{new Date(post.date).toLocaleString()}</span>

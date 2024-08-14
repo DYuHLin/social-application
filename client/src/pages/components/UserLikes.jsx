@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import LikeButton from './LikeButton'
 import axios from 'axios'
 import LinkPreview from './LinkPreview'
+import CommentLikes from './CommentLikes'
 
 function UserLikes({id}) {
     const [loading, setLoading] = useState(true)
@@ -38,6 +39,7 @@ function UserLikes({id}) {
         posts.map((post, key) => {
           return(
           <div className="post-container" key={key}>
+            <p>Post</p>
             <div className="poster-info">
               <Link to={`/user/${post.user._id}`} className="poster">{post.user.username}</Link>
               <span className="post-date">{new Date(post.date).toLocaleString()}</span>
@@ -85,6 +87,7 @@ function UserLikes({id}) {
           )
         })
       } 
+      <CommentLikes id={id} />
     </>
   )
 }

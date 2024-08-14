@@ -39,7 +39,7 @@ function Post() {
       <h1>Post</h1>
       {!post ? '' : <div className="post-container">
       <div className="poster-info">
-        <h4 className="poster">{post.user.username}</h4>
+        <Link to={`/user/${post.user._id}`} className="poster">{post.user.username}</Link>
         <span className="post-date">{new Date(post.date).toLocaleString()}</span>
       </div>
       <div className="post-content">
