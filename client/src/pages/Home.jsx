@@ -34,7 +34,7 @@ function Home() {
         console.log(err)
         toast.error('There was an error fetching the posts')
       })
-  },[posts])
+  },[])
 
   useEffect(() => {
     axios.get(`http://localhost:3000/api/comment/comments`, {headers: {'Content-Type': 'application/json'}})
@@ -49,7 +49,7 @@ function Home() {
   return (
     <section>
     <h1>Feed</h1>
-    <CreatePost />
+    <CreatePost socket={socket} setPosts={setPosts}/>
     <div className="see-posts">
       <p onClick={() => {setRegular(true); setFiltered(false)}} className='filter-link'>All</p> <p onClick={() => {setRegular(false); setFiltered(true)}} className='filter-link'>Following</p>
     </div>

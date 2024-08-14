@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import UploadPostImage from './components/UploadPostImage'
 import AppContext from '../context/AppContext'
 import {jwtDecode} from 'jwt-decode'
@@ -9,14 +9,13 @@ import * as faIcons from 'react-icons/fa'
 import Emoji from './components/Emoji'
 import * as ciIcons from 'react-icons/ci'
 
-function CreatePost() {
+function CreatePost({socket, setPosts}) {
   const [images, setImages] = useState([])
   const [text, setText] = useState('')
   const [video, setVideo] = useState('')
   const [tube, setTube] = useState('')
   const [link, setLink] = useState('')
   const [emojiToggle, setEmojiToggle] = useState(true)
-  const [textBox, setTextBox] = useState(true)
   const [linkBox, setLinkBox] = useState(false)
   const [videoBox, setVideoBox] = useState(false)
   const [imgBox, setImgBox] = useState(false)
@@ -30,6 +29,7 @@ function CreatePost() {
     const post = {userId: decoded.user._id, text: text, link: link, video: video, youtube: tube, pics: images}
     try{
       axios.post('http://localhost:3000/api/posts/create', post, {headers: {'Content-Type': 'application/json'}})
+      
       toast.success("You have posted this blog successfully");
       setText('')
       setVideo('')
@@ -51,7 +51,7 @@ function CreatePost() {
     <div className='create-post'>
         <form method="POST" onSubmit={handleSumbmit} className='create-post-form'>
 
-          <fieldset className={`${textBox ? '' : 'hidden'}`}>
+          <fieldset>
             <div className="emoji-container-btn">
             <faIcons.FaSmile className='emoji-icon' onClick={() => {setEmojiToggle(!emojiToggle)}}/>
             </div>
