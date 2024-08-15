@@ -8,7 +8,7 @@ import * as faIcons from 'react-icons/fa'
 import Emoji from './components/Emoji'
 import * as ciIcons from 'react-icons/ci'
 
-function CreatePost({socket, setRefresh}) {
+function CreatePost({socket, setRefresh, setPosts}) {
   const [images, setImages] = useState([])
   const [text, setText] = useState('')
   const [video, setVideo] = useState('')
@@ -31,7 +31,6 @@ function CreatePost({socket, setRefresh}) {
         .then((res) => {
           socket.emit('send_post', {post: res.data})
           setRefresh((content) => [...content, res.data])
-
           return socket.off('post')
         })
       toast.success("You have posted this blog successfully")

@@ -1,9 +1,10 @@
 import React from 'react'
 
-function RefreshButton() {
+function RefreshButton({setPosts, refresh}) {
+    
   return (
     <div className='refresher'>
-    <button className='refresh-btn'>Refresh</button>
+    <button onClick={() => setPosts(refresh)} className='refresh-btn'>Refresh</button>
     </div>
   )
 }

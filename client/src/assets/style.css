@@ -221,14 +221,13 @@ li{
 .refresh-btn{
   position: fixed;
   z-index: 1;
-  background-color: #481e8b;
+  background-color: rgb(87, 87, 238);
   border: none;
   font-size: 25;
   font-weight: 600;
   border-radius: 8px;
   padding: 5px;
   cursor: pointer;
-  background-color: transparent;
 }
 
 .user-detail{

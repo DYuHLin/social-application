@@ -15,7 +15,7 @@ function Posts({posts, loading, regular, comments}) {
         {
         loading && posts.length === 0 ? <p>Loading the posts...</p> :
         posts.length === 0 ? <p>There are no posts right now</p>:
-        posts.map((post, key) => {
+        posts.sort((a, b) => {return new Date(b.date) - new Date(a.date)}).map((post, key) => {
           return(
           <div className={`post-container ${!regular ? 'hidden' : ''}`} key={key}>
             <div className="poster-info">

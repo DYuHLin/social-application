@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import AppContext from '../context/AppContext'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import {toast} from 'react-toastify'
-import LikeButton from './components/LikeButton'
 import Users from './components/Users'
 import FilteredResults from './components/FilteredResults'
 import { jwtDecode } from 'jwt-decode'
@@ -58,8 +56,8 @@ function Home() {
   return (
     <section>
     <h1>Feed</h1>
-    <RefreshButton />
-    <CreatePost socket={socket} setRefresh={setRefresh}/>
+    {posts.length === refresh.length ? '' : <RefreshButton setPosts={setPosts} refresh={refresh} />}
+    <CreatePost socket={socket} setRefresh={setRefresh} setPosts={setPosts}/>
     <div className="see-posts">
       <p onClick={() => {setRegular(true); setFiltered(false)}} className='filter-link'>All</p> <p onClick={() => {setRegular(false); setFiltered(true)}} className='filter-link'>Following</p>
     </div>
