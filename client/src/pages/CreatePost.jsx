@@ -4,12 +4,11 @@ import AppContext from '../context/AppContext'
 import {jwtDecode} from 'jwt-decode'
 import {toast} from 'react-toastify'
 import axios from 'axios'
-import {useNavigate} from 'react-router-dom'
 import * as faIcons from 'react-icons/fa'
 import Emoji from './components/Emoji'
 import * as ciIcons from 'react-icons/ci'
 
-function CreatePost({socket, setPosts}) {
+function CreatePost({socket, setRefresh}) {
   const [images, setImages] = useState([])
   const [text, setText] = useState('')
   const [video, setVideo] = useState('')
@@ -29,8 +28,13 @@ function CreatePost({socket, setPosts}) {
     const post = {userId: decoded.user._id, text: text, link: link, video: video, youtube: tube, pics: images}
     try{
       axios.post('http://localhost:3000/api/posts/create', post, {headers: {'Content-Type': 'application/json'}})
-      
-      toast.success("You have posted this blog successfully");
+        .then((res) => {
+          socket.emit('send_post', {post: res.data})
+          setRefresh((content) => [...content, res.data])
+
+          return socket.off('post')
+        })
+      toast.success("You have posted this blog successfully")
       setText('')
       setVideo('')
       setTube('')

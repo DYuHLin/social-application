@@ -211,6 +211,26 @@ li{
   padding: 7px;
 }
 
+.refresher{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.refresh-btn{
+  position: fixed;
+  z-index: 1;
+  background-color: #481e8b;
+  border: none;
+  font-size: 25;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 5px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
 .user-detail{
   height: 100%;
   display: flex;

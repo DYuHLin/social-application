@@ -54,12 +54,12 @@ io.on('connection', (socket) => {
     });
 
     socket.on('send_post', (data) => {
-         socket.to(data.post).emit('get_posts', data);
+         socket.broadcast.emit('get_posts', data);
          console.log(data);
     });
 
-    socket.on('send_mes', (data) => {
-        socket.to(data.post).emit('get_posts', data);
+    socket.on('send_comment', (data) => {
+        socket.to(data.post).emit('get_comments', data);
         console.log(data);
    });
 

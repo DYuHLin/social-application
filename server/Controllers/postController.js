@@ -39,6 +39,8 @@ exports.create_post = asyncHandler(async (req, res, next) => {
             return console.log(errors);
         }else{
             await posted.save();
+            const posts = await posted.populate('user');
+            return res.json(posts);
         };
     }catch(err){
         console.log(err);
