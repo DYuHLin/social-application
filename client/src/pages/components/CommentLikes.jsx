@@ -4,7 +4,7 @@ import LikeButtonComment from './LikeButtonComment'
 import axios from 'axios'
 import LinkPreview from './LinkPreview'
 
-function CommentLikes({id}) {
+function CommentLikes({id, filteredSearch}) {
     const [loading, setLoading] = useState(true)
     const [posts, setPosts] = useState([])
     const [comments, setComments] = useState([])
@@ -35,7 +35,9 @@ function CommentLikes({id}) {
     {
     loading && posts.length === 0 ? <p>Loading the comments likes...</p> :
     posts.length === 0 ? <p>This user has no liked comments</p>:
-    posts.sort((a, b) => {return new Date(b.date) - new Date(a.date)}).map((post, key) => {
+    posts.sort((a, b) => {return filteredSearch == 'new' ? new Date(b.date) - new Date(a.date) : 
+      filteredSearch == 'old' ? new Date(a.date) - new Date(b.date): 
+      filteredSearch == 'best' ? b.likes.length - a.likes.length :''}).map((post, key) => {
         return(
         <div className="post-container" key={key}>
             <p>Comment</p>

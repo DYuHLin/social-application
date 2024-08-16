@@ -8,9 +8,8 @@ import AppContext from '../../context/AppContext'
 import { jwtDecode } from 'jwt-decode'
 import LinkPreview from './LinkPreview'
 
-function UserPosts({loading, posts, id}) {
+function UserPosts({loading, posts, filteredSearch}) {
   const [toggle, setToggle] = useState(false)
-  const [ids, setId] = useState(false)
   const [post, setPost] = useState(false)
   const [comments, setComments] = useState([])
   const {user} = useContext(AppContext)
@@ -18,7 +17,6 @@ function UserPosts({loading, posts, id}) {
 
   const togglePopup = (id) => {
     setToggle(!toggle)
-    setId(id)
     axios.get(`http://localhost:3000/api/posts/${id}`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setPost(res.data)
@@ -43,7 +41,9 @@ function UserPosts({loading, posts, id}) {
     {
         loading && posts.length === 0 ? <p>Loading the posts...</p> :
         posts.length === 0 ? <p>This user has no posts</p>:
-        posts.sort((a, b) => {return new Date(b.date) - new Date(a.date)}).map((post, key) => {
+        posts.sort((a, b) => {return filteredSearch == 'new' ? new Date(b.date) - new Date(a.date) : 
+          filteredSearch == 'old' ? new Date(a.date) - new Date(b.date): 
+          filteredSearch == 'best' ? b.likes.length - a.likes.length :''}).map((post, key) => {
           return(
           <div className="post-container" key={key}>
             <div className="poster-info">
@@ -51,18 +51,10 @@ function UserPosts({loading, posts, id}) {
               <span className="post-date">{new Date(post.date).toLocaleString()}</span>
             </div>
             <div className="post-content">
-              {
-                post.text.trim() != '' ? <p>{post.text}</p> : ''
-              }
-              {
-                post.link.trim() != '' ? <LinkPreview url={post.link} /> : ''
-              }
-              {
-                post.video.trim() != '' ? <video className='video' src={post.video} controls /> : ''
-              }
-              {
-                post.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''
-              }
+              {post.text.trim() != '' ? <p>{post.text}</p> : ''}
+              { post.link.trim() != '' ? <LinkPreview url={post.link} /> : '' }
+              {post.video.trim() != '' ? <video className='video' src={post.video} controls /> : ''}
+              {post.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''}
               {
                 post.pics.length != 0 ? 
                 <section className="img-container">

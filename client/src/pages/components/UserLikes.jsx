@@ -5,7 +5,7 @@ import axios from 'axios'
 import LinkPreview from './LinkPreview'
 import CommentLikes from './CommentLikes'
 
-function UserLikes({id}) {
+function UserLikes({id, filteredSearch}) {
     const [loading, setLoading] = useState(true)
     const [posts, setPosts] = useState([])
     const [comments, setComments] = useState([])
@@ -36,7 +36,9 @@ function UserLikes({id}) {
     {
         loading && posts.length === 0 ? <p>Loading the likes...</p> :
         posts.length === 0 ? <p>This user has no likes</p>:
-        posts.sort((a, b) => {return new Date(b.date) - new Date(a.date)}).map((post, key) => {
+        posts.sort((a, b) => {return filteredSearch == 'new' ? new Date(b.date) - new Date(a.date) : 
+          filteredSearch == 'old' ? new Date(a.date) - new Date(b.date): 
+          filteredSearch == 'best' ? b.likes.length - a.likes.length :''}).map((post, key) => {
           return(
           <div className="post-container" key={key}>
             <p>Post</p>
@@ -45,18 +47,10 @@ function UserLikes({id}) {
               <span className="post-date">{new Date(post.date).toLocaleString()}</span>
             </div>
             <div className="post-content">
-              {
-                post.text.trim() != '' ? <p>{post.text}</p> : ''
-              }
-              {
-                post.link.trim() != '' ? <LinkPreview url={post.link} /> : ''
-              }
-              {
-                post.video.trim() != '' ? <video className='video' src={post.video} controls /> : ''
-              }
-              {
-                post.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''
-              }
+              {post.text.trim() != '' ? <p>{post.text}</p> : ''}
+              {post.link.trim() != '' ? <LinkPreview url={post.link} /> : ''}
+              {post.video.trim() != '' ? <video className='video' src={post.video} controls /> : ''}
+              {post.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''}
               {
                 post.pics.length != 0 ? 
                 <section className="img-container">
@@ -87,7 +81,7 @@ function UserLikes({id}) {
           )
         })
       } 
-      <CommentLikes id={id} />
+      <CommentLikes id={id} filteredSearch={filteredSearch}/>
     </>
   )
 }

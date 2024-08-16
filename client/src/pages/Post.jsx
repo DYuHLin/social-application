@@ -11,6 +11,7 @@ import LinkPreview from './components/LinkPreview'
 function Post() {
   let { id } = useParams()
   const [post, setPost] = useState(false)
+  const [filteredSearch, setFilteredSearch] = useState('new')
   const [comments, setComments] = useState([])
   const {user} = useContext(AppContext)
   const decoded = jwtDecode(user)
@@ -82,7 +83,12 @@ function Post() {
         <div className="comment-count"><p>{comments.filter((com) => {return com.reply == post._id}).length}</p><Link to={`/${post._id}`}>Comments</Link></div>  
       </div>
     </div>}
-    <Comments postId={id} userId={decoded.user._id}/>
+    <div className="filter">
+        <p className={`filter-option ${filteredSearch == 'new' ? 'selected' : ''}`} onClick={() => setFilteredSearch('new')}>New</p>
+        <p className={`filter-option ${filteredSearch == 'old' ? 'selected' : ''}`} onClick={() => setFilteredSearch('old')}>Old</p>
+        <p className={`filter-option ${filteredSearch == 'best' ? 'selected' : ''}`} onClick={() => setFilteredSearch('best')}>Best</p>
+    </div>
+    <Comments postId={id} userId={decoded.user._id} filteredSearch={filteredSearch}/>
     </section>
   )
 }

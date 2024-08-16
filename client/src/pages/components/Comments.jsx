@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import LikeButtonComment from './LikeButtonComment'
 import LinkPreview from './LinkPreview'
 
-function Comments({postId, userId}) {
+function Comments({postId, userId, filteredSearch}) {
   const [comments, setComments] = useState([])
   const [commentsC, setCommentsC] = useState([])
   const [loading, setLoading] = useState(true)
@@ -38,7 +38,9 @@ function Comments({postId, userId}) {
       {
       loading && comments.length === 0 ? <p>Loading the comments...</p> :
       comments.length === 0 ? <p>There are no comments right now</p>:
-      comments.sort((a, b) => {return b.likes.length - a.likes.length}).map((comment, key) => {
+      comments.sort((a, b) => {return filteredSearch == 'new' ? new Date(b.date) - new Date(a.date) : 
+        filteredSearch == 'old' ? new Date(a.date) - new Date(b.date): 
+        filteredSearch == 'best' ? b.likes.length - a.likes.length :''}).map((comment, key) => {
         return(
         <div className="comment-container" key={key}>
           <div className="poster-info">

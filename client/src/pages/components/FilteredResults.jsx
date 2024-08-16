@@ -4,7 +4,7 @@ import LikeButton from './LikeButton'
 import { Link } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 
-function FilteredResults({loading, filtered, filteredResults}) {
+function FilteredResults({loading, filtered, filteredResults, filteredSearch}) {
   const {user, setUser} = useContext(AppContext)
   const decoded = jwtDecode(user)
 
@@ -13,7 +13,9 @@ function FilteredResults({loading, filtered, filteredResults}) {
     {
         loading && filteredResults.length === 0 ? <p>Loading the posts...</p> :
         filteredResults.length === 0 ? <p>There are no posts right now</p>:
-        filteredResults.map((post, key) => {
+        filteredResults.sort((a, b) => {return filteredSearch == 'new' ? new Date(b.date) - new Date(a.date) : 
+          filteredSearch == 'old' ? new Date(a.date) - new Date(b.date): 
+          filteredSearch == 'best' ? b.likes.length - a.likes.length :''}).map((post, key) => {
           return(
           <div className={`post-container ${!filtered ? 'hidden' : ''}`} key={key}>
             <div className="poster-info">

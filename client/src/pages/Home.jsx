@@ -70,7 +70,7 @@ function Home() {
     <div className="home-container">
       <div className="home-posts">
       <Posts posts={posts} loading={loading} regular={regular} comments={comments} filteredSearch={filteredSearch}/>
-      <FilteredResults posts={posts} loading={loading} filtered={filtered} filteredResults={filteredResults}/>
+      <FilteredResults posts={posts} loading={loading} filtered={filtered} filteredResults={filteredResults} filteredSearch={filteredSearch}/>
       </div>
       <Users />
     </div>

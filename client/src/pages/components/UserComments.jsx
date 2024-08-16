@@ -7,7 +7,7 @@ import { jwtDecode } from 'jwt-decode'
 import AppContext from '../../context/AppContext'
 import LinkPreview from './LinkPreview'
 
-function UserComments({comments, loading, id}) {
+function UserComments({comments, loading, filteredSearch}) {
   const [toggle, setToggle] = useState(false)
   const [comment, setComment] = useState(false)
   const [commentsC, setCommentsC] = useState([])
@@ -40,7 +40,9 @@ function UserComments({comments, loading, id}) {
       {
       loading && comments.length === 0 ? <p>Loading the posts...</p> :
       comments.length === 0 ? <p>There are no comments right now</p>:
-      comments.sort((a, b) => {return new Date(b.date) - new Date(a.date)}).map((comment, key) => {
+      comments.sort((a, b) => {return filteredSearch == 'new' ? new Date(b.date) - new Date(a.date) : 
+        filteredSearch == 'old' ? new Date(a.date) - new Date(b.date): 
+        filteredSearch == 'best' ? b.likes.length - a.likes.length :''}).map((comment, key) => {
         return(
         <div className="comment-container" key={key}>
           <div className="poster-info">
@@ -48,18 +50,10 @@ function UserComments({comments, loading, id}) {
             <span className="post-date">{new Date(comment.date).toLocaleString()}</span>
           </div>
           <div className="post-content">
-            {
-              comment.text.trim() != '' ? <p>{comment.text}</p> : ''
-            }
-            {
-              comment.link.trim() != '' ? <LinkPreview url={comment.link} />: ''
-            }
-            {
-              comment.video.trim() != '' ? <video className='video' src={comment.video} controls /> : ''
-            }
-            {
-              comment.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: comment.youtube}}></div> : ''
-            }
+            {comment.text.trim() != '' ? <p>{comment.text}</p> : ''}
+            {comment.link.trim() != '' ? <LinkPreview url={comment.link} />: ''}
+            {comment.video.trim() != '' ? <video className='video' src={comment.video} controls /> : ''}
+            {comment.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: comment.youtube}}></div> : ''}
             {
               comment.pics.length != 0 ? 
               <section className="img-container">

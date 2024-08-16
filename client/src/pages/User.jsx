@@ -20,6 +20,7 @@ function User() {
   const [commentLink, setCommentLink] = useState(false)
   const [likeLink, setLikeLink] = useState(false)
   const [toggle, setToggle] = useState(false)
+  const [filteredSearch, setFilteredSearch] = useState('new')
 
   const {user} = useContext(AppContext)
   const decoded = jwtDecode(user)
@@ -84,10 +85,15 @@ function User() {
         <p onClick={() => {setPostLink(false); setCommentLink(true); setLikeLink(false);}} className={`user-links ${commentLink ? 'active' : ''}`}>Comments</p>
         <p onClick={() => {setPostLink(false); setCommentLink(false); setLikeLink(true);}} className={`user-links ${likeLink ? 'active' : ''}`}>Likes</p>
       </div>
+      <div className="filter">
+        <p className={`filter-option ${filteredSearch == 'new' ? 'selected' : ''}`} onClick={() => setFilteredSearch('new')}>New</p>
+        <p className={`filter-option ${filteredSearch == 'old' ? 'selected' : ''}`} onClick={() => setFilteredSearch('old')}>Old</p>
+        <p className={`filter-option ${filteredSearch == 'best' ? 'selected' : ''}`} onClick={() => setFilteredSearch('best')}>Best</p>
+      </div>
         <div className='home-posts'>
-          { postLink && !commentLink && !likeLink ? <UserPosts loading={loading} posts={posts} id={id}/> :
-            commentLink && !postLink && !likeLink ? <UserComments loading={loading2} comments={comments} id={id}/> :
-            likeLink && !postLink && !commentLink ? <UserLikes id={id} /> : ''}
+          { postLink && !commentLink && !likeLink ? <UserPosts loading={loading} posts={posts} id={id} filteredSearch={filteredSearch}/> :
+            commentLink && !postLink && !likeLink ? <UserComments loading={loading2} comments={comments} id={id} filteredSearch={filteredSearch}/> :
+            likeLink && !postLink && !commentLink ? <UserLikes id={id} filteredSearch={filteredSearch} /> : ''}
         </div>
     </section>
   )
