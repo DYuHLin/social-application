@@ -154,15 +154,18 @@ ul{
 
 .dropdown{
   width: 5%;
-  height: 20%;
+  height: 10%;
   background-color: #242a50;
   position: absolute;
   z-index: 999;
   display: none;
+  padding: 5px;
+  border-radius: 7px;
 }
 
 .profile-link:hover .dropdown{
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-link{
@@ -334,7 +337,21 @@ input::-webkit-file-upload-button:hover{
   justify-content: center;
 }
 
-.filter-link{
+.filter-option{
+  cursor: pointer;
+}
+
+.selected{
+  color: blue;
+}
+
+.filter{
+  display: flex;
+  gap: 30px;
+  width: 100%;
+}
+
+.filter-option{
   cursor: pointer;
 }
 

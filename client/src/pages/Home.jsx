@@ -19,6 +19,7 @@ function Home() {
   const [loading, setLoading] = useState(true)
   const [regular, setRegular] = useState(true)
   const [filtered, setFiltered] = useState(false)
+  const [filteredSearch, setFilteredSearch] = useState('new')
   const [filteredResults, setFilteredResults] = useState([])
   const {user, setUser} = useContext(AppContext)
   const decoded = jwtDecode(user)
@@ -61,9 +62,14 @@ function Home() {
     <div className="see-posts">
       <p onClick={() => {setRegular(true); setFiltered(false)}} className='filter-link'>All</p> <p onClick={() => {setRegular(false); setFiltered(true)}} className='filter-link'>Following</p>
     </div>
+    <div className="filter">
+        <p className={`filter-option ${filteredSearch == 'new' ? 'selected' : ''}`} onClick={() => setFilteredSearch('new')}>New</p>
+        <p className={`filter-option ${filteredSearch == 'old' ? 'selected' : ''}`} onClick={() => setFilteredSearch('old')}>Old</p>
+        <p className={`filter-option ${filteredSearch == 'best' ? 'selected' : ''}`} onClick={() => setFilteredSearch('best')}>Best</p>
+      </div>
     <div className="home-container">
       <div className="home-posts">
-      <Posts posts={posts} loading={loading} regular={regular} comments={comments}/>
+      <Posts posts={posts} loading={loading} regular={regular} comments={comments} filteredSearch={filteredSearch}/>
       <FilteredResults posts={posts} loading={loading} filtered={filtered} filteredResults={filteredResults}/>
       </div>
       <Users />

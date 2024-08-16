@@ -6,7 +6,7 @@ import { jwtDecode } from 'jwt-decode'
 import { Link } from 'react-router-dom'
 import LinkPreview from './LinkPreview'
 
-function Posts({posts, loading, regular, comments}) {
+function Posts({posts, loading, regular, comments, filteredSearch}) {
     const {user} = useContext(AppContext)
     const decoded = jwtDecode(user)
 
@@ -15,7 +15,9 @@ function Posts({posts, loading, regular, comments}) {
         {
         loading && posts.length === 0 ? <p>Loading the posts...</p> :
         posts.length === 0 ? <p>There are no posts right now</p>:
-        posts.sort((a, b) => {return new Date(b.date) - new Date(a.date)}).map((post, key) => {
+        posts.sort((a, b) => {return filteredSearch == 'new' ? new Date(b.date) - new Date(a.date) : 
+          filteredSearch == 'old' ? new Date(a.date) - new Date(b.date): 
+          filteredSearch == 'best' ? b.likes.length - a.likes.length :''}).map((post, key) => {
           return(
           <div className={`post-container ${!regular ? 'hidden' : ''}`} key={key}>
             <div className="poster-info">
