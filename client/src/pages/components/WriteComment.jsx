@@ -6,7 +6,7 @@ import UploadPostImage from './UploadPostImage'
 import Emoji from './Emoji'
 import * as ciIcons from 'react-icons/ci'
 
-function WriteComment({postId, userId}) {
+function WriteComment({postId, userId, setComments}) {
   const [images, setImages] = useState([])
   const [text, setText] = useState('')
   const [video, setVideo] = useState('')
@@ -24,6 +24,9 @@ function WriteComment({postId, userId}) {
     const post = {userId: userId, text: text, link: link, video: video, youtube: tube, pics: images}
     try{
       axios.post(`http://localhost:3000/api/comment/${postId}/create`, post, {headers: {'Content-Type': 'application/json'}})
+        .then((res) => {
+          setComments((content) => [...content, res.data])
+        })
       setText('')
       setVideo('')
       setTube('')

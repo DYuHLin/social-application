@@ -23,7 +23,7 @@ function UploadPostImage({setImage, imgBox}) {
     }
   return (
     <>
-        <input className={imgBox ? '' : 'hidden'} type="file" multiple={true} lable="Image" name="myFile" id="file-upload" accept='.jpeg, .png, .jpg' onChange={(e) => {uploadImage(e.target.files)}}/>
+        <input className={imgBox ? '' : 'hidden'} type="file" multiple={true} lable="Image" name="myFile" id="file-upload" accept='.jpeg, .png, .jpg, .gif' onChange={(e) => {uploadImage(e.target.files)}}/>
         {upload ? <p>{loading ? 'Uploading...' : 'Completed'}</p> : ''}        
     </>
   )

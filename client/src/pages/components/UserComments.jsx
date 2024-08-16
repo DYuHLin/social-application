@@ -11,7 +11,6 @@ function UserComments({comments, loading, id}) {
   const [toggle, setToggle] = useState(false)
   const [comment, setComment] = useState(false)
   const [commentsC, setCommentsC] = useState([])
-  const [ids, setId] = useState(false)
   const {user} = useContext(AppContext)
   const decoded = jwtDecode(user)
 
@@ -41,7 +40,7 @@ function UserComments({comments, loading, id}) {
       {
       loading && comments.length === 0 ? <p>Loading the posts...</p> :
       comments.length === 0 ? <p>There are no comments right now</p>:
-      comments.map((comment, key) => {
+      comments.sort((a, b) => {return new Date(b.date) - new Date(a.date)}).map((comment, key) => {
         return(
         <div className="comment-container" key={key}>
           <div className="poster-info">

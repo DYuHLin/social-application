@@ -46,6 +46,8 @@ exports.post_comment = asyncHandler(async (req, res, next) => {
             return console.log(errors);
         }else{
             await comment.save();
+            const newComment = await comment.populate('user');
+            return res.json(newComment);
         };
     }catch(err){
         console.log(err);

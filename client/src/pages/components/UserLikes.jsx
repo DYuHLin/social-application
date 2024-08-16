@@ -36,7 +36,7 @@ function UserLikes({id}) {
     {
         loading && posts.length === 0 ? <p>Loading the likes...</p> :
         posts.length === 0 ? <p>This user has no likes</p>:
-        posts.map((post, key) => {
+        posts.sort((a, b) => {return new Date(b.date) - new Date(a.date)}).map((post, key) => {
           return(
           <div className="post-container" key={key}>
             <p>Post</p>

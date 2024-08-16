@@ -43,7 +43,7 @@ function UserPosts({loading, posts, id}) {
     {
         loading && posts.length === 0 ? <p>Loading the posts...</p> :
         posts.length === 0 ? <p>This user has no posts</p>:
-        posts.map((post, key) => {
+        posts.sort((a, b) => {return new Date(b.date) - new Date(a.date)}).map((post, key) => {
           return(
           <div className="post-container" key={key}>
             <div className="poster-info">

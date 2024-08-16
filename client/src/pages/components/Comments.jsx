@@ -33,12 +33,12 @@ function Comments({postId, userId}) {
 
   return (
     <>
-    <WriteComment postId={postId} userId={userId}/>
+    <WriteComment postId={postId} userId={userId} setComments={setComments}/>
     <div className="post-container">
       {
       loading && comments.length === 0 ? <p>Loading the comments...</p> :
       comments.length === 0 ? <p>There are no comments right now</p>:
-      comments.map((comment, key) => {
+      comments.sort((a, b) => {return b.likes.length - a.likes.length}).map((comment, key) => {
         return(
         <div className="comment-container" key={key}>
           <div className="poster-info">
