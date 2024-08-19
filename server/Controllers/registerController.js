@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const users = require('../Models/user');
 const posts = require('../Models/posts');
 const comments = require('../Models/comment');
+const notifications = require('../Models/Notifications');
 
 exports.post_register = asyncHandler(async (req, res, next) => {
     try{
@@ -111,6 +112,10 @@ exports.add_follower = asyncHandler(async (req, res, next) => {
         return res.json('deleted');
     } else{
         await users.updateOne({_id: req.params.id}, {$push: {followers: {user: req.body.followerId}}});
+        const noti = new notifications({
+            user: req.body.followerId, other: req.params.id, text: 'started following you.', date: Date.now() 
+           });
+        await noti.save();
         return res.json('ok');
     }
 });

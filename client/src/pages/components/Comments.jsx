@@ -83,7 +83,7 @@ function Comments({postId, userId, filteredSearch}) {
             }
           </div>
           <div className="post-stuff">
-            <LikeButtonComment commentId={comment._id} likes={comment.likes}/>
+            <LikeButtonComment commentId={comment._id} likes={comment.likes} comment={comment}/>
             <div className="comment-count"><p>{commentsC.filter((com) => {return com.reply == comment._id}).length}</p><Link to={`/${comment._id}/comment`}>Comments</Link></div>
           </div>
         </div>

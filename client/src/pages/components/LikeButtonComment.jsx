@@ -4,13 +4,13 @@ import AppContext from '../../context/AppContext'
 import {toast} from 'react-toastify'
 import { jwtDecode } from 'jwt-decode'
 
-function LikeButtonComment({commentId, likes}) {
+function LikeButtonComment({commentId, likes, comment}) {
     const {user} = useContext(AppContext)
     const decoded = jwtDecode(user)
     const likeButton = () => {
         const decoded = jwtDecode(user)
         try{
-            axios.put(`http://localhost:3000/api/comment/${commentId}/like`, {userId: decoded.user._id}, {headers: {'Content-Type': 'Application/json'}})
+            axios.put(`http://localhost:3000/api/comment/${commentId}/like`, {userId: decoded.user._id, liker: comment.user._id}, {headers: {'Content-Type': 'Application/json'}})
             console.log('liked')
         }catch(err){
             console.log(err)

@@ -77,7 +77,7 @@ function UserComments({comments, loading, filteredSearch}) {
             }
           </div>
           <div className="post-stuff">
-            <LikeButtonComment commentId={comment._id} likes={comment.likes}/>
+            <LikeButtonComment commentId={comment._id} likes={comment.likes} comment={comment}/>
             <div className="comment-count"><p>{commentsC.filter((com) => {return com.reply == comment._id}).length}</p><Link to={`/${comment._id}`}>Comments</Link></div>      
             {decoded.user._id == comment.user._id ? <button className='user-follow' onClick={() => togglePopup(comment._id)}>Delete</button> : ''}
             {decoded.user._id == comment.user._id ? <Link to={`/${comment._id}/updatecomment`}>Update</Link> : ''}

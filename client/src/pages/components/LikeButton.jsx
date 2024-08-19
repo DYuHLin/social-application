@@ -13,7 +13,7 @@ function LikeButton({postId, post}) {
     const likeButton = () => {
         const decoded = jwtDecode(user)
         try{
-            axios.put(`http://localhost:3000/api/posts/${postId}/like`, {userId: decoded.user._id}, {headers: {'Content-Type': 'Application/json'}})
+            axios.put(`http://localhost:3000/api/posts/${postId}/like`, {userId: decoded.user._id, yourId: post.user._id}, {headers: {'Content-Type': 'Application/json'}})
             console.log('liked')
         }catch(err){
             console.log(err)

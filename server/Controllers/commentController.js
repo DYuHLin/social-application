@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const {body, validationResult} = require('express-validator');
 const comments = require('../Models/comment');
+const notifications = require('../Models/Notifications');
 
 exports.get_comments = asyncHandler(async (req, res, next) => {
     const allComments = await comments.find({reply: req.params.id}).populate('user').exec();
@@ -92,6 +93,10 @@ exports.like_comment = asyncHandler(async(req, res, next) => {
         return res.json('deleted');
     } else{
         await comments.updateOne({_id: req.params.id}, {$push: {likes: {user: req.body.userId}}});
+        const noti = new notifications({
+            user: req.body.liker, other: req.body.userId, text: 'liked your comment.', date: Date.now() 
+           });
+        await noti.save();
         return res.json('liked');
     }
 });
