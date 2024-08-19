@@ -46,18 +46,10 @@ function CommentLikes({id, filteredSearch}) {
             <span className="post-date">{new Date(post.date).toLocaleString()}</span>
         </div>
         <div className="post-content">
-            {
-            post.text.trim() != '' ? <p>{post.text}</p> : ''
-            }
-            {
-            post.link.trim() != '' ? <LinkPreview url={post.link} /> : ''
-            }
-            {
-            post.video.trim() != '' ? <video className='video' src={post.video} controls /> : ''
-            }
-            {
-            post.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''
-            }
+            {post.text.trim() != '' ? <p>{post.text}</p> : ''}
+            {post.link.trim() != '' ? <LinkPreview url={post.link} /> : ''}
+            {post.video.trim() != '' ? <video className='video' src={post.video} controls /> : ''}
+            {post.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''}
             {
             post.pics.length != 0 ? 
             <section className="img-container">
