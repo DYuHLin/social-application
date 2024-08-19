@@ -153,7 +153,7 @@ ul{
 }
 
 .dropdown{
-  width: 5%;
+  width: 10%;
   height: 10%;
   background-color: #242a50;
   position: absolute;
@@ -491,6 +491,12 @@ form{
   transform: translate(-50%, -50%) scale(1);
 }
 
+.popup-fow-container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .img-container{
   padding: 2rem;
 }
@@ -542,8 +548,7 @@ a{
 
 .home-container{
   width: 100%;
-  display: grid;
-  grid-template-columns: 80%, 20%;
+  display: flex;
   gap: 15px;
 }
 
@@ -622,6 +627,7 @@ a{
   font-size: 22px;
   cursor: pointer;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .follow-count{
