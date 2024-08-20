@@ -25,7 +25,7 @@ function NotificationPopup({toggle, setToggle, notifications}) {
                 <h1>Notifications</h1>
                 <div className={`popup-fow-container`}>
                 <button className='follow-btn' onClick={() => clearNotifications()}>Clear Notifications</button>
-                    {notifications.length == 0 ? '' : notifications.map((noti, key) => {
+                    {notifications.length == 0 ? <p>You do not have notifications</p> : notifications.map((noti, key) => {
                         return(
                             <div className="noti" key={key}>
                                 <p>{noti.user.username + ' ' + noti.text}</p>

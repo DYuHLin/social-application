@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
 import AppContext from '../context/AppContext'
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, useOutletContext } from 'react-router-dom'
 import {toast} from 'react-toastify'
 import UserPosts from './components/UserPosts'
 import UserComments from './components/UserComments'
@@ -25,6 +25,8 @@ function User() {
   const {user} = useContext(AppContext)
   const decoded = jwtDecode(user)
   let { id } = useParams()
+  const context = useOutletContext()
+  // console.log(context)
 
   useEffect(() => {
     axios.get(`http://localhost:3000/api/auth/${id}/singleuser`, {headers:{'content-type': 'application/json'}})

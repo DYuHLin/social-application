@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import AppContext from '../../context/AppContext'
 import { Link } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
@@ -11,6 +11,7 @@ function Navbar() {
   const {user, setUser} = useContext(AppContext)
   const [notifications, setNotifications] = useState([])
   const [toggle, setToggle] = useState(false)
+  const [menu, setMenu] = useState(false)
 
     const notifcationPop = () => {
       if(user === false){
@@ -27,6 +28,15 @@ function Navbar() {
       }
     }
 
+    useEffect(() => {
+      let handler = () => {
+        setMenu(false)    
+      }
+
+      document.addEventListener('mousedown', handler)
+      return() => {document.removeEventListener('mousedown', handler)}
+    })
+
   return (
     <nav>
         <h1 className="app-title">
@@ -37,10 +47,10 @@ function Navbar() {
 
         <div className="app-links">
           {!user ? '' :<div className='profile-link'>
-          <img src={jwtDecode(user).user.image} alt="user's image" className='profile-img'/>
-          <ul className="dropdown">
+          <img src={jwtDecode(user).user.image} alt="user's image" className='profile-img' onClick={() => setMenu(!menu)}/>
+          <ul className={`dropdown ${menu == false ? '' : 'dropdown-active'}`}>
             <li><Link to={`/user/${jwtDecode(user).user._id}`}>User page</Link></li>
-            <li onClick={() => {setToggle(true); notifcationPop()}}>Notifications</li>
+            <li onClick={() => {setToggle(true); notifcationPop();}}>Notifications</li>
           </ul>
           </div>}           
         </div>

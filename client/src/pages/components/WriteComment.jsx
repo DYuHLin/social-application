@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {toast} from 'react-toastify'
 import axios from 'axios'
 import * as faIcons from 'react-icons/fa'
@@ -13,7 +13,6 @@ function WriteComment({postId, userId, setComments}) {
   const [tube, setTube] = useState('')
   const [link, setLink] = useState('')
   const [emojiToggle, setEmojiToggle] = useState(true)
-  const [textBox, setTextBox] = useState(true)
   const [linkBox, setLinkBox] = useState(false)
   const [videoBox, setVideoBox] = useState(false)
   const [tubeBox, setTubeBox] = useState(false)
@@ -43,11 +42,20 @@ function WriteComment({postId, userId, setComments}) {
     }
   }
 
+  useEffect(() => {
+    let handler = () => {
+      setEmojiToggle(true)    
+    }
+
+    document.addEventListener('mousedown', handler)
+    return() => {document.removeEventListener('mousedown', handler)}
+  })
+
   return (
     <div className='write-comment'>
         <form method="POST" onSubmit={handleSumbmit} className='create-post-form'>
 
-          <fieldset className={`${textBox ? '' : 'hidden'} comment-field`}>
+          <fieldset className={`comment-field`}>
             <div className="emoji-container-btn">
             <faIcons.FaSmile className='emoji-icon' onClick={() => {setEmojiToggle(!emojiToggle)}}/>
             </div>

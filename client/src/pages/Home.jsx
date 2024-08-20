@@ -56,7 +56,6 @@ function Home() {
 
   return (
     <section>
-    <h1>Feed</h1>
     {posts.length === refresh.length ? '' : <RefreshButton setPosts={setPosts} refresh={refresh} />}
     <CreatePost socket={socket} setRefresh={setRefresh} setPosts={setPosts}/>
     <div className="see-posts">
@@ -74,7 +73,6 @@ function Home() {
       </div>
       <Users />
     </div>
-    <button onClick={() => {console.log(`refresh: ${refresh} original: ${posts}`)}}>show</button>
     </section>
   )
 }

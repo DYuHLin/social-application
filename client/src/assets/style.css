@@ -163,7 +163,7 @@ ul{
   border-radius: 7px;
 }
 
-.profile-link:hover .dropdown{
+.dropdown-active{
   display: flex;
   flex-direction: column;
 }
@@ -217,8 +217,14 @@ li{
   border-bottom: 1px solid black;
 }
 
+.ytvid{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .user-pane{
-  grid-area: 1 / 2;
+  width: 20%;
   display: flex;
   flex-direction: column;
   background-color: #161e49;
@@ -498,7 +504,9 @@ form{
 }
 
 .img-container{
-  padding: 2rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .slider-wrapper{
@@ -543,7 +551,7 @@ a{
   justify-content: center;
   flex-direction: column;
   gap: 30px;
-  width: 100%;
+  width: 80%;
 }
 
 .home-container{
