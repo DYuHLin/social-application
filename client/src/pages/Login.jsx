@@ -32,8 +32,22 @@ function Login() {
     }
   }
 
-  const show = () => {
-    console.log(user)
+  const guest = async () => {
+    const login = {username: 'guest', password: 'guest1234'}
+    try{
+      const res = await axios.post(`http://localhost:3000/api/auth/login`, login, {headers:{'content-type': 'application/json'}})
+      if(res.data == 'username'){
+        setError('Your username or password is incorrect.')
+      }else if(res.data == 'password'){
+        setError('Your username or password is incorrect.')
+      } else {
+        toast.success('You have successfully logged in.')
+        setUser(Cookies.get('tokens'))
+        navigate('/')
+      }
+    }catch(err){
+      console.log(err)
+    }
   }
 
   return (
@@ -46,7 +60,7 @@ function Login() {
         </form>
         <p className="error">{error}</p> 
         <Link to={"/register"} className="link">Register</Link>
-        <p className='guest'>Sign in as guest</p>
+        <p className='guest' onClick={guest}>Sign in as guest</p>
       </section>
   )
 }

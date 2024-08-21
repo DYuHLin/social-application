@@ -9,7 +9,7 @@ import UpdatePassword from './components/UpdatePassword'
 import UploadProfileImage from './components/UploadProfileImage'
 
 function EditProfile() {
-  const {user} = useContext(AppContext)
+  const {user, setUser} = useContext(AppContext)
   const decoded = jwtDecode(user)
   const [toggle, setToggle] = useState(false)
   const [name, setName] = useState(decoded.user.name)
@@ -37,6 +37,7 @@ function EditProfile() {
           toast.error('This username has been taken.')
         } else if(status == 'ok'){
           toast.success('You have sucessfully updated account.')
+          setUser(false)
           navigate('/login')
         }
       })
@@ -53,10 +54,10 @@ function EditProfile() {
             <input type="text" required name='username' id='username' className='username inputs' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}/>
             <textarea className='post-text' name="text" id="text" cols="30" rows="3" placeholder='Bio (Optional)' value={bio} onChange={(e) => setBio(e.target.value)}></textarea> 
             <UploadProfileImage setImage={setImage}/>
-            <button>Update</button>         
+            <button className="user-follow">Update</button>         
         </form>
         <p className="error">{error}</p> 
-        <button onClick={() => setToggle(!toggle)}>Update Password</button>
+        <button onClick={() => setToggle(!toggle)} className="user-follow">Update Password</button>
         <UpdatePassword toggle={toggle} setToggle={setToggle} />
       </section>
   )

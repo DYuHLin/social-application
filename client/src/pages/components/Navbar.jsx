@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import AppContext from '../../context/AppContext'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import SearchBar from './SearchBar'
 import axios from 'axios'
@@ -13,6 +13,8 @@ function Navbar() {
   const [toggle2, setToggle2] = useState(false)
   const [toggle, setToggle] = useState(false)
   const [menu, setMenu] = useState(false)
+
+  const navigate = useNavigate()
 
     const notifcationPop = () => {
       if(user === false){
@@ -31,20 +33,23 @@ function Navbar() {
 
   return (
     <>
+    <header>
       <nav>
-        <h1>Clones</h1>
+        <h1 onClick={() => navigate('/')}>Clones</h1>
+
+        <ul className={`dropdown ${menu == false ? '' : 'dropdown-active'}`}>
+            <li onClick={() => navigate(`user/${jwtDecode(user).user._id}`)}>Profile</li>
+            <li onClick={() => {setToggle2(true); notifcationPop();}}>Notifications</li>
+            <li onClick={() => {setToggle(true);}}>Search</li>
+          </ul>
 
           <div className="app-links">
-            {!user ? '' :<div className='profile-link'>
-            <ul className={`dropdown ${menu == false ? '' : 'dropdown-active'}`}>
-              <li><Link to={`/user/${jwtDecode(user).user._id}`}>Profile</Link></li>
-              <li onClick={() => {setToggle2(true); notifcationPop();}}>Notifications</li>
-              <li onClick={() => {setToggle(true);}}>Search</li>
-            </ul>
-            <img src={jwtDecode(user).user.image} alt="user's image" className='profile-img' onClick={() => setMenu(!menu)}/>
-            </div>}           
-          </div>
+          {!user ? '' :<div className='profile-link'>
+          <img src={jwtDecode(user).user.image} alt="user's image" className='profile-img' onClick={() => setMenu(!menu)}/>
+          </div>}           
+        </div>
       </nav>
+    </header>
       <NotificationPopup toggle={toggle2} setToggle={setToggle2} notifications={notifications} setNotifications={setNotifications}/>
       {!user ? '' : <SearchBar toggle={toggle} setToggle={setToggle}/>}
     </>

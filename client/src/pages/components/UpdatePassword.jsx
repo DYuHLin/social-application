@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import { toast } from 'react-toastify'
 import AppContext from '../../context/AppContext'
 import { jwtDecode } from 'jwt-decode'
+import { useNavigate } from 'react-router-dom'
 
 function UpdatePassword({toggle, setToggle}) {
     const {user} = useContext(AppContext)
@@ -10,6 +11,7 @@ function UpdatePassword({toggle, setToggle}) {
     const [current, setCurrent] = useState('')
     const [password, setPassword] = useState('')
     const [confirm, setConfirm] = useState('')
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -22,6 +24,7 @@ function UpdatePassword({toggle, setToggle}) {
                     }else if(res.data === 'match'){
                         toast.error('your new password does not match')
                     } else{
+                        navigate('/')
                         toast.success('You have successfully changed your password')
                     }
                 })
@@ -37,8 +40,8 @@ function UpdatePassword({toggle, setToggle}) {
             <div className={`popup-content`}>
                 <div className="close-btn" onClick={() => setToggle(!toggle)}>&times;</div>
                 <h1>Update Password</h1>
-                <div className={`popup-fow-container`}>
-                  <form method="POST" onSubmit={handleSubmit}>
+                <div className={`popup-update-container`}>
+                  <form method="POST" onSubmit={handleSubmit} className='register-form'>
                   <input type="password" required name='current' id='currentPassword' className='currentPassword inputs' placeholder='CurrentPassword' minLength={6} value={current} onChange={(e) => setCurrent(e.target.value)}/>
                   <input type="password" required name='password' id='password' className='password inputs' placeholder='Password' minLength={6} value={password} onChange={(e) => setPassword(e.target.value)}/>
                   <input type="password" required name='confirmedPassword' id='confirmedPassword' className='confirmedPassword inputs' placeholder='Confirm password' value={confirm} onChange={(e) => setConfirm(e.target.value)} minLength={6}/>

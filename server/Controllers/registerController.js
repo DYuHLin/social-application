@@ -58,7 +58,7 @@ exports.update_acc = asyncHandler(async (req, res, next) => {
                 email: req.body.email,
                 image: req.body.image
             }});
-
+            res.cookie('tokens', '', {httpOnly:true, expires: new Date(0)});
             return res.json("ok");
         } else if(user.username === req.body.username){
             await users.updateOne({_id: req.params.id}, {$set: {
@@ -96,6 +96,7 @@ exports.update_password = asyncHandler(async(req, res, next) => {
             await users.updateOne({_id: req.params.id}, {$set: {
                 password: hashedPassword,
             }});
+            res.cookie('tokens', '', {httpOnly:true, expires: new Date(0)});
             res.json('ok')
         };
     });

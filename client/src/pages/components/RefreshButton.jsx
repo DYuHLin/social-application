@@ -9,7 +9,7 @@ function RefreshButton({setRefresh, posts}) {
   
   return (
     <div className='refresher'>
-    <button onClick={() => backTop} className='refresh-btn'>New Posts</button>
+    <button onClick={backTop} className='refresh-btn'>New Posts</button>
     </div>
   )
 }

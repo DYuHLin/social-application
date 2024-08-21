@@ -3,6 +3,7 @@ import AppContext from '../../context/AppContext'
 import LikeButton from './LikeButton'
 import { Link } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
+import LinkPreview from './LinkPreview'
 
 function FilteredResults({loading, filtered, filteredResults, filteredSearch}) {
   const {user, setUser} = useContext(AppContext)
@@ -12,7 +13,7 @@ function FilteredResults({loading, filtered, filteredResults, filteredSearch}) {
     <>
     {
         loading && filteredResults.length === 0 ? <p>Loading the posts...</p> :
-        filteredResults.length === 0 ? <p>There are no posts right now</p>:
+        filteredResults.length === 0 ? <p className={`${!filtered ? 'hidden' : ''}`}>There are no posts right now</p>:
         filteredResults.sort((a, b) => {return filteredSearch == 'new' ? new Date(b.date) - new Date(a.date) : 
           filteredSearch == 'old' ? new Date(a.date) - new Date(b.date): 
           filteredSearch == 'best' ? b.likes.length - a.likes.length :''}).map((post, key) => {
@@ -23,15 +24,10 @@ function FilteredResults({loading, filtered, filteredResults, filteredSearch}) {
               <span className="post-date">{new Date(post.date).toLocaleString()}</span>
             </div>
             <div className="post-content">
-              {
-                post.text.trim() != '' ? <p>{post.text}</p> : ''
-              }
-              {
-                post.link.trim() != '' ? <p>{post.link}</p> : ''
-              }
-              {
-                post.video.trim() != '' ? <p>{post.video}</p> : ''
-              }
+              {post.text.trim() != '' ? <p>{post.text}</p> : ''}
+              {post.link.trim() != '' ? <LinkPreview url={post.link} /> : ''}
+              {post.video.trim() != '' ? <video className='video' src={post.video} controls />: ''}
+              {post.youtube.trim() != '' ? <div className='ytvid' dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''}
               {
                 post.pics.length != 0 ? 
                 <section className="img-container">

@@ -63,7 +63,7 @@ function User() {
   return (
     <section>
       <div className="user-container">
-        <div className="user-image">
+        <div className="user-image2">
           <img src={users.image} alt="user's image" className='profile-img'/>
         </div>
         <div className="user-info">

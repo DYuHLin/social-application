@@ -53,7 +53,7 @@ function Comment() {
           single.video.trim() != '' ? <video className='video' src={single.video} controls /> : ''
         }
         {
-          single.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: single.youtube}}></div> : ''
+          single.youtube.trim() != '' ? <div className='ytvid'  dangerouslySetInnerHTML={{__html: single.youtube}}></div> : ''
         }
         {
         single.pics.length != 0 ? 

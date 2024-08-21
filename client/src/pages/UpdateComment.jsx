@@ -17,7 +17,6 @@ function UpdateComment() {
   const [tube, setTube] = useState('')
   const [link, setLink] = useState('')
   const [emojiToggle, setEmojiToggle] = useState(true)
-  const [imgBox, setImgBox] = useState(false)
 
   const {user} = useContext(AppContext)
   const navigate = useNavigate()
@@ -73,7 +72,6 @@ function UpdateComment() {
         </form>
         <div className="post-links">
           <ul className='links'>
-            <li onClick={() => setImgBox(!imgBox)}>Image</li>
           </ul>
           </div>
     </section>

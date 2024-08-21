@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 
 function DeleteAccount({toggle, setToggle}) {
-    const {user} = useContext(AppContext)
+    const {user, setUser} = useContext(AppContext)
     const decoded = jwtDecode(user)
     const navigate = useNavigate()
 
@@ -14,6 +14,7 @@ function DeleteAccount({toggle, setToggle}) {
         try{
             axios.delete(`http://localhost:3000/api/auth/${decoded.user._id}/deleteaccount`, {headers: {'Content-Type': 'Application/json'}})
             toast.success('You have successfully deleted your account')
+            setUser(false)
             navigate('/login')
         }catch(err){
             console.log(err)

@@ -72,7 +72,6 @@ function UpdatePost() {
         </form>
         <div className="post-links">
           <ul className='links'>
-            <li onClick={() => setImgBox(!imgBox)}>Image</li>
           </ul>
           </div>
     </section>

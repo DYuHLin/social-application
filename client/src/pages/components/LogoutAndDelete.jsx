@@ -7,7 +7,7 @@ import DeleteAccount from './EditDelete/DeleteAccount'
 import { useNavigate } from 'react-router-dom'
 
 function LogoutAndDelete({users}) {
-    const {user} = useContext(AppContext)
+    const {user, setUser} = useContext(AppContext)
     const decoded = jwtDecode(user)
     const [toggle, setToggle] = useState(false)
     const navigate = useNavigate()
@@ -16,6 +16,7 @@ function LogoutAndDelete({users}) {
         try{
             axios.post(`http://localhost:3000/api/auth/logout`, {username: decoded.user.username}, {headers: {'Content-Type': 'Application/json'}})
             toast.success('You have successfully logged out')
+            setUser(false)
             navigate('/login')
         }catch(err){
             console.log(err)

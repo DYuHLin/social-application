@@ -56,11 +56,11 @@ function Home() {
       })
   },[comments])
 
-  useEffect(() => {
-    socket.off('get_posts').on('get_posts', (data) => {
-      setRefresh((content) => [...content, data.post])
-    })
-  },[socket])
+  // useEffect(() => {
+  //   socket.off('get_posts').on('get_posts', (data) => {
+  //     setRefresh((content) => [...content, data.post])
+  //   })
+  // },[socket])
 
   return (
     <section>
@@ -81,6 +81,7 @@ function Home() {
       </div>
       <Users />
     </div>
+    {/* <button onClick={() => console.log(`feed: ${posts} ----- refresh: ${refresh}`)}>show</button> */}
     </section>
   )
 }

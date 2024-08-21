@@ -50,7 +50,7 @@ function UserLikes({id, filteredSearch}) {
               {post.text.trim() != '' ? <p>{post.text}</p> : ''}
               {post.link.trim() != '' ? <LinkPreview url={post.link} /> : ''}
               {post.video.trim() != '' ? <video className='video' src={post.video} controls /> : ''}
-              {post.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''}
+              {post.youtube.trim() != '' ? <div className='ytvid'  dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''}
               {
                 post.pics.length != 0 ? 
                 <section className="img-container">
