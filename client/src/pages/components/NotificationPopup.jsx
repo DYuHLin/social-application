@@ -4,13 +4,14 @@ import {toast} from 'react-toastify'
 import { jwtDecode } from 'jwt-decode'
 import AppContext from '../../context/AppContext'
 
-function NotificationPopup({toggle, setToggle, notifications}) {
+function NotificationPopup({toggle, setToggle, notifications, setNotifications}) {
     const {user, setUser} = useContext(AppContext)
 
     const clearNotifications = () => {
         try{
-            axios.delete(`http://localhost:3000/api/notifications/${jwtDecode(user).user._id}/deleteaccount`, {headers: {'Content-Type': 'Application/json'}})
+            axios.delete(`http://localhost:3000/api/notifications/${jwtDecode(user).user._id}/delete`, {headers: {'Content-Type': 'Application/json'}})
             toast.success('You have successfully cleared notifications.')
+            setNotifications([])
         }catch(err){
             console.log(err)
             toast.error('There was an error clearing notifications.')
@@ -24,7 +25,7 @@ function NotificationPopup({toggle, setToggle, notifications}) {
                 <div className="close-btn" onClick={() => setToggle(!toggle)}>&times;</div>
                 <h1>Notifications</h1>
                 <div className={`popup-fow-container`}>
-                <button className='follow-btn' onClick={() => clearNotifications()}>Clear Notifications</button>
+                <button className='clear-btn' onClick={() => clearNotifications()}>Clear Notifications</button>
                     {notifications.length == 0 ? <p>You do not have notifications</p> : notifications.map((noti, key) => {
                         return(
                             <div className="noti" key={key}>

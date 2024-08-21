@@ -1,10 +1,15 @@
 import React from 'react'
 
-function RefreshButton({setPosts, refresh}) {
-    
+function RefreshButton({setRefresh, posts}) {
+
+  const backTop = () => {
+    setRefresh(posts)
+    window.scrollTo({top: 0, behavior: 'smooth'})
+  }
+  
   return (
     <div className='refresher'>
-    <button onClick={() => setPosts(refresh)} className='refresh-btn'>Refresh</button>
+    <button onClick={() => backTop} className='refresh-btn'>New Posts</button>
     </div>
   )
 }

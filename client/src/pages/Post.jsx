@@ -37,7 +37,6 @@ function Post() {
 
   return (
     <section>
-      <h1>Post</h1>
       {!post ? '' : <div className="post-container">
       <div className="poster-info">
         <Link to={`/user/${post.user._id}`} className="poster">{post.user.username}</Link>

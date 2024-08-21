@@ -10,6 +10,7 @@ import NotificationPopup from './NotificationPopup'
 function Navbar() {
   const {user, setUser} = useContext(AppContext)
   const [notifications, setNotifications] = useState([])
+  const [toggle2, setToggle2] = useState(false)
   const [toggle, setToggle] = useState(false)
   const [menu, setMenu] = useState(false)
 
@@ -28,34 +29,25 @@ function Navbar() {
       }
     }
 
-    useEffect(() => {
-      let handler = () => {
-        setMenu(false)    
-      }
-
-      document.addEventListener('mousedown', handler)
-      return() => {document.removeEventListener('mousedown', handler)}
-    })
-
   return (
-    <nav>
-        <h1 className="app-title">
-            App Title
-        </h1>
+    <>
+      <nav>
+        <h1>Clones</h1>
 
-        {!user ? '' : <SearchBar />}
-
-        <div className="app-links">
-          {!user ? '' :<div className='profile-link'>
-          <img src={jwtDecode(user).user.image} alt="user's image" className='profile-img' onClick={() => setMenu(!menu)}/>
-          <ul className={`dropdown ${menu == false ? '' : 'dropdown-active'}`}>
-            <li><Link to={`/user/${jwtDecode(user).user._id}`}>User page</Link></li>
-            <li onClick={() => {setToggle(true); notifcationPop();}}>Notifications</li>
-          </ul>
-          </div>}           
-        </div>
-        <NotificationPopup toggle={toggle} setToggle={setToggle} notifications={notifications}/>
-    </nav>
+          <div className="app-links">
+            {!user ? '' :<div className='profile-link'>
+            <ul className={`dropdown ${menu == false ? '' : 'dropdown-active'}`}>
+              <li><Link to={`/user/${jwtDecode(user).user._id}`}>Profile</Link></li>
+              <li onClick={() => {setToggle2(true); notifcationPop();}}>Notifications</li>
+              <li onClick={() => {setToggle(true);}}>Search</li>
+            </ul>
+            <img src={jwtDecode(user).user.image} alt="user's image" className='profile-img' onClick={() => setMenu(!menu)}/>
+            </div>}           
+          </div>
+      </nav>
+      <NotificationPopup toggle={toggle2} setToggle={setToggle2} notifications={notifications} setNotifications={setNotifications}/>
+      {!user ? '' : <SearchBar toggle={toggle} setToggle={setToggle}/>}
+    </>
   )
 }
 

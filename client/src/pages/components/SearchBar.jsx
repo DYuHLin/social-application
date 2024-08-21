@@ -3,7 +3,7 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import SearchContainer from './SearchContainer'
 
-function SearchBar() {
+function SearchBar({toggle, setToggle}) {
     const [search, setSearch] = useState('')
     const [posts, setPosts] = useState([])
     const [users, setUsers] = useState([])
@@ -40,9 +40,16 @@ function SearchBar() {
       })
     },[])
   return (
-    <div className='searcher'>
-        <input type="text" onChange={(e) => setSearch(e.target.value)} placeholder='Search posts, comments, etc' className='searchbar'/>  
-        <SearchContainer posts={posts} comments={comments} search={search} users={users} />
+    <div className={`popup ${toggle ? 'active' : ''}`}>
+        <div className="overlay">
+            <div className={`popup-content`}>
+                <div className="close-btn" onClick={() => setToggle(!toggle)}>&times;</div>
+                <input type="text" onChange={(e) => setSearch(e.target.value)} placeholder='Search posts, comments, etc' className='searchbar'/>   
+                <div className="results">
+                  <SearchContainer posts={posts} comments={comments} search={search} users={users} />
+                </div>
+            </div>
+        </div>
     </div>
   )
 }

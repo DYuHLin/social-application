@@ -50,15 +50,6 @@ function CreatePost({socket, setRefresh, setPosts}) {
     }
   }
 
-  useEffect(() => {
-    let handler = () => {
-      setEmojiToggle(true)    
-    }
-
-    document.addEventListener('mousedown', handler)
-    return() => {document.removeEventListener('mousedown', handler)}
-  })
-
   return (
     <div className='create-post'>
         <form method="POST" onSubmit={handleSumbmit} className='create-post-form'>

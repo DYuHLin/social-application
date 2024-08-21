@@ -28,13 +28,21 @@ function Home() {
     axios.get('http://localhost:3000/api/posts/', {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setPosts(res.data)
-        setRefresh(res.data)
         setFilteredResults(res.data.filter((post) => decoded.user.followers.some((userId) => userId.user._id === post.user._id)))
         setLoading(false)
       })
       .catch((err) => {
         console.log(err)
         toast.error('There was an error fetching the posts')
+      })
+  },[posts])
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/api/posts/', {headers: {'Content-Type': 'application/json'}})
+      .then((res) => {setRefresh(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
       })
   },[])
 
@@ -56,7 +64,7 @@ function Home() {
 
   return (
     <section>
-    {posts.length === refresh.length ? '' : <RefreshButton setPosts={setPosts} refresh={refresh} />}
+    {posts.length === refresh.length ? '' : <RefreshButton setRefresh={setRefresh} posts={posts} />}
     <CreatePost socket={socket} setRefresh={setRefresh} setPosts={setPosts}/>
     <div className="see-posts">
       <p onClick={() => {setRegular(true); setFiltered(false)}} className='filter-link'>All</p> <p onClick={() => {setRegular(false); setFiltered(true)}} className='filter-link'>Following</p>

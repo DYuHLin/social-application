@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 function SearchContainer({posts, comments, users, search}) {
   return (
-    <div className="searchContainer">
+    <>
         {posts === false ? '' : posts.length == 0 ? '' : posts.filter((item) => {
             return search.toLocaleLowerCase() === '' ? '' : item.text.toLocaleLowerCase().includes(search) || item.user.username.toLocaleLowerCase().includes(search)||
             item.link.toLocaleLowerCase().includes(search) || item.video.toLocaleLowerCase().includes(search);
@@ -72,7 +72,7 @@ function SearchContainer({posts, comments, users, search}) {
             )
         }) 
         }
-        </div>
+    </>
   )
 }
 

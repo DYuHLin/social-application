@@ -54,7 +54,7 @@ section{
   display: flex;
   flex-direction: column;
   gap: 26px;
-  width: 60%;
+  width: 85%;
   margin-bottom: 60px;
   padding: 24px;
   border-radius: 7px;
@@ -68,6 +68,8 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
     /* box-shadow: 15px 15px 35px hsl(260, 73%, 51%); */
 }
 
@@ -122,6 +124,11 @@ fieldset{
 .icons{
   font-size: 35px;
   font-weight: 600;
+  transition: 0.5s;
+}
+
+.icons:hover{
+  box-shadow: 0 0px 35px hsl(260, 73%, 51%);
 }
 
 textarea{
@@ -153,19 +160,14 @@ ul{
 }
 
 .dropdown{
-  width: 10%;
-  height: 10%;
-  background-color: #242a50;
-  position: absolute;
-  z-index: 999;
   display: none;
-  padding: 5px;
   border-radius: 7px;
+  justify-content: right;
+  transition: all 800ms ease-in-out;
 }
 
 .dropdown-active{
   display: flex;
-  flex-direction: column;
 }
 
 .profile-link{
@@ -174,6 +176,11 @@ ul{
   display: flex;
   align-items: center;
   justify-content: right;
+}
+
+.logo{
+  height: 100%;
+  width: 10%;
 }
 
 li{
@@ -215,6 +222,15 @@ li{
   width: 100%;
   gap: 40px;
   border-bottom: 1px solid black;
+}
+
+.user-links{
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.user-links:hover{
+  box-shadow: 0 0px 35px hsl(260, 73%, 51%);
 }
 
 .ytvid{
@@ -268,6 +284,14 @@ li{
 .img-round{
   height: 100%;
   width: 20%;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.img-round2{
+  height: 100%;
+  width: 40%;
   display: flex;
   align-items: center;
   padding: 15px;
@@ -336,19 +360,25 @@ input::-webkit-file-upload-button:hover{
 }
 
 .app-links{
-  width: 10%;
+  width: 20%;
   height: 90%;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: row-reverse;
 }
 
 .filter-option{
   cursor: pointer;
+  transition: 0.5s;
+}
+
+.filter-option:hover{
+  box-shadow: 0 0px 35px hsl(260, 73%, 51%);
 }
 
 .selected{
-  color: blue;
+  color: hsl(260, 100%, 60%);;
 }
 
 .filter{
@@ -391,7 +421,7 @@ input::-webkit-file-upload-button:hover{
 
 .follow-lnk{
   cursor: pointer;
-  color: blue;
+  color: hsl(260, 100%, 60%);
 }
 
 .profile-img{
@@ -500,7 +530,6 @@ form{
 .popup-fow-container{
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
 .img-container{
@@ -511,7 +540,7 @@ form{
 
 .slider-wrapper{
   position: relative;
-  max-width: 48rem;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -604,15 +633,12 @@ a{
   cursor: pointer;
 }
 
-.searchContainer{
-  top: 80px;
-  position: absolute;
-  width: 60%;
+.results{
+  width: 100%;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
-  box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.6);
+  justify-content: center;
 }
 
 .search-name{
@@ -644,6 +670,26 @@ a{
 }
 
 .follow-btn:hover{
+  transform: translateY(-5px);
+  background-color: transparent;
+  color: hsl(260, 100%, 60%);
+  box-shadow: .3rem .3rem 0 0 hsl(260, 100%, 40%);
+}
+
+.clear-btn{
+  padding: 5px;
+  color: white;
+  background-color: hsl(260, 100%, 60%);
+  border-radius: 5px;
+  border: 4px solid hsl(260, 100%, 60%);
+  transition: all 0.3s;
+  font-size: 22px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.clear-btn:hover{
   transform: translateY(-5px);
   background-color: transparent;
   color: hsl(260, 100%, 60%);
@@ -709,4 +755,21 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-thumb {
     background-color: darkgrey;
     border-radius: 7px;
+}
+
+@media (max-width: 1065px){
+  .user-pane{
+    display: none;
+  }
+
+  .home-posts{
+    width: 100%;
+  }
+}
+
+@media (max-width: 660px){
+  .post-container{
+    gap: 10px;
+    padding: 1rem;
+  }
 }

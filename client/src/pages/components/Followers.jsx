@@ -8,7 +8,7 @@ function Followers({toggle, setToggle, users, id}) {
     const {user} = useContext(AppContext)
     const decoded = jwtDecode(user)
     const [followers, setFollowers] = useState([])
-    const [hidden, setHidden] = useState('followers')
+    const [hidden, setHidden] = useState(false)
 
 useEffect(() => {
     axios.get(`http://localhost:3000/api/auth/${id}/followers`, {headers:{'content-type': 'application/json'}})
@@ -40,15 +40,15 @@ const follow = (userId) => {
         <div className="overlay">
             <div className={`popup-content`}>
                 <div className="close-btn" onClick={() => setToggle(!toggle)}>&times;</div>
-                <button className='follow-btn' onClick={() => setHidden(hidden === 'followers' ? 'following' : 'followers')}>{hidden == 'followers'? 'Following' : 'Followers'}</button>
-                <div className={`popup-fow-container ${hidden == 'following' ? 'hidden' : ''}`}>
-                    <p className='follow-count'>Following: {!users ? '' : users.followers.length}</p>
+                <button className='follow-btn' onClick={() => setHidden(!hidden)}>{hidden == 'followers'? 'Following' : 'Followers'}</button>
+                <div className={`popup-fow-container ${hidden == true ? 'hidden' : ''}`}>
+                    <p className={`follow-count ${hidden == true ? 'hidden' : ''}`}>Following: {!users ? '' : users.followers.length}</p>
                 {   !users ? '' : users.followers.length === 0 ? <p>Not following anyone...</p> :
                     users.followers.map((fow, key) => {
                         return(
-                            <div className={`user-pane-info`} key={key}>
+                            <div className={`user-pane-info ${hidden == true ? 'hidden' : ''}`} key={key}>
                                 <div className="user-detail">
-                                <div className="img-round">
+                                <div className="img-round2">
                                     <img src={fow.user.image} alt="user's image" className='profile-img'/>
                                 </div>   
                                     <p>{fow.user.username}</p>
@@ -60,14 +60,14 @@ const follow = (userId) => {
                 }
                 </div>           
 
-                <div className={`popup-fow-container ${hidden == 'followers' ? 'hidden' : ''}`}>
-                <p className='follow-count'>Followers: {!followers ? '' : followers.length}</p>
+                <div className={`popup-fow-container ${hidden == false ? 'hidden' : ''}`}>
+                <p className={`follow-count ${hidden == false ? 'hidden' : ''}`}>Followers: {!followers ? '' : followers.length}</p>
                 {followers.length === 0 ? <p>No follwers...</p> :
                 followers.map((fow, key) => {
                     return(
-                        <div className={`user-pane-info`} key={key}>
+                        <div className={`user-pane-info ${hidden == false ? 'hidden' : ''}`} key={key}>
                             <div className="user-detail">
-                            <div className="img-round">
+                            <div className="img-round2">
                                 <img src={fow.image} alt="user's image" className='profile-img'/>
                             </div>   
                                 <p>{fow.username}</p>
