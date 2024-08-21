@@ -70,7 +70,15 @@ nav{
     align-items: center;
     padding-left: 10px;
     padding-right: 10px;
-    /* box-shadow: 15px 15px 35px hsl(260, 73%, 51%); */
+}
+
+.project-title{
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.project-title:hover{
+  box-shadow: 0 0px 35px hsl(260, 73%, 51%);
 }
 
 header{
@@ -250,6 +258,15 @@ li{
   flex-direction: column;
   background-color: #161e49;
   border-radius: 7px;
+  overflow-y: scroll;
+}
+
+.user-pane::-webkit-scrollbar{
+  display: none;
+}
+
+.user-pane::-webkit-scrollbar-thumb{
+  display: none;
 }
 
 .user-pane-info{
@@ -370,7 +387,6 @@ input::-webkit-file-upload-button:hover{
 }
 
 .app-links{
-  width: 20%;
   height: 90%;
   display: flex;
   align-items: center;
@@ -401,9 +417,18 @@ input::-webkit-file-upload-button:hover{
   cursor: pointer;
 }
 
+.vid-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .video{
-  min-width: 100%;
-  min-height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .like-btn{
@@ -510,6 +535,15 @@ form{
   text-align: center;
   padding: 20px;
   box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+.popup::-webkit-scrollbar, .popup-content::-webkit-scrollbar{
+  display: none;
+}
+
+.popup::-webkit-scrollbar-thumb, .popup-content::-webkit-scrollbar-thumb{
+  display: none;
 }
 
 .popup .close-btn{
@@ -540,6 +574,15 @@ form{
 .popup-fow-container{
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
+}
+
+.popup-fow-container::-webkit-scrollbar{
+  display: none;
+}
+
+.popup-fow-container::-webkit-scrollbar-thumb{
+  display: none;
 }
 
 .guest{
@@ -557,6 +600,7 @@ form{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow-y: scroll;
 }
 
 .img-container{
@@ -568,7 +612,7 @@ form{
 .slider-wrapper{
   position: relative;
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0 ;
 }
 
 .poster-info{

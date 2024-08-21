@@ -50,7 +50,7 @@ function Comment() {
           single.link.trim() != '' ? <LinkPreview url={single.link} /> : ''
         }
         {
-          single.video.trim() != '' ? <video className='video' src={single.video} controls /> : ''
+          single.video.trim() != '' ? <div className='vid-container'><video className='video' src={single.video} controls /></div> : ''
         }
         {
           single.youtube.trim() != '' ? <div className='ytvid'  dangerouslySetInnerHTML={{__html: single.youtube}}></div> : ''

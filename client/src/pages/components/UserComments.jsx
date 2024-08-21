@@ -52,7 +52,7 @@ function UserComments({comments, loading, filteredSearch}) {
           <div className="post-content">
             {comment.text.trim() != '' ? <p>{comment.text}</p> : ''}
             {comment.link.trim() != '' ? <LinkPreview url={comment.link} />: ''}
-            {comment.video.trim() != '' ? <video className='video' src={comment.video} controls /> : ''}
+            {comment.video.trim() != '' ? <div className='vid-container'><video className='video' src={comment.video} controls /></div> : ''}
             {comment.youtube.trim() != '' ? <div className='ytvid'  dangerouslySetInnerHTML={{__html: comment.youtube}}></div> : ''}
             {
               comment.pics.length != 0 ? 

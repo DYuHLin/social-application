@@ -50,7 +50,7 @@ function Post() {
           post.link.trim() != '' ? <LinkPreview url={post.link} /> : ''
         }
         {
-          post.video.trim() != '' ? <video className='video' src={post.video} controls /> : ''
+          post.video.trim() != '' ? <div className='vid-container'><video className='video' src={post.video} controls /></div> : ''
         }
         {
           post.youtube.trim() != '' ? <div dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''

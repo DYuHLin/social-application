@@ -53,7 +53,7 @@ function UserPosts({loading, posts, filteredSearch}) {
             <div className="post-content">
               {post.text.trim() != '' ? <p>{post.text}</p> : ''}
               { post.link.trim() != '' ? <LinkPreview url={post.link} /> : '' }
-              {post.video.trim() != '' ? <video className='video' src={post.video} controls /> : ''}
+              {post.video.trim() != '' ? <div className='vid-container'><video className='video' src={post.video} controls /></div> : ''}
               {post.youtube.trim() != '' ? <div className='ytvid'  dangerouslySetInnerHTML={{__html: post.youtube}}></div> : ''}
               {
                 post.pics.length != 0 ? 

@@ -35,9 +35,9 @@ function Navbar() {
     <>
     <header>
       <nav>
-        <h1 onClick={() => navigate('/')}>Clones</h1>
+        <h1 className='project-title' onClick={() => navigate('/')}>Clones</h1>
 
-        <ul className={`dropdown ${menu == false ? '' : 'dropdown-active'}`}>
+        <ul className={`dropdown ${menu == false ? '' : !user ? '' : user !== false && !menu ? '' : 'dropdown-active'}`}>
             <li onClick={() => navigate(`user/${jwtDecode(user).user._id}`)}>Profile</li>
             <li onClick={() => {setToggle2(true); notifcationPop();}}>Notifications</li>
             <li onClick={() => {setToggle(true);}}>Search</li>
