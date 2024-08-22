@@ -10,7 +10,7 @@ import CreatePost from './CreatePost'
 import { io } from 'socket.io-client'
 import RefreshButton from './components/RefreshButton'
 
-const socket = io.connect(`http://localhost:3000`)
+const socket = io.connect(import.meta.env.VITE_API)
 
 function Home() {
   const [posts, setPosts] = useState([])
