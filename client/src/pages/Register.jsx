@@ -27,7 +27,7 @@ function Register() {
 
     const register = {name: updatedName, surname: updatedSurname, username: updatedUserame, bio: bio, email, password, confirmedPassword: confirm, image: image}
     try{
-      axios.post(`http://localhost:3000/api/auth/register`, register, {headers: {'Content-Type': 'application/json'}})
+      axios.post(`${import.meta.env.VITE_URI}/auth/register`, register, {headers: {'Content-Type': 'application/json'}})
       .then(res => res.data)
       .then(status => {
         if(status === 'failed'){

@@ -11,7 +11,7 @@ function Comments({postId, userId, filteredSearch}) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/comment/${postId}`, {headers: {'Content-Type': 'application/json'}})
+    axios.get(`${import.meta.env.VITE_URI}/comment/${postId}`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setComments(res.data)
         setLoading(false)
@@ -22,7 +22,7 @@ function Comments({postId, userId, filteredSearch}) {
   },[comments])
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/comment/comments`, {headers: {'Content-Type': 'application/json'}})
+    axios.get(`${import.meta.env.VITE_URI}/comment/comments`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setCommentsC(res.data)
       }).catch((err) => {

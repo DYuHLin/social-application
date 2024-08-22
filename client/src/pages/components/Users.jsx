@@ -12,7 +12,7 @@ function Users() {
     const decoded = jwtDecode(user)
 
     useEffect(() => {
-    axios.get(`http://localhost:3000/api/auth/getusers`, {headers:{'content-type': 'application/json'}})
+    axios.get(`${import.meta.env.VITE_URI}/auth/getusers`, {headers:{'content-type': 'application/json'}})
       .then((res) => {
         setUsers(res.data)
       }).catch((err) => {
@@ -22,7 +22,7 @@ function Users() {
     },[users])
 
     const follow = (userId) => {
-      axios.put(`http://localhost:3000/api/auth/${decoded.user._id}/follow`, {followerId: userId}, {headers:{'content-type': 'application/json'}})
+      axios.put(`${import.meta.env.VITE_URI}/auth/${decoded.user._id}/follow`, {followerId: userId}, {headers:{'content-type': 'application/json'}})
       .then((res) => {
         setStatus(res.data)
         if(res.data === 'deleted'){

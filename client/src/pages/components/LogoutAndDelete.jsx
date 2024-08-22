@@ -14,7 +14,7 @@ function LogoutAndDelete({users}) {
 
     const logout = () => {
         try{
-            axios.post(`http://localhost:3000/api/auth/logout`, {username: decoded.user.username}, {headers: {'Content-Type': 'Application/json'}})
+            axios.post(`${import.meta.env.VITE_URI}/auth/logout`, {username: decoded.user.username}, {headers: {'Content-Type': 'Application/json'}})
             toast.success('You have successfully logged out')
             setUser(false)
             navigate('/login')
@@ -25,7 +25,7 @@ function LogoutAndDelete({users}) {
     }
 
     const follow = (id) => {
-        axios.put(`http://localhost:3000/api/auth/${decoded.user._id}/follow`, {followerId: id}, {headers:{'content-type': 'application/json'}})
+        axios.put(`${import.meta.env.VITE_URI}/auth/${decoded.user._id}/follow`, {followerId: id}, {headers:{'content-type': 'application/json'}})
             .then((res) => {
             if(res.data === 'deleted'){
             toast.success('You have unfollwed this user')

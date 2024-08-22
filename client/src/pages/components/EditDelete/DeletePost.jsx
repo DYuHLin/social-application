@@ -8,7 +8,7 @@ function DeletePost({toggle, setToggle, post}) {
 
   const deletePost = (id) => {
     try{
-      axios.delete(`http://localhost:3000/api/posts/${id}/delete`, {headers: {'Content-Type': 'Application/json'}})
+      axios.delete(`${import.meta.env.VITE_URI}/posts/${id}/delete`, {headers: {'Content-Type': 'Application/json'}})
       toast.success('This post was deleted successfully')
       setToggle(!toggle)
       navigate('/')

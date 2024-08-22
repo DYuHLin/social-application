@@ -20,7 +20,7 @@ function Navbar() {
       if(user === false){
         return
       } else {
-        axios.get(`http://localhost:3000/api/notifications/${jwtDecode(user).user._id}`, {headers: {'Content-Type': 'application/json'}})
+        axios.get(`${import.meta.env.VITE_URI}/notifications/${jwtDecode(user).user._id}`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setNotifications(res.data)
       })

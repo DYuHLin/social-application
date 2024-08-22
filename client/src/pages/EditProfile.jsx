@@ -29,7 +29,7 @@ function EditProfile() {
 
     const register = {name: updatedName, surname: updatedSurname, username: updatedUserame, email, image: image}
     try{
-      axios.put(`http://localhost:3000/api/auth/${decoded.user._id}/updateaccount`, register, {headers: {'Content-Type': 'application/json'}})
+      axios.put(`${import.meta.env.VITE_URI}/auth/${decoded.user._id}/updateaccount`, register, {headers: {'Content-Type': 'application/json'}})
       .then(res => res.data)
       .then(status => {
         if(status === 'failed'){

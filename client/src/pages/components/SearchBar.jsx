@@ -12,7 +12,7 @@ function SearchBar({toggle, setToggle}) {
     const [comments, setComments] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/posts/', {headers: {'Content-Type': 'application/json'}})
+        axios.get(`${import.meta.env.VITE_URI}/posts/`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setPosts(res.data)
       })
@@ -23,7 +23,7 @@ function SearchBar({toggle, setToggle}) {
     },[posts])
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/auth/getusers`, {headers:{'content-type': 'application/json'}})
+        axios.get(`${import.meta.env.VITE_URI}/auth/getusers`, {headers:{'content-type': 'application/json'}})
       .then((res) => {
         setUsers(res.data)
       }).catch((err) => {
@@ -33,7 +33,7 @@ function SearchBar({toggle, setToggle}) {
     },[])
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/comment/comments`, {headers: {'Content-Type': 'application/json'}})
+        axios.get(`${import.meta.env.VITE_URI}/comment/comments`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setComments(res.data)
       }).catch((err) => {

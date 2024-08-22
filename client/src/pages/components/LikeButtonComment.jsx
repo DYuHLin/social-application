@@ -10,7 +10,7 @@ function LikeButtonComment({commentId, likes, comment}) {
     const likeButton = () => {
         const decoded = jwtDecode(user)
         try{
-            axios.put(`http://localhost:3000/api/comment/${commentId}/like`, {userId: decoded.user._id, liker: comment.user._id}, {headers: {'Content-Type': 'Application/json'}})
+            axios.put(`${import.meta.env.VITE_URI}/comment/${commentId}/like`, {userId: decoded.user._id, liker: comment.user._id}, {headers: {'Content-Type': 'Application/json'}})
             console.log('liked')
         }catch(err){
             console.log(err)

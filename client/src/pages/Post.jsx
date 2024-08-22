@@ -17,7 +17,7 @@ function Post() {
   const decoded = jwtDecode(user)
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/posts/${id}`, {headers: {'Content-Type': 'application/json'}})
+    axios.get(`${import.meta.env.VITE_URI}/posts/${id}`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setPost(res.data)
       }).catch((err) => {
@@ -26,7 +26,7 @@ function Post() {
       })
   },[]) 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/comment/comments`, {headers: {'Content-Type': 'application/json'}})
+    axios.get(`${import.meta.env.VITE_URI}/comment/comments`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setComments(res.data)
       }).catch((err) => {

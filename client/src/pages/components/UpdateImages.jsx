@@ -9,7 +9,7 @@ function UpdateImages({images, setImages, id}) {
 
     const removeImg = (image) => {
         try{
-            axios.put(`http://localhost:3000/api/posts/${id}/deleteimg`, {imgUrl: image}, {headers: {'Content-Type': 'Application/json'}})
+            axios.put(`${import.meta.env.VITE_URI}/posts/${id}/deleteimg`, {imgUrl: image}, {headers: {'Content-Type': 'Application/json'}})
             .then((res) => {
                 console.log(res.data)
             })

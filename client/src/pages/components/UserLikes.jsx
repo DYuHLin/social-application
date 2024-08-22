@@ -19,7 +19,7 @@ function UserLikes({id, filteredSearch}) {
         console.log(err)
         toast.error('There was an error fetching this users posts')
       })
-  },[])
+  },[id])
 
   useEffect(() => {
     axios.get(`http://localhost:3000/api/comment/comments`, {headers: {'Content-Type': 'application/json'}})

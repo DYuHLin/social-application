@@ -9,10 +9,11 @@ const comment = require('./Routers/commentRoutes');
 const posts = require('./Routers/postRoutes');
 const notifications = require('./Routers/NotificationsRoutes');
 const socket = require('socket.io');
+require('dotenv').config();
 
 const app = express();
 app.use(cors({
-    origin: 'http://localhost:5173', 
+    origin: process.env.FRONTEND, 
     credentials: true,
     optionSuccessStatus:200,
 }));
@@ -23,7 +24,7 @@ app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
 
 mongoose.set('strictQuery', false);
-const mongoDB = 'mongodb+srv://dyhlin2000:damian1216@cluster0.dtezc2s.mongodb.net/social_application?retryWrites=true&w=majority&appName=Cluster0';
+const mongoDB = process.env.MONGODB_URL;
 
 async function main(){
     mongoose.connect(mongoDB);
@@ -37,11 +38,11 @@ app.use('/api/comment', comment);
 app.use('/api/notifications', notifications);
 
 
-const server = app.listen(3000, () => console.log('App is listening'));
+const server = app.listen(process.env.PORT, () => console.log('App is listening'));
 
 const io = socket(server, {
     cors: {
-        origin: 'http://localhost:5173', 
+        origin: process.env.FRONTEND, 
         credentials: true,
         optionSuccessStatus:200,
     }

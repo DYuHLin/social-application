@@ -17,7 +17,7 @@ function Login() {
     e.preventDefault()
     const login = {username: username, password: password}
     try{
-      const res = await axios.post(`http://localhost:3000/api/auth/login`, login, {headers:{'content-type': 'application/json'}})
+      const res = await axios.post(`${import.meta.env.VITE_URI}/auth/login`, login, {headers:{'content-type': 'application/json'}})
       if(res.data == 'username'){
         setError('Your username or password is incorrect.')
       }else if(res.data == 'password'){
@@ -35,7 +35,7 @@ function Login() {
   const guest = async () => {
     const login = {username: 'guest', password: 'guest1234'}
     try{
-      const res = await axios.post(`http://localhost:3000/api/auth/login`, login, {headers:{'content-type': 'application/json'}})
+      const res = await axios.post(`${import.meta.env.VITE_URI}/auth/login`, login, {headers:{'content-type': 'application/json'}})
       if(res.data == 'username'){
         setError('Your username or password is incorrect.')
       }else if(res.data == 'password'){

@@ -6,7 +6,7 @@ function DeleteComment({toggle, setToggle, comment}) {
 
     const deleteComment = (id) => {
         try{
-          axios.delete(`http://localhost:3000/api/comment/${id}/delete`, {headers: {'Content-Type': 'Application/json'}})
+          axios.delete(`${import.meta.env.VITE_URI}/comment/${id}/delete`, {headers: {'Content-Type': 'Application/json'}})
           toast.success('This comment was deleted successfully')
           setToggle(!toggle)
       }catch(err){

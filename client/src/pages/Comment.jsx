@@ -16,7 +16,7 @@ function Comment() {
     const decoded = jwtDecode(user)
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/comment/${id}/comment`, {headers: {'Content-Type': 'application/json'}})
+        axios.get(`${import.meta.env.VITE_URI}/comment/${id}/comment`, {headers: {'Content-Type': 'application/json'}})
           .then((res) => {
             setSingle(res.data)
           }).catch((err) => {
@@ -26,7 +26,7 @@ function Comment() {
       },[single]) 
 
       useEffect(() => {
-        axios.get(`http://localhost:3000/api/comment/comments`, {headers: {'Content-Type': 'application/json'}})
+        axios.get(`${import.meta.env.VITE_URI}/comment/comments`, {headers: {'Content-Type': 'application/json'}})
           .then((res) => {
             setComments(res.data)
           }).catch((err) => {

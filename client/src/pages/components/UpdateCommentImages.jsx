@@ -9,7 +9,7 @@ function UpdateCommentImages({images, setImages, id}) {
 
     const removeImg = (image) => {
         try{
-            axios.put(`http://localhost:3000/api/comment/${id}/removeimg`, {imgUrl: image}, {headers: {'Content-Type': 'Application/json'}})
+            axios.put(`${import.meta.env.VITE_URI}/comment/${id}/removeimg`, {imgUrl: image}, {headers: {'Content-Type': 'Application/json'}})
             .then((res) => {
                 console.log(res.data)
             })

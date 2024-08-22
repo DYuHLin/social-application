@@ -11,7 +11,7 @@ export const AppProvider = ({children}) => {
         return localUser ? localUser : false
     };
     const [user, setUser] = useState(getInitialState)
-    const defaultPic = 'https://res.cloudinary.com/dqdoxrm2x/image/upload/v1720614729/jml8pug0wuzmtv95yvwf.jpg'
+    const defaultPic = import.meta.env.VITE_PIC
 
     const ProtectedRoutes = () => {
         return(

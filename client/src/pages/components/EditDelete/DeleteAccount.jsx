@@ -12,7 +12,7 @@ function DeleteAccount({toggle, setToggle}) {
 
     const deleteAccount = () => {
         try{
-            axios.delete(`http://localhost:3000/api/auth/${decoded.user._id}/deleteaccount`, {headers: {'Content-Type': 'Application/json'}})
+            axios.delete(`${import.meta.env.VITE_URI}/auth/${decoded.user._id}/deleteaccount`, {headers: {'Content-Type': 'Application/json'}})
             toast.success('You have successfully deleted your account')
             setUser(false)
             navigate('/login')

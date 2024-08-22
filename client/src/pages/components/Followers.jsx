@@ -18,7 +18,7 @@ useEffect(() => {
         console.log(err)
         toast.error('There was an error fetching this user')
         })
-    },[])
+    },[id])
 
 const follow = (userId) => {
     axios.put(`http://localhost:3000/api/auth/${decoded.user._id}/follow`, {followerId: userId}, {headers:{'content-type': 'application/json'}})

@@ -27,7 +27,7 @@ function UpdateComment() {
     const decoded = jwtDecode(user)
     const post = {userId: decoded.user._id, text: text, link: link, video: video, youtube: tube, pics: images}
     try{
-      axios.put(`http://localhost:3000/api/comment/${id}/update`, post, {headers: {'Content-Type': 'application/json'}})
+      axios.put(`${import.meta.env.VITE_URI}/comment/${id}/update`, post, {headers: {'Content-Type': 'application/json'}})
       toast.success("You have updated this blog successfully");
       navigate('/');
     }catch(err){
@@ -37,7 +37,7 @@ function UpdateComment() {
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/comment/${id}/comment`, {headers: {'Content-Type': 'application/json'}})
+    axios.get(`${import.meta.env.VITE_URI}/comment/${id}/comment`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setPost(res.data)
         setText(res.data.text)

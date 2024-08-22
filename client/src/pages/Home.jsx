@@ -25,7 +25,7 @@ function Home() {
   const decoded = jwtDecode(user)
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/posts/', {headers: {'Content-Type': 'application/json'}})
+    axios.get(`${import.meta.env.VITE_URI}/posts/`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setPosts(res.data)
         setFilteredResults(res.data.filter((post) => decoded.user.followers.some((userId) => userId.user._id === post.user._id)))
@@ -38,7 +38,7 @@ function Home() {
   },[posts])
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/posts/', {headers: {'Content-Type': 'application/json'}})
+    axios.get(`${import.meta.env.VITE_URI}/posts/`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {setRefresh(res.data)
       })
       .catch((err) => {
@@ -47,7 +47,7 @@ function Home() {
   },[])
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/comment/comments`, {headers: {'Content-Type': 'application/json'}})
+    axios.get(`${import.meta.env.VITE_URI}/comment/comments`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setComments(res.data)
       }).catch((err) => {
@@ -55,12 +55,6 @@ function Home() {
         toast.error('There was an error fetching the comments')
       })
   },[comments])
-
-  // useEffect(() => {
-  //   socket.off('get_posts').on('get_posts', (data) => {
-  //     setRefresh((content) => [...content, data.post])
-  //   })
-  // },[socket])
 
   return (
     <section>
@@ -81,7 +75,6 @@ function Home() {
       </div>
       <Users />
     </div>
-    {/* <button onClick={() => console.log(`feed: ${posts} ----- refresh: ${refresh}`)}>show</button> */}
     </section>
   )
 }

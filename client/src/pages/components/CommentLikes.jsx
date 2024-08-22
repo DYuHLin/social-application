@@ -10,7 +10,7 @@ function CommentLikes({id, filteredSearch}) {
     const [comments, setComments] = useState([])
 
     useEffect(() => {
-    axios.get(`http://localhost:3000/api/comment/likes/${id}`, {headers:{'content-type': 'application/json'}})
+    axios.get(`${import.meta.env.VITE_URI}/comment/likes/${id}`, {headers:{'content-type': 'application/json'}})
       .then((res) => {
         setPosts(res.data)
         setLoading(false)
@@ -18,10 +18,10 @@ function CommentLikes({id, filteredSearch}) {
         console.log(err)
         toast.error('There was an error fetching this users posts')
       })
-  },[])
+  },[id])
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/comment/comments`, {headers: {'Content-Type': 'application/json'}})
+    axios.get(`${import.meta.env.VITE_URI}/comment/comments`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setComments(res.data)
       }).catch((err) => {

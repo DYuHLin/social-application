@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { jwtDecode } from 'jwt-decode'
 import AppContext from '../context/AppContext'
-import { useParams, Link, useOutletContext } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import {toast} from 'react-toastify'
 import UserPosts from './components/UserPosts'
 import UserComments from './components/UserComments'
@@ -25,21 +25,19 @@ function User() {
   const {user} = useContext(AppContext)
   const decoded = jwtDecode(user)
   let { id } = useParams()
-  const context = useOutletContext()
-  // console.log(context)
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/auth/${id}/singleuser`, {headers:{'content-type': 'application/json'}})
+    axios.get(`${import.meta.env.VITE_URI}/auth/${id}/singleuser`, {headers:{'content-type': 'application/json'}})
       .then((res) => {
         setUsers(res.data)
       }).catch((err) => {
         console.log(err)
         toast.error('There was an error fetching this user')
       })
-  },[])
+  },[id])
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/posts/user/${id}`, {headers:{'content-type': 'application/json'}})
+    axios.get(`${import.meta.env.VITE_URI}/posts/user/${id}`, {headers:{'content-type': 'application/json'}})
       .then((res) => {
         setPosts(res.data)
         setLoading(false)
@@ -47,10 +45,10 @@ function User() {
         console.log(err)
         toast.error('There was an error fetching this users posts')
       })
-  },[])
+  },[id])
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/api/comment/user/${id}`, {headers: {'Content-Type': 'application/json'}})
+    axios.get(`${import.meta.env.VITE_URI}/comment/user/${id}`, {headers: {'Content-Type': 'application/json'}})
       .then((res) => {
         setComments(res.data)
         setLoading2(false)
@@ -58,7 +56,7 @@ function User() {
         console.log(err)
         toast.error('There was an error fetching the comments')
       })
-  },[])
+  },[id])
 
   return (
     <section>

@@ -27,7 +27,7 @@ function CreatePost({socket, setRefresh, setPosts}) {
     const decoded = jwtDecode(user)
     const post = {userId: decoded.user._id, text: text, link: link, video: video, youtube: tube, pics: images}
     try{
-      axios.post('http://localhost:3000/api/posts/create', post, {headers: {'Content-Type': 'application/json'}})
+      axios.post(`${import.meta.env.VITE_URI}/posts/create`, post, {headers: {'Content-Type': 'application/json'}})
         .then((res) => {
           socket.emit('send_post', {post: res.data})
           setRefresh((content) => [...content, res.data])

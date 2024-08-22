@@ -15,7 +15,7 @@ function App() {
       <main>
         <Outlet/>
       </main>
-        <ToastContainer position="top-right"
+        <ToastContainer position="top-center"
         autoClose={1000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -25,7 +25,7 @@ function App() {
         draggable
         pauseOnHover
         theme="dark"
-        transition: Bounce/>
+        transition: Zoom/>
     </div>
   )
 }

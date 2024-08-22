@@ -17,7 +17,7 @@ function UpdatePassword({toggle, setToggle}) {
         e.preventDefault()
         const credentials = {username: decoded.user.username, password: current, newPassword: password, confirmedPassword: confirm}
         try{
-            axios.put(`http://localhost:3000/api/auth/${decoded.user._id}/updatepassword`, credentials, {headers: {'Content-Type': 'Application/json'}})
+            axios.put(`${import.meta.env.VITE_URI}/auth/${decoded.user._id}/updatepassword`, credentials, {headers: {'Content-Type': 'Application/json'}})
                 .then((res) => {
                     if(res.data === 'password'){
                         toast.error('You typed the incorrect current password')

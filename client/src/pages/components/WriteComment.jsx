@@ -22,7 +22,7 @@ function WriteComment({postId, userId, setComments}) {
     e.preventDefault()
     const post = {userId: userId, text: text, link: link, video: video, youtube: tube, pics: images}
     try{
-      axios.post(`http://localhost:3000/api/comment/${postId}/create`, post, {headers: {'Content-Type': 'application/json'}})
+      axios.post(`${import.meta.env.VITE_URI}/comment/${postId}/create`, post, {headers: {'Content-Type': 'application/json'}})
         .then((res) => {
           setComments((content) => [...content, res.data])
         })
