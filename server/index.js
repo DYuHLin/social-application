@@ -15,6 +15,7 @@ const app = express();
 app.use(cors({
     origin: process.env.FRONTEND, 
     credentials: true,
+    methods: ['GET','PUT','POST','DELETE'],
     optionSuccessStatus:200,
 }));
 app.use(express.json({limit: '50mb', extended: true}));
@@ -44,6 +45,7 @@ const io = socket(server, {
     cors: {
         origin: process.env.FRONTEND, 
         credentials: true,
+        methods: ['GET','PUT','POST','DELETE'],
         optionSuccessStatus:200,
     }
 });
